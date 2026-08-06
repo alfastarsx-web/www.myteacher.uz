@@ -308,6 +308,13 @@
     z-index: 1;
   }
 
+  .faq-item summary { -webkit-tap-highlight-color: transparent; }
+  .faq-item summary::-webkit-details-marker,
+  .faq-item summary::marker { display: none; content: ''; }
+  .faq-item .faq-chevron { transition: transform 0.2s ease; }
+  .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+  .faq-item[open] { border-color: rgb(186 230 253); box-shadow: 0 1px 3px rgba(2,132,199,0.08); }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.001ms !important;
@@ -415,6 +422,52 @@
       "name": "MyTeacher",
       "inLanguage": ["uz", "ru", "en"],
       "publisher": { "@id": "https://myteacher.uz/#organization" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://myteacher.uz/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O'zbekistondagi eng yaxshi AI asosidagi ingliz tili so'zlashuv kursi qaysi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MyTeacher — O'zbekistonning AI asosidagi №1 mobil ilovasi va ta'lim platformasi bo'lib, ingliz tilida 24/7 erkin gapirishni o'rgatadi. Platforma til to'sig'ini yengib o'tishga va tez orada real muloqot ishonchini shakllantirishga yordam beradi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "MyTeacher ilovasidagi AI Suhbatdosh qanday ishlaydi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ilovadagi AI Suhbatdosh sizga 24/7 real vaqtda, interaktiv ovozli mashq imkonini beradi. Siz gapirayotganingizda talaffuz va grammatika xatolaringizni darhol tuzatadi — bu xuddi doim mavjud bo'lgan shaxsiy repetitoringiz kabi ishlaydi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "MyTeacher an'anaviy til markazlari yoki xususiy repetitorlardan nimasi bilan farq qiladi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Toshkentdagi an'anaviy til markazlari va xususiy repetitorlar odatda oyiga 500,000–800,000 so'm turadi va vaqt talab qiluvchi yo'l-yurishni talab qiladi. MyTeacher esa telefoningizda 24/7 cheksiz so'zlashuv mashqini ancha arzon narxda taqdim etadi — istalgan vaqtda va joyda 15 daqiqalik seanslarda shug'ullanishingiz mumkin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "MyTeacher ilovasi qaysi qurilmalarda ishlaydi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MyTeacher ilovasi ham iOS (iPhone / TestFlight), ham Android (Google Play Store) qurilmalari bilan to'liq mos keladi. Ilovani ushbu sahifadagi 'Sinab ko'rish' tugmasi orqali bepul yuklab olishingiz mumkin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "MyTeacher IELTS Speaking ballimni oshirishga yordam bera oladimi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ha! MyTeacher'ning interaktiv so'zlashuv darslari va real vaqtdagi muloqot mashqlari IELTS Speaking imtihoniga tayyorlanayotgan talabalar, shuningdek kasbiy faoliyatida ingliz tilini mukammallashtirmoqchi bo'lgan mutaxassislar uchun maxsus tuzilgan."
+          }
+        }
+      ]
     }
   ]
 }
@@ -1108,6 +1161,60 @@
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<section id="faq" class="relative bg-slate-50 py-20 sm:py-28">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <span class="inline-flex items-center gap-2 rounded-full bg-sky-50 text-sky-700 px-4 py-1.5 text-xs sm:text-sm font-semibold">
+        <i data-lucide="help-circle" class="w-4 h-4"></i> <span data-i18n="faq_badge">Savol-javob</span>
+      </span>
+      <h2 class="mt-5 font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 tracking-tight" data-i18n="faq_h2">Ko'p beriladigan savollar</h2>
+    </div>
+
+    <div class="mt-10 space-y-3 reveal">
+      <details class="faq-item group rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-colors">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-slate-900">
+          <span data-i18n="faq_q1">O'zbekistondagi eng yaxshi AI asosidagi ingliz tili so'zlashuv kursi qaysi?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 text-slate-400 faq-chevron" aria-hidden="true"></i>
+        </summary>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_a1">MyTeacher — O'zbekistonning AI asosidagi №1 mobil ilovasi va ta'lim platformasi bo'lib, ingliz tilida 24/7 erkin gapirishni o'rgatadi. Platforma til to'sig'ini yengib o'tishga va tez orada real muloqot ishonchini shakllantirishga yordam beradi.</p>
+      </details>
+
+      <details class="faq-item group rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-colors">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-slate-900">
+          <span data-i18n="faq_q2">MyTeacher ilovasidagi AI Suhbatdosh qanday ishlaydi?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 text-slate-400 faq-chevron" aria-hidden="true"></i>
+        </summary>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_a2">Ilovadagi AI Suhbatdosh sizga 24/7 real vaqtda, interaktiv ovozli mashq imkonini beradi. Siz gapirayotganingizda talaffuz va grammatika xatolaringizni darhol tuzatadi — bu xuddi doim mavjud bo'lgan shaxsiy repetitoringiz kabi ishlaydi.</p>
+      </details>
+
+      <details class="faq-item group rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-colors">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-slate-900">
+          <span data-i18n="faq_q3">MyTeacher an'anaviy til markazlari yoki xususiy repetitorlardan nimasi bilan farq qiladi?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 text-slate-400 faq-chevron" aria-hidden="true"></i>
+        </summary>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_a3">Toshkentdagi an'anaviy til markazlari va xususiy repetitorlar odatda oyiga 500,000–800,000 so'm turadi va vaqt talab qiluvchi yo'l-yurishni talab qiladi. MyTeacher esa telefoningizda 24/7 cheksiz so'zlashuv mashqini ancha arzon narxda taqdim etadi — istalgan vaqtda va joyda 15 daqiqalik seanslarda shug'ullanishingiz mumkin.</p>
+      </details>
+
+      <details class="faq-item group rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-colors">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-slate-900">
+          <span data-i18n="faq_q4">MyTeacher ilovasi qaysi qurilmalarda ishlaydi?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 text-slate-400 faq-chevron" aria-hidden="true"></i>
+        </summary>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_a4">MyTeacher ilovasi ham iOS (iPhone / TestFlight), ham Android (Google Play Store) qurilmalari bilan to'liq mos keladi. Ilovani ushbu sahifadagi "Sinab ko'rish" tugmasi orqali bepul yuklab olishingiz mumkin.</p>
+      </details>
+
+      <details class="faq-item group rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-colors">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-slate-900">
+          <span data-i18n="faq_q5">MyTeacher IELTS Speaking ballimni oshirishga yordam bera oladimi?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 text-slate-400 faq-chevron" aria-hidden="true"></i>
+        </summary>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_a5">Ha! MyTeacher'ning interaktiv so'zlashuv darslari va real vaqtdagi muloqot mashqlari IELTS Speaking imtihoniga tayyorlanayotgan talabalar, shuningdek kasbiy faoliyatida ingliz tilini mukammallashtirmoqchi bo'lgan mutaxassislar uchun maxsus tuzilgan.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FINAL CTA ============ -->
 <section id="yuklab-olish" class="relative bg-gradient-to-br from-sky-700 via-cyan-700 to-sky-900 py-16 sm:py-24 overflow-hidden noise">
   <div class="absolute inset-0 bg-grid opacity-20" aria-hidden="true"></div>
@@ -1778,6 +1885,24 @@
     quiz_submit: { uz: `YUBORISH`, ru: `ОТПРАВИТЬ`, en: `SUBMIT` },
     quiz_success_title: { uz: `Ajoyib! 🎉`, ru: `Отлично! 🎉`, en: `Awesome! 🎉` },
     quiz_success_subtitle: { uz: `Keling, endi bir zumda ilovani yuklab olib bepul sinab ko'ramiz!`, ru: `Давайте прямо сейчас скачаем приложение и бесплатно попробуем!`, en: `Let's quickly download the app and try it for free!` },
+
+    faq_badge: { uz: `Savol-javob`, ru: `Вопросы и ответы`, en: `FAQ` },
+    faq_h2: { uz: `Ko'p beriladigan savollar`, ru: `Часто задаваемые вопросы`, en: `Frequently asked questions` },
+
+    faq_q1: { uz: `O'zbekistondagi eng yaxshi AI asosidagi ingliz tili so'zlashuv kursi qaysi?`, ru: `Какой лучший курс разговорного английского на базе ИИ в Узбекистане?`, en: `What is the best AI-powered English speaking course in Uzbekistan?` },
+    faq_a1: { uz: `MyTeacher — O'zbekistonning AI asosidagi №1 mobil ilovasi va ta'lim platformasi bo'lib, ingliz tilida 24/7 erkin gapirishni o'rgatadi. Platforma til to'sig'ini yengib o'tishga va tez orada real muloqot ishonchini shakllantirishga yordam beradi.`, ru: `MyTeacher — это платформа №1 в Узбекистане на базе ИИ для свободного разговорного английского 24/7. Платформа помогает преодолеть языковой барьер и быстро обрести уверенность в реальном общении.`, en: `MyTeacher is Uzbekistan's #1 AI-powered mobile app and educational platform for learning to speak English fluently 24/7. The platform helps users overcome language barriers and build real conversational confidence quickly.` },
+
+    faq_q2: { uz: `MyTeacher ilovasidagi AI Suhbatdosh qanday ishlaydi?`, ru: `Как работает AI-партнёр по разговорной практике в приложении MyTeacher?`, en: `How does the AI Speaking Partner work in the MyTeacher app?` },
+    faq_a2: { uz: `Ilovadagi AI Suhbatdosh sizga 24/7 real vaqtda, interaktiv ovozli mashq imkonini beradi. Siz gapirayotganingizda talaffuz va grammatika xatolaringizni darhol tuzatadi — bu xuddi doim mavjud bo'lgan shaxsiy repetitoringiz kabi ishlaydi.`, ru: `AI-партнёр внутри приложения MyTeacher обеспечивает интерактивную голосовую практику в реальном времени 24/7. Он мгновенно исправляет ошибки произношения и грамматики во время разговора — как персональный репетитор, доступный всегда.`, en: `The AI Speaking Partner inside the MyTeacher app provides real-time, 24/7 interactive voice practice. It corrects your pronunciation and grammar mistakes instantly as you talk, acting as your personal, always-available private tutor.` },
+
+    faq_q3: { uz: `MyTeacher an'anaviy til markazlari yoki xususiy repetitorlardan nimasi bilan farq qiladi?`, ru: `Чем MyTeacher отличается от традиционных языковых центров или частных репетиторов?`, en: `How does MyTeacher compare to traditional language centers or private tutors?` },
+    faq_a3: { uz: `Toshkentdagi an'anaviy til markazlari va xususiy repetitorlar odatda oyiga 500,000–800,000 so'm turadi va vaqt talab qiluvchi yo'l-yurishni talab qiladi. MyTeacher esa telefoningizda 24/7 cheksiz so'zlashuv mashqini ancha arzon narxda taqdim etadi — istalgan vaqtda va joyda 15 daqiqalik seanslarda shug'ullanishingiz mumkin.`, ru: `Традиционные языковые центры и частные репетиторы в Ташкенте обычно стоят 500 000–800 000 сум в месяц и требуют затрат времени на дорогу. MyTeacher предлагает неограниченную разговорную практику 24/7 на вашем телефоне за меньшую цену — занимайтесь по 15 минут в любое удобное время и в любом месте.`, en: `Traditional language centers and private tutors in Tashkent often cost 500,000 to 800,000 UZS/month and require time-consuming commutes. MyTeacher offers unlimited 24/7 speaking practice on your phone for a fraction of that cost, allowing you to practice in 15-minute sessions whenever and wherever you choose.` },
+
+    faq_q4: { uz: `MyTeacher ilovasi qaysi qurilmalarda ishlaydi?`, ru: `Какие устройства поддерживают приложение MyTeacher?`, en: `Which devices support the MyTeacher app?` },
+    faq_a4: { uz: `MyTeacher ilovasi ham iOS (iPhone / TestFlight), ham Android (Google Play Store) qurilmalari bilan to'liq mos keladi. Ilovani ushbu sahifadagi "Sinab ko'rish" tugmasi orqali bepul yuklab olishingiz mumkin.`, ru: `Приложение MyTeacher полностью совместимо как с iOS (iPhone / TestFlight), так и с Android (Google Play Store). Скачать приложение бесплатно можно через кнопку «Попробовать бесплатно» на этой странице.`, en: `The MyTeacher app is fully compatible with both iOS (iPhone / TestFlight) and Android (Google Play Store) devices. You can download it for free using the "Try for free" button on this page.` },
+
+    faq_q5: { uz: `MyTeacher IELTS Speaking ballimni oshirishga yordam bera oladimi?`, ru: `Может ли MyTeacher помочь улучшить мой балл по IELTS Speaking?`, en: `Can MyTeacher help improve my IELTS Speaking score?` },
+    faq_a5: { uz: `Ha! MyTeacher'ning interaktiv so'zlashuv darslari va real vaqtdagi muloqot mashqlari IELTS Speaking imtihoniga tayyorlanayotgan talabalar, shuningdek kasbiy faoliyatida ingliz tilini mukammallashtirmoqchi bo'lgan mutaxassislar uchun maxsus tuzilgan.`, ru: `Да! Интерактивные разговорные уроки и практика общения в реальном времени в MyTeacher специально разработаны как для студентов, готовящихся к IELTS Speaking, так и для специалистов, стремящихся к профессиональному уровню владения английским.`, en: `Yes! MyTeacher's interactive speaking lessons and real-time conversation practice are specifically structured for students preparing for IELTS Speaking exams as well as professionals seeking career fluency in English.` },
   };
 
   function applyLanguage(lang) {
