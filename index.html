@@ -342,7 +342,7 @@
       "areaServed": { "@type": "Country", "name": "Uzbekistan" },
       "sameAs": [
         "https://instagram.com/myteacher.uz",
-        "https://t.me/myteacher_uz",
+        "https://t.me/MT_myteacher",
         "https://facebook.com/myteacher.uz"
       ]
     },
@@ -934,70 +934,53 @@
       </p>
     </div>
 
-    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2 gap-5">
-      <!-- big: phone-style app preview -->
-      <div class="reveal lg:col-span-3 lg:row-span-2 rounded-3xl glass p-6 sm:p-7 flex flex-col">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="font-display font-bold text-white text-lg" data-i18n="dashboard_title">Kunlik Progress Dashboard</h3>
-            <p class="text-sm text-slate-400 mt-1" data-i18n="dashboard_subtitle">Bir nazarda barcha yutuqlaringiz</p>
+    <div class="mt-14 grid sm:grid-cols-2 gap-5">
+      <!-- Battle Game -->
+      <div class="reveal rounded-3xl glass p-6 sm:p-7">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="w-11 h-11 rounded-xl bg-rose-500/15 text-rose-300 flex items-center justify-center">
+            <i data-lucide="swords" class="w-5 h-5"></i>
           </div>
-          <span class="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-semibold px-2.5 py-1">
-            <i data-lucide="flame" class="w-3.5 h-3.5"></i> <span data-i18n="dashboard_streak_badge">24 kun</span>
-          </span>
+          <span class="inline-flex items-center gap-1 rounded-full bg-rose-500/15 border border-rose-400/30 text-rose-300 text-xs font-semibold px-2.5 py-1" data-i18n="ilova_f1_badge">⚔️ Bepul Battle Rejim</span>
         </div>
-
-        <div class="mt-6 flex-1 flex flex-col justify-center gap-4">
-          <div>
-            <div class="flex justify-between text-xs text-slate-400 mb-1.5"><span data-i18n="dashboard_level_progress">Level 8 → Level 9</span><span>1,240 / 1,500 XP</span></div>
-            <div class="h-2.5 rounded-full bg-white/10 overflow-hidden">
-              <div class="h-full w-[82%] rounded-full bg-gradient-to-r from-sky-400 to-emerald-400"></div>
-            </div>
-          </div>
-
-          <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
-            <p class="text-xs text-slate-400 mb-2" data-i18n="dashboard_today_lesson">Bugungi dars — Speaking: Restaurant vaziyati</p>
-            <div class="flex items-center gap-1 text-sky-300 waveform" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-7 gap-2">
-            <div class="h-9 rounded-lg bg-emerald-500 flex items-center justify-center text-xs">🔥</div>
-            <div class="h-9 rounded-lg bg-emerald-500 flex items-center justify-center text-xs">🔥</div>
-            <div class="h-9 rounded-lg bg-emerald-500 flex items-center justify-center text-xs">🔥</div>
-            <div class="h-9 rounded-lg bg-emerald-500 flex items-center justify-center text-xs">🔥</div>
-            <div class="h-9 rounded-lg bg-emerald-500 flex items-center justify-center text-xs">🔥</div>
-            <div class="h-9 rounded-lg bg-white/10 flex items-center justify-center text-xs text-slate-500">·</div>
-            <div class="h-9 rounded-lg bg-white/10 flex items-center justify-center text-xs text-slate-500">·</div>
-          </div>
-        </div>
+        <h3 class="mt-4 font-display font-bold text-white text-lg" data-i18n="ilova_f1_title">Multiplayer So'zlar Jangi</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed" data-i18n="ilova_f1_desc">Do'stlaringiz va onlayn raqobatchilar bilan real vaqtda so'z ustida bellashing — kim tezroq va to'g'ri topsa, g'olib bo'ladi. Zerikarli yodlash o'rniga hayajonli o'yin.</p>
       </div>
 
-      <!-- leaderboard -->
-      <div class="reveal lg:col-span-3 rounded-3xl glass p-6" style="transition-delay:.08s">
-        <div class="w-11 h-11 rounded-xl bg-amber-500/15 text-amber-300 flex items-center justify-center">
-          <i data-lucide="trophy" class="w-5 h-5"></i>
+      <!-- Deep-Dive Writing -->
+      <div class="reveal rounded-3xl glass p-6 sm:p-7" style="transition-delay:.08s">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="w-11 h-11 rounded-xl bg-violet-500/15 text-violet-300 flex items-center justify-center">
+            <i data-lucide="brain" class="w-5 h-5"></i>
+          </div>
+          <span class="inline-flex items-center gap-1 rounded-full bg-violet-500/15 border border-violet-400/30 text-violet-300 text-xs font-semibold px-2.5 py-1" data-i18n="ilova_f2_badge">🧠 AI Deep-Dive Writing</span>
         </div>
-        <h3 class="mt-4 font-display font-bold text-white" data-i18n="leaderboard_title">Reyting Jadvali</h3>
-        <p class="mt-1 text-sm text-slate-400" data-i18n="leaderboard_subtitle">Do'stlaringiz va boshqa talabalar bilan bellashing.</p>
-        <div class="mt-4 space-y-1.5 text-sm">
-          <div class="flex justify-between text-slate-300 px-2 py-1"><span>🥇 Dilnoza</span><span class="text-emerald-400 font-medium">2,410 XP</span></div>
-          <div class="flex justify-between text-slate-300 px-2 py-1"><span>🥈 Jasur</span><span class="text-emerald-400 font-medium">2,180 XP</span></div>
-          <div class="flex justify-between bg-sky-500/15 rounded-lg px-2 py-1 text-white font-semibold"><span>🥉 <span data-i18n="leaderboard_you">Siz</span></span><span class="text-emerald-400">2,050 XP</span></div>
-        </div>
+        <h3 class="mt-4 font-display font-bold text-white text-lg" data-i18n="ilova_f2_title">Chuqur Sho'ng'ish Yozuv Metodikasi</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed" data-i18n="ilova_f2_desc">AI sizga inglizcha matn beradi — uni o'zbekchaga o'girib, xatolaringizni tahlil qilasiz, so'ng qayta original tilga tarjima qilasiz. Bir mashqda Writing, Grammar va so'z boyligingiz baravar tezroq o'sadi.</p>
       </div>
 
-      <!-- AI assistant -->
-      <div class="reveal lg:col-span-3 rounded-3xl glass p-6" style="transition-delay:.16s">
-        <div class="w-11 h-11 rounded-xl bg-cyan-500/15 text-cyan-300 flex items-center justify-center">
-          <i data-lucide="sparkles" class="w-5 h-5"></i>
+      <!-- Daily Cashback -->
+      <div class="reveal rounded-3xl glass p-6 sm:p-7" style="transition-delay:.16s">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="w-11 h-11 rounded-xl bg-amber-500/15 text-amber-300 flex items-center justify-center">
+            <i data-lucide="coins" class="w-5 h-5"></i>
+          </div>
+          <span class="inline-flex items-center gap-1 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-semibold px-2.5 py-1" data-i18n="ilova_f3_badge">💰 Daily Cashback</span>
         </div>
-        <h3 class="mt-4 font-display font-bold text-white" data-i18n="ai_title">AI Yordamchi</h3>
-        <p class="mt-1 text-sm text-slate-400" data-i18n="ai_desc">24/7 grammatika va so'z boyligi bo'yicha AI maslahatchi.</p>
-        <div class="mt-4 rounded-xl bg-white/5 border border-white/10 px-3 py-2.5 text-[13px] text-slate-300" data-i18n="ai_quote">
-          "Grammatika xatoingizni tushuntirib beray: Present Perfect vs Past Simple..."
+        <h3 class="mt-4 font-display font-bold text-white text-lg" data-i18n="ilova_f3_title">Bilim Oling, Pul Ishlang</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed" data-i18n="ilova_f3_desc">Har kuni ilovaga kirib kunlik vazifalarni bajarsangiz — real keshbek olasiz. Intizom endi nafaqat foydali, balki moliyaviy jihatdan ham rag'batlantiriladi.</p>
+      </div>
+
+      <!-- Comprehensive Dictionary -->
+      <div class="reveal rounded-3xl glass p-6 sm:p-7" style="transition-delay:.24s">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="w-11 h-11 rounded-xl bg-sky-500/15 text-sky-300 flex items-center justify-center">
+            <i data-lucide="book-open-check" class="w-5 h-5"></i>
+          </div>
+          <span class="inline-flex items-center gap-1 rounded-full bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-semibold px-2.5 py-1" data-i18n="ilova_f4_badge">📚 50K+ Aqlli Lug'at</span>
         </div>
+        <h3 class="mt-4 font-display font-bold text-white text-lg" data-i18n="ilova_f4_title">50,000+ So'zlik Intelligent Dictionary</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed" data-i18n="ilova_f4_desc">50,000 dan ortiq so'z va ibora — har biri aniq tarjima, kontekstdagi izoh va talaffuzi bilan bir joyda. Boshqa ilovalarda qidirib vaqt yo'qotmang.</p>
       </div>
     </div>
   </div>
@@ -1267,8 +1250,8 @@
       <div>
         <h4 class="text-white font-semibold text-sm mb-4" data-i18n="footer_contact_title">Aloqa</h4>
         <ul class="space-y-2.5 text-sm">
-          <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> hello@myteacher.uz</li>
-          <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> +998 71 200 00 00</li>
+          <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> <a href="mailto:info@myteacher.uz" class="hover:text-white transition-colors">info@myteacher.uz</a></li>
+          <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> <a href="tel:+998878044334" class="hover:text-white transition-colors">+998 87 804 43 34</a></li>
           <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> <span data-i18n="footer_address">Toshkent, O'zbekiston</span></li>
         </ul>
       </div>
@@ -1277,7 +1260,7 @@
         <h4 class="text-white font-semibold text-sm mb-4" data-i18n="footer_social_title">Ijtimoiy tarmoqlar</h4>
         <div class="flex items-center gap-3">
           <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-          <a href="#" aria-label="Telegram" class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"><i data-lucide="send" class="w-4 h-4"></i></a>
+          <a href="https://t.me/MT_myteacher" target="_blank" rel="noopener" aria-label="Telegram" class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"><i data-lucide="send" class="w-4 h-4"></i></a>
           <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i></a>
         </div>
       </div>
@@ -1290,6 +1273,7 @@
       <div class="flex items-center gap-5">
         <a href="#" data-i18n="footer_privacy" class="hover:text-white transition-colors">Maxfiylik siyosati</a>
         <a href="#" data-i18n="footer_terms" class="hover:text-white transition-colors">Foydalanish shartlari</a>
+        <a href="https://docs.google.com/document/d/1VZZqIF2vX_1D008AEvgHViZXZObIh7nNaPv0cSTTU0g/edit?tab=t.0" target="_blank" rel="noopener" data-i18n="footer_oferta" class="hover:text-white transition-colors">Ommaviy oferta</a>
       </div>
     </div>
   </div>
@@ -1786,18 +1770,23 @@
       ru: `Увлекательно как игра, <span class="text-gradient">серьёзно как результат</span>`,
       en: `Fun like a game, <span class="text-gradient">serious like real results</span>`
     },
-    ilova_subtitle: { uz: `Duolingo uslubidagi streaklar, XP ballari, reyting jadvali va AI yordamchi — barchasi bitta ilovada.`, ru: `Стрики в стиле Duolingo, очки XP, таблица лидеров и AI-помощник — всё в одном приложении.`, en: `Duolingo-style streaks, XP points, a leaderboard, and an AI assistant — all in one app.` },
-    dashboard_title: { uz: `Kunlik Progress Dashboard`, ru: `Панель ежедневного прогресса`, en: `Daily Progress Dashboard` },
-    dashboard_subtitle: { uz: `Bir nazarda barcha yutuqlaringiz`, ru: `Все ваши достижения на одном экране`, en: `All your achievements at a glance` },
-    dashboard_streak_badge: { uz: `24 kun`, ru: `24 дня`, en: `24 days` },
-    dashboard_level_progress: { uz: `Level 8 → Level 9`, ru: `Уровень 8 → Уровень 9`, en: `Level 8 → Level 9` },
-    dashboard_today_lesson: { uz: `Bugungi dars — Speaking: Restaurant vaziyati`, ru: `Урок на сегодня — Speaking: ситуация в ресторане`, en: `Today's lesson — Speaking: Restaurant scenario` },
-    leaderboard_title: { uz: `Reyting Jadvali`, ru: `Таблица лидеров`, en: `Leaderboard` },
-    leaderboard_subtitle: { uz: `Do'stlaringiz va boshqa talabalar bilan bellashing.`, ru: `Соревнуйтесь с друзьями и другими учениками.`, en: `Compete with friends and other students.` },
-    leaderboard_you: { uz: `Siz`, ru: `Вы`, en: `You` },
-    ai_title: { uz: `AI Yordamchi`, ru: `AI-помощник`, en: `AI Assistant` },
-    ai_desc: { uz: `24/7 grammatika va so'z boyligi bo'yicha AI maslahatchi.`, ru: `AI-консультант по грамматике и лексике 24/7.`, en: `24/7 AI advisor for grammar and vocabulary.` },
-    ai_quote: { uz: `"Grammatika xatoingizni tushuntirib beray: Present Perfect vs Past Simple..."`, ru: `"Давай объясню твою ошибку в грамматике: Present Perfect vs Past Simple..."`, en: `"Let me explain your grammar mistake: Present Perfect vs Past Simple..."` },
+    ilova_subtitle: { uz: `So'zlar jangi, AI Deep-Dive Writing, kunlik cashback va 50,000+ so'zlik lug'at — barchasi bitta ilovada.`, ru: `Битва слов, AI Deep-Dive Writing, ежедневный кешбэк и словарь из 50 000+ слов — всё в одном приложении.`, en: `Word battles, AI Deep-Dive Writing, daily cashback and a 50,000+ word dictionary — all in one app.` },
+
+    ilova_f1_badge: { uz: `⚔️ Bepul Battle Rejim`, ru: `⚔️ Бесплатный режим Battle`, en: `⚔️ Free Battle Mode` },
+    ilova_f1_title: { uz: `Multiplayer So'zlar Jangi`, ru: `Мультиплеерная битва слов`, en: `Multiplayer Word Battle` },
+    ilova_f1_desc: { uz: `Do'stlaringiz va onlayn raqobatchilar bilan real vaqtda so'z ustida bellashing — kim tezroq va to'g'ri topsa, g'olib bo'ladi. Zerikarli yodlash o'rniga hayajonli o'yin.`, ru: `Соревнуйтесь в реальном времени с друзьями и другими учениками — кто быстрее и правильнее назовёт слово, тот побеждает. Никакой скучной зубрёжки — только азарт и игра.`, en: `Compete in real time with friends and other learners — whoever answers fastest and correctly wins. No boring memorization, just game and competition.` },
+
+    ilova_f2_badge: { uz: `🧠 AI Deep-Dive Writing`, ru: `🧠 AI Deep-Dive Writing`, en: `🧠 AI Deep-Dive Writing` },
+    ilova_f2_title: { uz: `Chuqur Sho'ng'ish Yozuv Metodikasi`, ru: `Методика глубокого погружения`, en: `The Deep-Dive Writing Method` },
+    ilova_f2_desc: { uz: `AI sizga inglizcha matn beradi — uni o'zbekchaga o'girib, xatolaringizni tahlil qilasiz, so'ng qayta original tilga tarjima qilasiz. Bir mashqda Writing, Grammar va so'z boyligingiz baravar tezroq o'sadi.`, ru: `ИИ даёт вам текст на английском — вы переводите его на узбекский, разбираете ошибки, а затем переводите обратно на английский. Это одновременно прокачивает Writing, грамматику и словарный запас.`, en: `AI gives you an English text — you translate it to Uzbek, review your mistakes, then translate it back to English. One exercise sharpens your writing, grammar and vocabulary at once.` },
+
+    ilova_f3_badge: { uz: `💰 Daily Cashback`, ru: `💰 Daily Cashback`, en: `💰 Daily Cashback` },
+    ilova_f3_title: { uz: `Bilim Oling, Pul Ishlang`, ru: `Учитесь и зарабатывайте каждый день`, en: `Learn and earn every day` },
+    ilova_f3_desc: { uz: `Har kuni ilovaga kirib kunlik vazifalarni bajarsangiz — real keshbek olasiz. Intizom endi nafaqat foydali, balki moliyaviy jihatdan ham rag'batlantiriladi.`, ru: `Заходите в приложение каждый день и выполняйте задания — получайте реальный кешбэк. Дисциплина теперь приносит не только знания, но и финансовую выгоду.`, en: `Open the app daily and complete your tasks to earn real cashback. Discipline now pays off financially, not just academically.` },
+
+    ilova_f4_badge: { uz: `📚 50K+ Aqlli Lug'at`, ru: `📚 50K+ умный словарь`, en: `📚 50K+ Smart Dictionary` },
+    ilova_f4_title: { uz: `50,000+ So'zlik Intelligent Dictionary`, ru: `Более 50 000 слов в одном месте`, en: `50,000+ words in one place` },
+    ilova_f4_desc: { uz: `50,000 dan ortiq so'z va ibora — har biri aniq tarjima, kontekstdagi izoh va talaffuzi bilan bir joyda. Boshqa ilovalarda qidirib vaqt yo'qotmang.`, ru: `Более 50 000 слов и фраз с точным переводом, контекстными пояснениями и произношением — всё в одном месте. Не тратьте время на поиск в других приложениях.`, en: `Over 50,000 words and phrases with precise translations, contextual notes and pronunciation — all in one place. Stop wasting time searching other apps.` },
 
     stat1_label: { uz: `Faol talaba`, ru: `Активных учеников`, en: `Active students` },
     stat2_label: { uz: `Bitirish darajasi`, ru: `Уровень завершения курса`, en: `Completion rate` },
@@ -1848,6 +1837,7 @@
     footer_copyright: { uz: `© 2026 MyTeacher. Barcha huquqlar himoyalangan.`, ru: `© 2026 MyTeacher. Все права защищены.`, en: `© 2026 MyTeacher. All rights reserved.` },
     footer_privacy: { uz: `Maxfiylik siyosati`, ru: `Политика конфиденциальности`, en: `Privacy Policy` },
     footer_terms: { uz: `Foydalanish shartlari`, ru: `Условия использования`, en: `Terms of Use` },
+    footer_oferta: { uz: `Ommaviy oferta`, ru: `Публичная оферта`, en: `Public Offer` },
 
     sticky_rating: { uz: `4.9/5 • 15,000+ talaba`, ru: `4.9/5 • 15 000+ учеников`, en: `4.9/5 • 15,000+ students` },
     sticky_cta_line: { uz: `Bugun bepul boshlang`, ru: `Начните бесплатно сегодня`, en: `Start free today` },
