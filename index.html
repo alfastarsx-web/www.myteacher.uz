@@ -1746,6 +1746,12 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
     if (!wrap) return;
     wrap.innerHTML = pricingPlans.map(pricingCard).join('');
     wrap.querySelectorAll('.js-open-trial').forEach((btn) => btn.addEventListener('click', openTrialModal));
+    // Cards are (re)created here, after the page's one-time scroll-reveal scan already ran —
+    // without this they'd carry the .reveal class (opacity:0) but never get observed, so
+    // they'd stay invisible forever even when scrolled into view. Register them now.
+    if (typeof revealObserver !== 'undefined' && revealObserver) {
+      wrap.querySelectorAll('.reveal, .reveal-scale').forEach((el) => revealObserver.observe(el));
+    }
     lucide.createIcons();
   }
 
@@ -2154,10 +2160,10 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
   const APP_STORE_URL = 'https://testflight.apple.com/join/NBNHurR2';
   const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.myteacher.student';
 
-  // ---------------- CRM lead webhook (shared by trial + career forms) ----------------
-  // Public, keyless endpoint built for external site forms — no secret needed. Spam is
-  // filtered server-side via a honeypot field ("website") plus phone-number dedupe.
-  const LEADS_API_URL = 'https://office.myteacher.uz/api/integrations/web/leads';
+  // ---------------- Lead capture (shared by trial + career forms) ----------------
+  // Public product-side leads API. Payload shape is fixed: { name, phoneNumber, formId }.
+  const LEADS_API_URL = 'https://ai.myteacher.uz/api/leads';
+  const LEADS_FORM_ID = 'form-1';
 
   function showToast(message) {
     let toast = document.getElementById('mt-toast');
@@ -2297,7 +2303,6 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
           <div class="text-4xl mb-3" aria-hidden="true">🎯</div>
           <h3 class="font-display font-bold text-xl text-slate-900 mb-2">${tr('quiz_final_title')}</h3>
           <p class="text-sm text-slate-600 mb-5">${tr('quiz_final_subtitle')}</p>
-          <input id="trial-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
           <input id="trial-name" type="text" autocomplete="name" placeholder="${tr('quiz_name_placeholder')}"
             class="w-full rounded-2xl border-2 border-slate-200 focus:border-sky-500 outline-none px-4 py-3.5 text-center text-base font-medium text-slate-900 mb-2" />
           <p id="trial-name-error" class="text-xs text-red-500 mb-2 hidden">${tr('quiz_name_error')}</p>
@@ -2359,61 +2364,11 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
     lucide.createIcons();
   }
 
-  const TRIAL_GOAL_LABELS = {
-    ielts: { uz: `IELTS tayyorgarlik`, ru: `Подготовка к IELTS`, en: `IELTS preparation` },
-    career: { uz: `Karyera uchun ingliz tili`, ru: `Английский для карьеры`, en: `English for career` },
-    speak: { uz: `Erkin gaplashish`, ru: `Свободный разговор`, en: `Speaking fluency` },
-    child: { uz: `Farzand uchun ingliz tili`, ru: `Английский для ребёнка`, en: `English for a child` },
-  };
-  const TRIAL_OBSTACLE_LABELS = {
-    discipline: { uz: `Intizom yetishmasligi`, ru: `Не хватает дисциплины`, en: `Lack of discipline` },
-    grammar: { uz: `Grammatika qiyin`, ru: `Сложности с грамматикой`, en: `Grammar difficulty` },
-    time: { uz: `Vaqt yetishmasligi`, ru: `Не хватает времени`, en: `Not enough time` },
-  };
-  const TRIAL_DURATION_LABELS = {
-    '15': { uz: `Kuniga 15 daqiqa`, ru: `15 минут в день`, en: `15 min/day` },
-    '30': { uz: `Kuniga 30 daqiqa`, ru: `30 минут в день`, en: `30 min/day` },
-    '60+': { uz: `Kuniga 60+ daqiqa`, ru: `60+ минут в день`, en: `60+ min/day` },
-  };
-  const TRIAL_STYLE_LABELS = {
-    independent: { uz: `Mustaqil o'rganishni xohlaydi`, ru: `Хочет учиться самостоятельно`, en: `Wants to learn independently` },
-    mentor: { uz: `Mentor bilan ishlashni xohlaydi`, ru: `Хочет заниматься с ментором`, en: `Wants to work with a mentor` },
-    unsure: { uz: `Hali aniq emas`, ru: `Пока не определился`, en: `Not sure yet` },
-  };
-
-  function trialAnswersToDealFields() {
-    const lang = window.currentLang || 'uz';
-    const a = trialState.answers || {};
-    const goal = (TRIAL_GOAL_LABELS[a.q1] || {})[lang] || '';
-    const noteParts = [
-      (TRIAL_OBSTACLE_LABELS[a.q2] || {})[lang],
-      (TRIAL_DURATION_LABELS[a.q3] || {})[lang],
-      (TRIAL_STYLE_LABELS[a.q4] || {})[lang],
-    ].filter(Boolean);
-    return {
-      dealName: goal || 'Sayt so\'rovnomasi',
-      learningGoal: goal,
-      note: noteParts.join(' | '),
-    };
-  }
-
   async function submitTrialLead() {
-    const dealFields = trialAnswersToDealFields();
-    const hpEl = document.getElementById('trial-hp');
     const ok = await postLead({
-      website: hpEl ? hpEl.value : '',
-      customerName: trialState.name,
-      phone: trialState.phone,
-      phones: [trialState.phone],
-      dealName: dealFields.dealName,
-      price: 0,
-      stageId: 'yangi',
-      note: dealFields.note,
-      adSource: 'website',
-      registeredAt: new Date().toISOString(),
-      age: null,
-      learningGoal: dealFields.learningGoal,
-      leadChannel: 'website_trial_form'
+      name: trialState.name,
+      phoneNumber: trialState.phone,
+      formId: LEADS_FORM_ID
     });
 
     if (!ok) {
@@ -2481,7 +2436,6 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
         careerBody.innerHTML = `
           <div class="trial-step">
             <label class="block text-sm font-semibold text-slate-800 mb-2">${tr('career_name_label')}</label>
-            <input id="career-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
             <input id="career-name" type="text" autocomplete="name" placeholder="${tr('career_name_placeholder')}" value="${careerState.name || ''}" class="w-full rounded-2xl border-2 border-slate-200 focus:border-sky-500 outline-none px-4 py-3 text-sm text-slate-900 mb-4" />
             <label class="block text-sm font-semibold text-slate-800 mb-2">${tr('career_phone_label')}</label>
             <input id="career-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" value="${careerState.phone || ''}" class="w-full rounded-2xl border-2 border-slate-200 focus:border-sky-500 outline-none px-4 py-3 text-sm text-slate-900 mb-4" />
@@ -2534,21 +2488,10 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
           btn.style.pointerEvents = 'none';
           btn.innerHTML = tr('career_sending');
 
-          const careerHpEl = document.getElementById('career-hp');
           const ok = await postLead({
-            website: careerHpEl ? careerHpEl.value : '',
-            customerName: name,
-            phone: phone,
-            phones: [phone],
-            dealName: 'Mentor vakansiyasi',
-            price: 0,
-            stageId: 'yangi',
-            note: tr('career_motivation_label') + ': ' + motivation + '\n\n' + tr('career_experience_label') + ': ' + experience,
-            adSource: 'website',
-            registeredAt: new Date().toISOString(),
-            age: null,
-            learningGoal: '',
-            leadChannel: 'website_career_mentor'
+            name: name,
+            phoneNumber: phone,
+            formId: LEADS_FORM_ID
           });
 
           if (!ok) {
