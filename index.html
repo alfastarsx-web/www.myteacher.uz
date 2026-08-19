@@ -570,6 +570,17 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
   ]
 }
 </script>
+<style id="cefr-addon-styles">
+.cefr-banner{background:linear-gradient(90deg,#f59e0b,#d97706);padding:1rem 0}
+@media(min-width:640px){.cefr-banner{padding:1.25rem 0}}
+.cefr-banner-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.375rem;text-align:center}
+@media(min-width:640px){.cefr-banner-inner{flex-direction:row;gap:1rem}}
+.cefr-banner-cta{text-decoration:underline;text-underline-offset:2px;color:#fff;transition:color .2s}
+.cefr-banner-cta:hover{color:#fde68a}
+.cefr-nav-link{color:#fbbf24;transition:color .2s}
+.cefr-nav-link:hover{color:#fcd34d}
+.cefr-nav-underline{background:#fbbf24}
+</style>
 </head>
 
 <body class="text-slate-800 antialiased pb-20 md:pb-0 overflow-x-hidden">
@@ -589,6 +600,7 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
         <a href="#ilova" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_ilova">Ilova imkoniyatlari</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
         <a href="#natijalar" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_natijalar">Natijalar</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
         <a href="#tariflar" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_tariflar">Tariflar</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
+        <a href="cefr.html" class="relative text-sm font-medium cefr-nav-link transition-colors group"><span data-i18n="nav_cefr">CEFR tayyorgarlik</span><span class="absolute -bottom-1.5 left-0 w-0 h-px cefr-nav-underline group-hover:w-full transition-all duration-300"></span></a>
         <a href="#vakansiya" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_vakansiya">Vakansiya</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
         <a href="/blog/" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_blog">Blog</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
       </nav>
@@ -616,6 +628,7 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
         <a href="#ilova" data-i18n="nav_ilova" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Ilova Fitchalari</a>
         <a href="#natijalar" data-i18n="nav_natijalar" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Natijalar</a>
         <a href="#tariflar" data-i18n="nav_tariflar" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Tariflar</a>
+        <a href="cefr.html" data-i18n="nav_cefr" class="px-2 py-2.5 rounded-lg text-amber-400 hover:bg-white/10 text-sm font-semibold">CEFR tayyorgarlik</a>
         <a href="#vakansiya" data-i18n="nav_vakansiya" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Vakansiya</a>
         <a href="/blog/" data-i18n="nav_blog" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Blog</a>
         <button type="button" class="js-open-trial mt-2 inline-flex items-center justify-center gap-2 rounded-full btn-gradient text-white text-sm font-semibold px-5 py-3">
@@ -745,6 +758,19 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ CEFR PROMO BANNER ============ -->
+<section class="cefr-banner">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <a href="cefr.html" class="cefr-banner-inner group">
+      <span class="inline-flex items-center gap-2 text-white font-bold text-sm sm:text-base">
+        <i data-lucide="graduation-cap" class="w-5 h-5 shrink-0"></i>
+        <span data-i18n="cefr_banner_title">CEFR (B1/B2/C1) imtihoniga tayyorgarlik dasturi — endi alohida sahifada</span>
+      </span>
+      <span class="cefr-banner-cta inline-flex items-center gap-1 text-sm font-semibold shrink-0" data-i18n="cefr_banner_cta">Batafsil ko'rish →</span>
+    </a>
   </div>
 </section>
 
@@ -1394,6 +1420,7 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
           <li><a href="#ilova" data-i18n="nav_ilova" class="hover:text-white transition-colors">Ilova Fitchalari</a></li>
           <li><a href="#natijalar" data-i18n="nav_natijalar" class="hover:text-white transition-colors">Natijalar</a></li>
           <li><a href="#tariflar" data-i18n="nav_tariflar" class="hover:text-white transition-colors">Tariflar</a></li>
+          <li><a href="cefr.html" data-i18n="nav_cefr" class="hover:text-white transition-colors">CEFR tayyorgarlik</a></li>
           <li><a href="#vakansiya" data-i18n="nav_vakansiya" class="hover:text-white transition-colors">Vakansiya</a></li>
         </ul>
       </div>
@@ -1856,6 +1883,9 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
     nav_ilova: { uz: `Ilova imkoniyatlari`, ru: `Функции приложения`, en: `App Features` },
     nav_natijalar: { uz: `Natijalar`, ru: `Результаты`, en: `Results` },
     nav_tariflar: { uz: `Tariflar`, ru: `Тарифы`, en: `Pricing` },
+    nav_cefr: { uz: `CEFR tayyorgarlik`, ru: `Подготовка к CEFR`, en: `CEFR Prep` },
+    cefr_banner_title: { uz: `CEFR (B1/B2/C1) imtihoniga tayyorgarlik dasturi — endi alohida sahifada`, ru: `Программа подготовки к CEFR (B1/B2/C1) — теперь на отдельной странице`, en: `CEFR (B1/B2/C1) exam prep program — now on its own page` },
+    cefr_banner_cta: { uz: `Batafsil ko'rish →`, ru: `Подробнее →`, en: `Learn more →` },
     cta_download_full: { uz: `🚀 Sinab ko'rish`, ru: `🚀 Попробовать`, en: `🚀 Try It Free` },
 
     hero_badge: { uz: `O'zbekistondagi #1 EdTech + Mentor Platformasi`, ru: `Платформа №1 EdTech + Ментор в Узбекистане`, en: `Uzbekistan's #1 EdTech + Mentor Platform` },
