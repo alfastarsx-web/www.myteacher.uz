@@ -196,7 +196,8 @@ def parse_post(path):
         "date": d,
         "date_uz": "%d-%s %d" % (d.day, OYLAR[d.month - 1], d.year),
         "keywords": meta.get("keywords", ""),
-        "author": meta.get("author", "MyTeacher"),
+        "author": meta.get("author", ""),
+        "reviewed_by": meta.get("reviewed_by", ""),
         "read_min": max(1, round(words / 180)),
         "body_html": md_to_html(body.strip()),
         "url": "%s/blog/%s.html" % (SITE, slug),
@@ -335,7 +336,7 @@ def render_post(post):
   "datePublished": "%(date)s",
   "dateModified": "%(date)s",
   "inLanguage": "uz",
-  "author": { "@type": "Organization", "name": "MyTeacher" },
+  "author": %(author_ld)s,%(reviewed_ld)s
   "publisher": {
     "@type": "Organization",
     "name": "MyTeacher",
@@ -360,6 +361,14 @@ def render_post(post):
         "date": post["date"].isoformat(),
         "url": post["url"],
         "site": SITE,
+        "author_ld": (
+            '{ "@type": "Person", "name": %s }' % _json_str(post["author"])
+            if post["author"] else '{ "@type": "Organization", "name": "MyTeacher" }'
+        ),
+        "reviewed_ld": (
+            '\n  "reviewedBy": { "@type": "Person", "name": %s },' % _json_str(post["reviewed_by"])
+            if post["reviewed_by"] else ""
+        ),
     }
 
     body = """<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -372,7 +381,7 @@ def render_post(post):
   <div class="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500">
     <span class="inline-flex items-center gap-1.5">%(cal)s <time datetime="%(iso)s">%(date_uz)s</time></span>
     <span class="inline-flex items-center gap-1.5">%(clock)s %(read)s daqiqa o'qish</span>
-  </div>
+%(byline)s  </div>
 
   <p class="mt-6 text-lg text-slate-600">%(lede)s</p>
 
@@ -398,6 +407,7 @@ def render_post(post):
         "iso": post["date"].isoformat(),
         "date_uz": post["date_uz"],
         "read": post["read_min"],
+        "byline": _byline(post),
         "lede": html.escape(post["description"]),
         "content": post["body_html"],
     }
@@ -408,6 +418,17 @@ def render_post(post):
             html.escape(post["keywords"], quote=True), schema)
 
     return render_page(post["title"], post["description"], post["url"], body, extra)
+
+
+def _byline(post):
+    parts = []
+    if post["author"]:
+        parts.append('<span>Muallif: <strong class="text-slate-700 font-semibold">%s</strong></span>'
+                     % html.escape(post["author"]))
+    if post["reviewed_by"]:
+        parts.append('<span>Tekshirdi: <strong class="text-slate-700 font-semibold">%s</strong></span>'
+                     % html.escape(post["reviewed_by"]))
+    return "".join("    %s\n" % x for x in parts)
 
 
 def _json_str(s):
@@ -513,7 +534,11 @@ def main():
     if not os.path.isdir(SRC_DIR):
         sys.exit("XATO: %s papkasi topilmadi" % SRC_DIR)
 
-    files = sorted(f for f in os.listdir(SRC_DIR) if f.endswith(".md"))
+    # README.md va "_" bilan boshlanadigan fayllar maqola emas — chetlab o'tiladi
+    files = sorted(
+        f for f in os.listdir(SRC_DIR)
+        if f.endswith(".md") and f.lower() != "readme.md" and not f.startswith("_")
+    )
     if not files:
         sys.exit("XATO: %s ichida .md fayl yo'q" % SRC_DIR)
 

@@ -88,4 +88,13 @@ Bu quyidagilarni yangilaydi:
 - **Sarlavhaga savolni yozing.** Google savol shaklidagi so'rovlarni aynan shunday sarlavhalar bilan moslashtiradi.
 - **Kamida 800 so'z.** Qisqa maqolalar raqobatda yutqazadi.
 - **Ichki havola qo'ying.** Yangi maqoladan eski maqolaga havola bering — bu indekslashga yordam beradi.
-- **AI bilan quyilgan matn qo'ymang.** Google "helpful content" tizimi bunday saytlarni butunlay tushiradi. Mentorlar tajribasidan real misollar, aniq raqamlar yozing.
+## Chop etishdan oldingi tekshiruv
+
+Google muallif kim ekaniga qaramaydi — u kontent foydali va ishonchli ekaniga qaraydi. AI'dan qoralama uchun foydalanish mumkin, lekin **quyidagi to'rt savolga javob bermagan maqola chop etilmasin**:
+
+1. **Har bir raqamning manbasi bormi?** Tashqi manba yoki bizning haqiqiy ma'lumotimiz. Ikkalasi ham bo'lmasa — raqam o'chiriladi, boshqasi bilan almashtirilmaydi.
+2. **"Bizning o'quvchilarimiz..." degan har bir gap haqiqiy ma'lumotdanmi?** Bu eng xavfli joy: to'qilgan statistika matnni ishonarli qiladi, lekin u yolg'on bo'ladi.
+3. **Maqolada faqat bizda bor kamida bitta narsa bormi?** Mentor tajribasi, real holat, o'zimiz o'lchagan natija. Bo'lmasa — bu maqola raqobatchinikidan farq qilmaydi.
+4. **Muallif sifatida real odam ko'rsatilganmi?** `author` va `reviewed_by` maydonlarini to'ldiring.
+
+"Bu maqola foydalimi?" deb so'rash yetarli emas — o'quvchi to'qilgan raqamni ham "foydali" deb baholaydi, chunki uning to'qilganini bilishning imkoni yo'q. Tekshiruv **taassurot** emas, **tasdiqlash** bo'lishi kerak.

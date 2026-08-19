@@ -1,7 +1,7 @@
 ---
 title: IELTS 6.5 uchun qancha vaqt kerak? Real muddatlar va tayyorgarlik rejasi
 description: IELTS 6.5 ballga chiqish uchun kerak bo'ladigan real muddat boshlang'ich darajangizga bog'liq. Har bir daraja uchun taxminiy muddat, haftalik reja va eng ko'p uchraydigan xatolar.
-date: 2026-08-19
+date: 2026-08-16
 keywords: IELTS 6.5, IELTS tayyorgarlik, IELTS qancha vaqt, ingliz tili IELTS, IELTS reja
 ---
 
@@ -11,7 +11,9 @@ Aniq raqam va'da qiladigan har qanday kurs sizni chalg'itmoqda. Quyida real ma'l
 
 ## Qisqa javob: darajangizga qarab muddat
 
-IELTS tashkilotchisi Cambridge'ning ma'lumotiga ko'ra, bir band'ni oshirish uchun o'rtacha **200 soat** puxta mashq kerak. Kuniga 2 soat ishlasangiz, bu taxminan 3,5 oy.
+Cambridge Assessment English ma'lumotiga ko'ra, CEFR bo'yicha bir darajadan keyingisiga o'tish uchun o'rtacha **200 soat boshqariladigan mashg'ulot** (guided learning) kerak. CEFR darajalari IELTS ballariga taxminan mos kelgani uchun bu raqam ko'pincha "bir band uchun 200 soat" shaklida keltiriladi. Kuniga 2 soat ishlasangiz, bu taxminan 3,5 oy.
+
+Muhim ogohlantirish: 200 soat — bu juda katta va xilma-xil o'quvchilar guruhi bo'yicha **o'rtacha** qiymat. Sizga aynan qancha kerak bo'lishi boshlang'ich darajangizga va qaysi bo'lim sizni ushlab turganiga bog'liq.
 
 | Hozirgi darajangiz | Taxminiy IELTS balli | 6.5 gacha kerak vaqt |
 |---|---|---|
@@ -28,8 +30,6 @@ Bu raqamlar **kuniga kamida 1,5–2 soat izchil mashq** qilgan holatga tegishli.
 Bunday reklamani ko'rsangiz, oddiy hisobni eslang. 6.5 ball — bu B2+ daraja, ya'ni taxminan **4000–5000 faol so'z** va murakkab grammatik konstruksiyalarni erkin ishlatish demak.
 
 Noldan boshlagan odam 3 oyda kuniga 50 tadan yangi so'z yodlasa ham 4500 so'zga yetmaydi — va yodlangan so'z bilan **faol ishlatiladigan** so'z butunlay boshqa narsa. So'z faol bo'lishi uchun uni turli kontekstlarda kamida 7–10 marta uchratish kerak.
-
-> Real tajriba: B1 darajadagi o'quvchilarimiz o'rtacha 7 oyda 6.5 ga chiqadi. Eng tez natija — 4 oy, lekin bu kuniga 4 soat ishlagan va allaqachon B1+ bo'lgan o'quvchida.
 
 ## Darajangizni qanday aniqlash mumkin
 
