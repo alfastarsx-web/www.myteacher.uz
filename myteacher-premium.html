@@ -2155,10 +2155,39 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
     career_sending: { uz: `Yuborilmoqda...`, ru: `Отправка...`, en: `Sending...` },
   };
 
+  const metaText = {
+    uz: {
+      title: "MyTeacher — Shaxsiy Mentor Nazorati va Gamifikatsiyalangan Ingliz Tili Ilovasi",
+      desc: "15,000+ o'quvchi natijasi. Shaxsiy mentor nazorati va o'yinlashtirilgan ilova orqali Ingliz tilini 3 baravar tezroq o'rganing. Ilovani yuklab oling!",
+      locale: "uz_UZ"
+    },
+    ru: {
+      title: "MyTeacher — Персональный наставник и геймифицированное приложение для изучения английского",
+      desc: "Результаты 15 000+ учеников. Изучайте английский в 3 раза быстрее с личным наставником и геймифицированным приложением. Скачайте приложение!",
+      locale: "ru_RU"
+    },
+    en: {
+      title: "MyTeacher — Personal Mentor Supervision & Gamified English Learning App",
+      desc: "15,000+ student results. Learn English 3x faster with personal mentor supervision and a gamified app. Download the app now!",
+      locale: "en_US"
+    }
+  };
+
   function applyLanguage(lang) {
     if (!['uz', 'ru', 'en'].includes(lang)) lang = 'uz';
     window.currentLang = lang;
     document.documentElement.lang = lang === 'en' ? 'en' : lang;
+
+    const mt = metaText[lang] || metaText.uz;
+    document.title = mt.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', mt.desc);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', mt.title);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', mt.desc);
+    const ogLocaleTag = document.querySelector('meta[property="og:locale"]');
+    if (ogLocaleTag) ogLocaleTag.setAttribute('content', mt.locale);
 
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
@@ -2618,8 +2647,15 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
   });
 
   // Everything above is declared now — safe to apply the saved/default language.
+  // A /ru or /en URL path (used by language-specific ad campaigns and links)
+  // always wins on first load, so visitors land in the language they were promised.
   let savedLang = 'uz';
-  try { savedLang = localStorage.getItem('myteacher_lang') || 'uz'; } catch (e) {}
+  const pathLangMatch = window.location.pathname.match(/^\/(ru|en|uz)\/?$/);
+  if (pathLangMatch) {
+    savedLang = pathLangMatch[1];
+  } else {
+    try { savedLang = localStorage.getItem('myteacher_lang') || 'uz'; } catch (e) {}
+  }
   applyLanguage(savedLang);
 </script>
 
