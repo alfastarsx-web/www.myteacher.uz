@@ -29,64 +29,69 @@ CTA bosilganda ochiladigan manzil: `checkoutUrl?plan=mentor|mentorsiz&ref=<token
 
 ---
 
-## 2. Backend kontrakti (hali qurilmagan)
+## 2. Backend — `aiteacher-api`, `core/campaign` moduli
 
-### `GET {sessionEndpoint}?ref=<token>`
+Endpointlar **yozildi** (PR: `feat/campaign-landing-backend`), lekin hali deploy qilinmagan.
+Deploy bo'lgunicha sahifa zaxira sana bilan ishlaydi va event'lar 404 oladi — bu jimgina
+yutiladi, sahifa buzilmaydi.
+
+### Ommaviy (sahifa chaqiradi)
+
+**`GET /api/campaigns/maxsus/session?ref=<token>`**
 
 ```json
 {
-  "deadlineIso":   "2026-09-07T23:59:59+05:00",
-  "serverTimeIso": "2026-09-03T14:20:05+05:00",
-  "state":         "offer"
+  "slug": "maxsus",
+  "state": "offer",
+  "deadlineIso": "2026-09-07T18:59:59.000Z",
+  "serverTimeIso": "2026-09-03T10:20:05.123Z",
+  "tokenValid": true
 }
 ```
 
-- `deadlineIso` — kampaniya tugash vaqti. **Cookie/localStorage ishlatilmaydi** (TZ 5): sahifa
-  yangilansa ham, boshqa qurilmadan ochilsa ham countdown reset bo'lmaydi.
-- `serverTimeIso` — brauzer soati noto'g'ri qo'yilgan bo'lsa ham to'g'ri sanashi uchun.
-  Sahifa `serverTime − Date.now()` farqini hisoblab, shu tuzatma bilan sanaydi.
-- `state` — `"offer"` yoki `"standard"`. `"standard"` kelsa chegirma bloklari darhol yashiriladi.
+- Vaqt **serverda** hisoblanadi — cookie/localStorage yo'q, ya'ni sahifa yangilansa yoki boshqa
+  qurilmadan ochilsa countdown qayta boshlanmaydi (TZ 5).
+- `serverTimeIso` — sahifa `serverTime − Date.now()` farqini hisoblab, qurilma soati noto'g'ri
+  bo'lsa ham to'g'ri sanaydi.
+- `state: "standard"` kelsa chegirma bloklari darhol yashiriladi.
+- `tokenValid` — token serverda tekshiriladi. `CONFIG.requireToken = true` bo'lganda shunchaki
+  `?ref=xxx` yozib qo'yish chegirmani ochmaydi.
 
-So'rov muvaffaqiyatsiz bo'lsa sahifa `fallbackDeadlineIso` bilan davom etadi — **hech qachon
-oq ekran yoki buzilgan holat chiqmaydi.**
-
-CORS: sahifa `myteacher.uz` da, API boshqa domenda (masalan `ai.myteacher.uz`) bo'lsa,
-backendda `Access-Control-Allow-Origin: https://myteacher.uz` kerak.
-
-### `POST {trackEndpoint}` — analitika (TZ 6)
-
-`navigator.sendBeacon` orqali JSON yuboriladi:
+**`POST /api/campaigns/maxsus/track`**
 
 ```json
-{ "event": "cta_click", "ref": "<token>", "page": "maxsus",
-  "ts": "2026-09-03T14:20:05.123Z", "plan": "mentor", "position": "plans", "state": "offer" }
+{ "event": "cta_click", "ref": "k3Jd9xQm2ZpA",
+  "payload": { "plan": "mentor", "position": "plans", "state": "offer" } }
 ```
 
-Yuboriladigan event'lar:
+⚠️ **Shakl qat'iy.** Nest'da `forbidNonWhitelisted` yoqilgan — yuqori darajada `event`, `ref`,
+`payload` dan boshqa maydon bo'lsa **butun so'rov 400 bilan rad etiladi**. Qo'shimcha ma'lumot
+faqat `payload` ichida. `window.dataLayer` ga esa yassi shaklda yoziladi (GTM shuni kutadi).
 
-| Event | Qo'shimcha maydonlar | TZ 6-bo'limdagi talab |
-|---|---|---|
-| `page_view` | `hasToken`, `referrer` | Sahifaga kirish (token bilan) |
-| `video_play`, `video_unmute`, `video_pause` | `at` (soniya) | — |
-| `video_progress` | `percent`: 10/25/50/75/95 | Video necha % ko'rilgani |
-| `video_complete` | — | Oxirigacha ko'rilgani |
-| `video_error` | `src` | Video yuklanmagani (soft-launch nazorati) |
-| `cta_click` | `plan`, `position`, `state` | **MENTOR va MENTORSIZ alohida** |
-| `checkout_start` | `plan`, `state` | Checkout boshlangani |
-| `payment_success` | `plan` | To'lov yakunlangani — pastga qarang |
-| `scroll_depth` | `percent`: 25/50/75/100 | Qayerda tashlab ketishayotgani |
-| `faq_open` | `index` | — |
-| `offer_expired` | — | Muddat tugab standart holatga o'tgani |
-| `sticky_cta_shown` | — | — |
+⚠️ **`sendBeacon` ishlatilmaydi.** U so'rovni doim `credentials: 'include'` bilan yuboradi,
+backend esa CORS'da `*` qaytaradi — brauzer bu ikkisini birga qabul qilmaydi va event **jimgina
+yo'qoladi**. Landing `myteacher.uz`, API `ai.myteacher.uz` bo'lgani uchun bu har safar sodir
+bo'lardi. O'rniga `fetch` + `keepalive: true` + `credentials: 'omit'` ishlatiladi.
 
-Har bir event `ref` token bilan yuboriladi — SMS hook varianti (D/E/F) → landing view →
-tarif tanlash → to'lov zanjiri bitta token orqali kuzatiladi.
+Token noto'g'ri bo'lsa ham event yoziladi (lidsiz) — aks holda token'siz trafik ko'rinmay qolardi.
 
-**`payment_success`** — to'lovdan keyin foydalanuvchi `/maxsus?ref=<token>&paid=1&plan=mentor`
-ga qaytarilsa qayd etiladi. Ishonchli hisob backend webhook'ida (Payme/Click) bo'lishi kerak;
-sahifadagi bu event faqat qo'shimcha signal.
+### Admin
 
----
+| Endpoint | Nima qiladi |
+|---|---|
+| `POST /api/campaigns` | Kampaniya yaratish (`slug`, `name`, `deadlineAt`) |
+| `PATCH /api/campaigns/:id` | Muddatni uzaytirish yoki `isActive: false` bilan darhol to'xtatish |
+| `POST /api/campaigns/:id/leads/import` | Raqamlarni import qilib, har biriga token berish (5000 tagacha) |
+| `GET /api/campaigns/:id/leads/export` | SMS provayderiga CSV: `phone_number,name,sms_variant,url` |
+| `GET /api/campaigns/:id/funnel` | Voronka: event'lar, tarif (MENTOR/MENTORSIZ), SMS varianti (D/E/F) |
+
+Import takror raqamlarni o'tkazib yuboradi — qayta yuborsangiz odam ikkinchi SMS olmaydi.
+
+### Ishga tushirish tartibi
+
+1. `aiteacher-api` deploy qilinadi (`synchronize: true` — jadvallar o'zi yaratiladi)
+2. Admin token bilan kampaniya yaratiladi, `slug: "maxsus"`, `deadlineAt` haqiqiy sana
+3. Lidlar import qilinadi, CSV olinadi, SMS yuboriladi
 
 ## 3. nginx — MUHIM
 

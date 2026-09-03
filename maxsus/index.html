@@ -518,15 +518,15 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
      SOZLAMALAR — backend tayyor bo'lgach shu yerni o'zgartirasiz.
      ════════════════════════════════════════════════════════════════════ */
   var CONFIG = {
-    // Sessiya endpointi: ?ref=<token> -> { deadlineIso, state:'offer'|'standard' }
+    // Sessiya endpointi -> { deadlineIso, serverTimeIso, state, tokenValid }
     // Bo'sh qoldirilsa umuman so'rov yuborilmaydi va fallbackDeadline ishlatiladi.
-    sessionEndpoint: '',                       // masalan: 'https://ai.myteacher.uz/api/maxsus/session'
+    sessionEndpoint: 'https://ai.myteacher.uz/api/campaigns/maxsus/session',
 
     // Backend ulanmaguncha countdown shu sanaga qarab ishlaydi (server vaqti emas!).
     fallbackDeadlineIso: '2026-09-07T23:59:59+05:00',
 
     // Analitika endpointi (TZ 6-bo'lim). Bo'sh bo'lsa faqat dataLayer'ga yoziladi.
-    trackEndpoint: '',                         // masalan: 'https://ai.myteacher.uz/api/maxsus/track'
+    trackEndpoint: 'https://ai.myteacher.uz/api/campaigns/maxsus/track',
 
     // ⚠️ PLACEHOLDER — haqiqiy veb-checkout tayyor bo'lgach almashtiriladi.
     // CTA bosilganda: checkoutUrl + ?plan=<mentor|mentorsiz>&ref=<token>
@@ -550,28 +550,50 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
       if (sent[key]) return;
       sent[key] = 1;
     }
-    var payload = {
+    // GTM / Meta Pixel yassi obyektni kutadi
+    var flat = {
       event: event,
       ref: REF || null,
       page: 'maxsus',
       ts: new Date().toISOString()
     };
-    for (var k in data) if (Object.prototype.hasOwnProperty.call(data, k)) payload[k] = data[k];
-
-    // GTM / Meta Pixel uchun
-    (window.dataLayer = window.dataLayer || []).push(payload);
+    var extras = null;
+    for (var k in data) {
+      if (!Object.prototype.hasOwnProperty.call(data, k)) continue;
+      flat[k] = data[k];
+      if (!extras) extras = {};
+      extras[k] = data[k];
+    }
+    (window.dataLayer = window.dataLayer || []).push(flat);
 
     if (!CONFIG.trackEndpoint) return;
     try {
-      var body = JSON.stringify(payload);
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(CONFIG.trackEndpoint, new Blob([body], { type: 'application/json' }));
-      } else {
+      // Backend DTO qat'iy: { event, ref?, payload? }. Nest'da forbidNonWhitelisted yoqilgan,
+      // ya'ni ortiqcha maydon yuborilsa butun so'rov 400 bilan rad etiladi — shuning uchun
+      // qo'shimcha maydonlar `payload` ichiga yig'iladi, yassi holda emas.
+      var body = JSON.stringify({
+        event: event,
+        ref: REF || undefined,
+        payload: extras || undefined
+      });
+
+      // sendBeacon ATAYLAB ishlatilmaydi. U so'rovni doim credentials:'include' bilan
+      // yuboradi, backend esa CORS'da '*' qaytaradi — brauzer bu ikkisini birga qabul
+      // qilmaydi va event jimgina yo'qoladi. Landing myteacher.uz da, API ai.myteacher.uz
+      // da bo'lgani uchun bu HAR SAFAR sodir bo'lardi.
+      // fetch + keepalive: credentials'ni 'omit' qila olamiz, shunda '*' to'g'ri ishlaydi,
+      // keepalive esa sahifa yopilayotganda ham so'rovni yakunlaydi.
+      if (window.fetch) {
         fetch(CONFIG.trackEndpoint, {
-          method: 'POST', keepalive: true,
+          method: 'POST',
+          keepalive: true,
+          credentials: 'omit',
           headers: { 'Content-Type': 'application/json' },
           body: body
         })['catch'](function () {});
+      } else if (navigator.sendBeacon) {
+        // Juda eski brauzer: fetch yo'q. Bir xil origin bo'lsa ishlaydi, aks holda yo'qoladi.
+        navigator.sendBeacon(CONFIG.trackEndpoint, new Blob([body], { type: 'application/json' }));
       }
     } catch (e) { /* analitika hech qachon sahifani buzmasin */ }
   }
@@ -640,6 +662,8 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
           if (!isNaN(d)) deadline = d;
         }
         if (data.state === 'standard' || data.state === 'offer') setState(data.state);
+        // Token serverda tekshiriladi: shunchaki ?ref= yozib qo'yish chegirmani ochmaydi
+        if (CONFIG.requireToken && data.tokenValid === false) setState('standard');
         startCountdown();
       })
       ['catch'](function () { /* backend yotgan bo'lsa fallback bilan davom etadi */ });
