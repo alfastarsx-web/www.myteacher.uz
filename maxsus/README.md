@@ -1,6 +1,11 @@
-# `/maxsus` — reaktivatsiya landing page
+# `w1.myteacher.uz` — reaktivatsiya landing page
 
 SMS kampaniyasi uchun izolyatsiyalangan conversion sahifasi (TZ: 2026-08-31).
+
+**Sahifa `w1.myteacher.uz` subdomainining ILDIZIDA turadi**, `myteacher.uz/maxsus` da emas.
+Ya'ni SMS havolasi `w1.myteacher.uz?ref=<token>` — qisqaroq, SMS narxi uchun muhim, va asosiy
+sayt nginx sozlamalariga umuman tegilmaydi. `maxsus` nomi endi faqat kampaniya slug'i sifatida
+API yo'lida qoladi (`/api/campaigns/maxsus/...`).
 Bitta o'zi yetarli HTML fayl — build step, framework, tashqi JS kutubxona yo'q.
 Logotip faylga inline qilingan, shuning uchun sahifa **bitta HTTP so'rov** bilan ochiladi.
 
@@ -126,60 +131,57 @@ tekshirilmasa har kim checkout ochib, to'lamasdan callback yuborib bepul obuna o
    `offers` — har bir tugma uchun `planId` + `price`
 4. Lidlar import qilinadi, CSV olinadi, SMS yuboriladi
 
-## 3. nginx — MUHIM
+## 3. nginx — alohida server bloki
 
-Hozir `myteacher.uz` da nginx **har qanday yo'lga** root `index.html` ni qaytaradi.
-Ya'ni hech narsa qilinmasa `myteacher.uz/maxsus` **asosiy saytni** ko'rsatadi.
+Tayyor konfiguratsiya: [`nginx-w1.conf.example`](nginx-w1.conf.example).
 
-Server blokiga catch-all `location /` dan **oldin** qo'shiladi:
+**Mavjud server bloklariga tegilmaydi.** `myteacher.uz`, `ai.myteacher.uz`, `cp.myteacher.uz`
+o'z fayllarida qoladi — bu yangi, alohida fayl.
 
-```nginx
-location = /maxsus  { return 301 /maxsus/; }
+```bash
+# 1) faylni joylashtirish
+scp maxsus/nginx-w1.conf.example root@46.8.195.59:/etc/nginx/sites-available/w1.myteacher.uz
 
-location /maxsus/ {
-    alias /var/www/<sayt-root>/maxsus/;
-    index index.html;
-    try_files $uri $uri/ /maxsus/index.html;
+# 2) yoqish
+ssh root@46.8.195.59 'ln -s /etc/nginx/sites-available/w1.myteacher.uz /etc/nginx/sites-enabled/ && nginx -t && systemctl reload nginx'
 
-    # Qidiruv tizimlariga chiqmasin (TZ 3, 9.1.1) — meta tegga qo'shimcha himoya
-    add_header X-Robots-Tag "noindex, nofollow" always;
-
-    # Video/poster keshlansin, HTML keshlanmasin (deadline holati eskirmasligi uchun)
-    location ~* \.(mp4|webm|vtt|svg|jpg|webp)$ { expires 30d; add_header Cache-Control "public"; }
-    location ~* \.html$ { add_header Cache-Control "no-cache"; }
-}
+# 3) SSL — certbot 443 blokini va yo'naltirishni o'zi yozadi
+ssh root@46.8.195.59 'certbot --nginx -d w1.myteacher.uz'
 ```
 
-`robots.txt` ga ham qo'shish tavsiya etiladi:
+DNS allaqachon tayyor: `w1.myteacher.uz` → `46.8.195.59` (2026-09-03 da tekshirilgan).
 
-```
-Disallow: /maxsus
-```
-
----
+Asosiy saytdan muhim farqi: bu blokda `try_files ... =404` bor, ya'ni **yetishmayotgan fayl
+haqiqiy 404 beradi**. `myteacher.uz` da catch-all HTML qaytaradi va yetishmayotgan video
+jimgina buziladi — bu yerda darhol ko'rinadi.
 
 ## 4. Deploy
 
+Deploy papkasi: **`/var/www/w1`** (sahifa shu papkaning ildizida).
+
 > ### ⚠️ `promo.mp4` git'da YO'Q
-> Video (23 MB) `.gitignore` da. Ya'ni `git pull` bilan deploy qilinganda **video kelmaydi** —
-> uni serverga bir marta alohida yuklash kerak:
+> Video (23 MB) `.gitignore` da. `git pull` bilan deploy qilinganda **video kelmaydi** —
+> alohida yuklanadi:
 > ```bash
-> scp maxsus/promo.mp4 root@46.8.195.59:/var/www/<sayt-root>/maxsus/
+> scp maxsus/promo.mp4 root@46.8.195.59:/var/www/w1/
 > ```
 > Unutilsa sahifa buzilmaydi — poster ko'rinadi va "Video hozircha yuklanmadi" yozuvi chiqadi,
-> `video_error` eventi qayd etiladi. Lekin konversiya nolga tushadi, shuning uchun deploydan
-> keyin ALBATTA tekshiring.
+> `video_error` eventi qayd etiladi. Lekin konversiya nolga tushadi.
 
-**Bu repoda GitHub Actions yo'q — main'ga merge qilish jonli saytni yangilamaydi.**
-Deploy qo'lda: `maxsus/` papkasini **butunlay** (index.html + video-poster + video fayllar)
-serverdagi sayt root'iga ko'chiring. Yetishmayotgan fayl 404 bermaydi — nginx HTML qaytaradi
-va rasm/video jimgina buziladi, shuning uchun deploydan keyin har bir faylni tekshiring:
+Yuklanadigan fayllar:
 
 ```bash
-curl -sI https://myteacher.uz/maxsus/promo.mp4 | head -3   # Content-Type: video/mp4 bo'lishi shart
+scp maxsus/index.html maxsus/video-poster.jpg maxsus/robots.txt maxsus/promo.mp4 \
+    root@46.8.195.59:/var/www/w1/
 ```
 
----
+Tekshirish — HTML emas, haqiqiy turlar qaytishi shart:
+
+```bash
+curl -sI https://w1.myteacher.uz/promo.mp4 | head -3      # video/mp4
+curl -s  https://w1.myteacher.uz/robots.txt               # Disallow: /
+curl -s  https://w1.myteacher.uz/ | grep -o "<title>.*</title>"
+```
 
 ## 5. Video
 
