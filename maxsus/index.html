@@ -208,11 +208,14 @@ section{padding:40px 0}
 
 /* ── Nega chegirma / ishonch ──────────────────────────────────────────── */
 .why{
-  max-width:660px;margin:0 auto;padding:20px 22px;border-radius:var(--r-md);
-  background:var(--amber-soft);border:1px solid rgba(245,158,11,.35);text-align:center;
+  max-width:660px;margin:0 auto;padding:22px 24px;border-radius:var(--r-md);
+  background:var(--amber-soft);border:1px solid rgba(245,158,11,.35);
 }
-.why b{display:block;font-family:Sora,sans-serif;font-size:15px;margin-bottom:6px}
-.why p{font-size:15px;color:#78350F}
+/* Sarlavha blok, matn ichidagi <b> esa satr ichida qoladi — aks holda har bir
+   qalin so'z o'z qatoriga tushib jumlani bo'lib yuborardi. */
+.why .hd{display:block;font-family:Sora,sans-serif;font-weight:800;font-size:16px;margin-bottom:10px;color:#78350F}
+.why p{font-size:15px;color:#78350F;line-height:1.65}
+.why p b{font-weight:700}
 
 .trust{
   max-width:720px;margin:22px auto 0;display:flex;gap:15px;align-items:flex-start;
@@ -220,10 +223,12 @@ section{padding:40px 0}
   background:var(--white);border:1px solid rgba(20,184,166,.35);
   box-shadow:0 10px 30px -18px rgba(20,184,166,.5);
 }
+.trust{align-items:flex-start}
 .trust .ic{flex:0 0 42px;width:42px;height:42px;border-radius:12px;background:rgba(20,184,166,.12);display:grid;place-items:center}
 .trust .ic svg{width:22px;height:22px;stroke:var(--teal);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.trust b{display:block;font-family:Sora,sans-serif;font-size:15.5px;margin-bottom:4px}
-.trust p{font-size:14.5px;color:var(--ink-2)}
+.trust .hd{display:block;font-family:Sora,sans-serif;font-weight:800;font-size:16px;margin-bottom:8px}
+.trust p{font-size:14.5px;color:var(--ink-2);line-height:1.65}
+.trust p b{font-weight:700;color:var(--ink)}
 
 /* ── FAQ ──────────────────────────────────────────────────────────────── */
 .faq{max-width:720px;margin:24px auto 0;display:grid;gap:10px}
@@ -253,7 +258,16 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 .final .btn-ghost{background:#fff;color:#0F172A}
 .final .btn-ghost:hover{background:#E2E8F0}
 
-.smallprint{margin-top:26px;text-align:center;font-size:12.5px;color:var(--ink-3)}
+.smallprint{margin-top:26px;text-align:center;font-size:12.5px;color:var(--ink-3);line-height:1.7}
+.oferta{color:#93C5FD;text-decoration:underline;text-underline-offset:2px}
+.oferta:hover{color:#BFDBFE}
+.sheet .oferta{color:var(--sky)}
+.why p + p{margin-top:9px}
+.trust p + p{margin-top:9px}
+.trust-ours{
+  margin-top:12px !important;padding:11px 13px;border-radius:11px;
+  background:rgba(20,184,166,.10);border:1px solid rgba(20,184,166,.28);color:#0F172A !important;
+}
 
 /* ── Yopishqoq mobil CTA ──────────────────────────────────────────────── */
 .stickybar{
@@ -351,6 +365,56 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 .sheet .safe{margin-top:13px;display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--ink-3)}
 .sheet .safe svg{flex:0 0 15px;width:15px;height:15px;margin-top:1px;stroke:var(--teal);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
+
+/* ── To'lovdan keyingi ekran (?paid=1) ─────────────────────────────────── */
+[data-view="paid"] .hide-when-paid{display:none !important}
+.paid-screen{display:none}
+[data-view="paid"] .paid-screen{display:block}
+
+.paid-screen{
+  min-height:100svh;background:var(--navy);color:#fff;
+  padding:calc(28px + env(safe-area-inset-top)) 0 44px;
+}
+@supports not (min-height:1svh){.paid-screen{min-height:100vh}}
+.paid-inner{max-width:520px;margin-inline:auto;padding-inline:20px;text-align:center}
+.paid-mark{
+  width:62px;height:62px;margin:0 auto 18px;border-radius:50%;
+  background:rgba(20,184,166,.16);border:1px solid rgba(45,212,191,.45);
+  display:grid;place-items:center;
+}
+.paid-mark svg{width:29px;height:29px;stroke:#2DD4BF;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.paid-screen h2{font-size:clamp(22px,5.6vw,29px);color:#fff}
+.paid-screen .sub{margin-top:11px;color:var(--ink-3);font-size:15px}
+
+.paid-warn{
+  margin-top:22px;padding:16px 17px;border-radius:15px;text-align:left;
+  background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.42);
+}
+.paid-warn b{display:block;font-family:Sora,sans-serif;font-size:15px;color:#FCD34D;margin-bottom:6px}
+.paid-warn p{font-size:14.5px;color:#E2E8F0}
+
+.paid-steps{margin-top:22px;text-align:left;display:grid;gap:13px}
+.paid-step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.paid-step .n{
+  width:25px;height:25px;border-radius:50%;background:var(--grad);color:#fff;
+  font:700 13px/25px Inter,sans-serif;text-align:center;flex:0 0 25px;
+}
+.paid-step p{font-size:14.5px;color:#CBD5E1}
+.paid-step b{color:#fff}
+
+.stores{margin-top:24px;display:grid;gap:10px}
+@media (min-width:460px){.stores{grid-template-columns:1fr 1fr}}
+.store{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px 18px;border-radius:999px;text-decoration:none;
+  background:#fff;color:#0F172A;font:700 15px/1 Inter,sans-serif;
+}
+.store:hover{background:#E2E8F0}
+.store svg{width:18px;height:18px;fill:currentColor}
+
+.paid-help{margin-top:24px;font-size:13.5px;color:var(--ink-3)}
+.paid-help a{color:#7DD3FC}
+
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 </style>
 </head>
@@ -358,7 +422,7 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 <body>
 
 <!-- ═════════ 1) VIDEO + 2) NARX ANKORI + COUNTDOWN ═════════ -->
-<header class="hero">
+<header class="hero hide-when-paid">
   <div class="wrap center">
 
     <!-- Logotip: <a> emas, <div> — ataylab bosilmaydi (TZ 3-bo'lim) -->
@@ -412,7 +476,7 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 </header>
 
 <!-- ═════════ 3) IKKI TARIF + 4) EKSKLYUZIVLIK ═════════ -->
-<section id="plans">
+<section id="plans" class="hide-when-paid">
   <div class="wrap">
     <h2 class="sec-title">O'zingizga mos yo'lni tanlang</h2>
     <p class="sec-sub only-offer">Ikkala tarif ham shu taklif muddati ichida amal qiladi.</p>
@@ -464,7 +528,7 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 </section>
 
 <!-- ═════════ 5) MENTOR SOCIAL PROOF ═════════ -->
-<section class="proof">
+<section class="proof hide-when-paid">
   <div class="wrap">
     <h2 class="sec-title">Mentor bilan o'qiganlar nima deydi</h2>
     <p class="sec-sub">Quyidagilar &mdash; mentor nazorati ostida o'qigan real o'quvchilarimiz.</p>
@@ -506,12 +570,18 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 </section>
 
 <!-- ═════════ 6) NEGA CHEGIRMA + 7) TO'LOV ISHONCHI ═════════ -->
-<section>
+<section class="hide-when-paid">
   <div class="wrap">
     <!-- MARKETING: bitta qisqa jumla (TZ 8.3) -->
     <div class="why only-offer">
-      <b>Nega bu narx?</b>
-      <p>[Bitta qisqa jumla — masalan: yangi mentorlar guruhini to'ldirmoqchimiz, shuning uchun bu narx faqat shu hafta amal qiladi.]</p>
+      <b class="hd">Nega aynan bu narx?</b>
+      <p>Bu taklif hammaga ochiq emas. U faqat MyTeacher'da avval ro'yxatdan o'tgan va mijozlar
+        bazamizda bo'lgan odamlarga, atigi 4 kun muddatga ochildi.</p>
+      <p>Sababi oddiy. Bazamizdagi mijozlarning qariyb <b>40 foizi</b> bizga aynan narx qimmatligi
+        uchun yozilmagan edi. Biz buni e'tiborsiz qoldirmadik — ularning fikrini inobatga olib,
+        eng minimal va mo'tadil narxni belgiladik.</p>
+      <p>4 kundan keyin bu narxga kompaniya foydasi &mdash; <b>20%</b> qo'shiladi va tarif odatdagi
+        holatiga qaytadi.</p>
     </div>
 
     <div class="trust">
@@ -519,15 +589,25 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
         <svg viewBox="0 0 24 24"><path d="M12 3l8 3.5v5.2c0 4.6-3.2 8.6-8 9.8-4.8-1.2-8-5.2-8-9.8V6.5z"/><path d="M9 12.2l2.2 2.2L15.5 10"/></svg>
       </div>
       <div>
-        <b>Majburiy uzoq muddatli shartnoma yo'q</b>
-        <p>Har oy o'zingiz to'laysiz va istalgan payt bekor qilishingiz mumkin. Avtomatik yechib olinadigan yashirin to'lov yo'q.</p>
+        <b class="hd">Diqqat: shartnoma haqida</b>
+        <p><b>&laquo;Bugunoq yoziling&raquo;, &laquo;4 oylik shartnoma qiling&raquo;, &laquo;6 oyga
+          imzolasangiz arzon bo'ladi&raquo;</b> &mdash; bunday takliflardan ehtiyot bo'ling va
+          <b>aniq tushunmasdan hech qanday shartnomaga imzo qo'ymang.</b></p>
+        <p>Ko'pincha bu shunday ishlaydi: sizni nasiya bilan shartnoma tuzishga ko'ndirishadi.
+          Shartnoma imzolangach esa uni <b>to'liq summani to'lamaguningizcha bekor qila olmaysiz</b>.
+          Biror jiddiy sabab bilan o'qishni to'xtatsangiz ham, summani oxirigacha to'lashga majbur
+          bo'lasiz.</p>
+        <p>Afsuski, bu tajriba bizda ham bo'lgan. Va biz undan <b>butunlay voz kechdik.</b></p>
+        <p class="trust-ours"><b>Bizda shunday emas.</b> Majburiy uzoq muddatli shartnoma yo'q.
+          Har oy o'zingiz to'laysiz va istalgan payt bekor qilishingiz mumkin. Avtomatik yechib
+          olinadigan yashirin to'lov yo'q.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═════════ 8) FAQ ═════════ -->
-<section style="padding-top:8px">
+<section class="hide-when-paid" style="padding-top:8px">
   <div class="wrap">
     <h2 class="sec-title">Ko'p beriladigan savollar</h2>
 
@@ -550,7 +630,7 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 </section>
 
 <!-- ═════════ 9) PASTKI CTA TAKRORI ═════════ -->
-<section class="final">
+<section class="final hide-when-paid">
   <div class="wrap">
     <h2 class="sec-title">Tanlovingizni qiling</h2>
     <p class="sec-sub only-offer" id="finalSub">Taklif muddati tugaguncha.</p>
@@ -576,10 +656,54 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
       </article>
     </div>
 
-    <p class="smallprint">MyTeacher Group MCHJ · To'lov Payme yoki Click orqali himoyalangan tarzda amalga oshiriladi.</p>
+    <p class="smallprint">
+      Xizmat ko'rsatuvchi: YaTT &laquo;Xudoyberdiyev Asrorbek Ikrom o'g'li&raquo;<br>
+      <a class="oferta" href="https://docs.google.com/document/d/1VZZqIF2vX_1D008AEvgHViZXZObIh7nNaPv0cSTTU0g/edit?tab=t.0" target="_blank" rel="noopener noreferrer">Ommaviy oferta shartlari</a>
+      &middot; To'lov himoyalangan to'lov tizimi sahifasida amalga oshiriladi.
+    </p>
   </div>
 </section>
 
+
+
+<!-- ═════════ TO'LOVDAN KEYINGI EKRAN (?paid=1) ═════════ -->
+<section class="paid-screen">
+  <div class="paid-inner">
+    <div class="paid-mark">
+      <svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>
+    </div>
+
+    <h2>To'lov qabul qilindi</h2>
+    <p class="sub">Rahmat! Obunangiz tayyor va sizni kutmoqda.</p>
+
+    <div class="paid-warn">
+      <b>Eng muhimi</b>
+      <p>Ilovada <b>aynan to'lov qilgan telefon raqamingiz bilan</b> ro'yxatdan o'ting.
+        Obuna o'sha raqamga bog'langan — boshqa raqam bilan kirsangiz ochilmaydi.</p>
+    </div>
+
+    <div class="paid-steps">
+      <div class="paid-step"><span class="n">1</span><p>Quyidagi tugma orqali <b>MyTeacher</b> ilovasini yuklab oling</p></div>
+      <div class="paid-step"><span class="n">2</span><p><b>To'lov qilgan raqamingiz</b> bilan ro'yxatdan o'ting</p></div>
+      <div class="paid-step"><span class="n">3</span><p>Obuna avtomatik ochiladi &mdash; qo'shimcha hech narsa qilish shart emas</p></div>
+    </div>
+
+    <div class="stores">
+      <a class="store" data-store="ios" href="https://testflight.apple.com/join/NBNHurR2" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.6-.7 2.9-.7s1.7.7 2.9.7c1.2 0 2-1.1 2.7-2.2.9-1.2 1.2-2.5 1.2-2.5s-2-.8-2-3.6zM14.2 5.9c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>
+        App Store
+      </a>
+      <a class="store" data-store="android" href="https://play.google.com/store/apps/details?id=com.myteacher.student" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M3.6 2.2c-.3.3-.5.8-.5 1.4v16.8c0 .6.2 1.1.5 1.4l.1.1 9.4-9.4v-.2L3.6 2.2zM17 15.3l-3.1-3.1v-.2l3.1-3.1.1.1 3.7 2.1c1.1.6 1.1 1.6 0 2.2L17 15.3zM13.9 12.2l3.2 3.2-9.6 5.5c-.4.2-.7.2-1 0l7.4-8.7zM13.9 11.8L6.5 3.1c.3-.2.7-.2 1 0l9.6 5.5-3.2 3.2z"/></svg>
+        Google Play
+      </a>
+    </div>
+
+    <p class="paid-help">
+      Savol bo'lsa yozing: <a href="https://t.me/MT_myteacher" target="_blank" rel="noopener noreferrer">@MT_myteacher</a>
+    </p>
+  </div>
+</section>
 
 <!-- ═════════ TO'LOV FORMASI ═════════ -->
 <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
@@ -617,12 +741,16 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 
   <p class="safe">
     <svg viewBox="0 0 24 24"><path d="M12 3l8 3.5v5.2c0 4.6-3.2 8.6-8 9.8-4.8-1.2-8-5.2-8-9.8V6.5z"/><path d="M9 12.2l2.2 2.2L15.5 10"/></svg>
-    To'lov Payme yoki Click sahifasida amalga oshiriladi. Karta ma'lumotlari bu sahifaga kiritilmaydi.
+    <span>To'lov himoyalangan to'lov tizimi sahifasida amalga oshiriladi. Karta ma'lumotlari bu
+      sahifaga kiritilmaydi.<br>
+      &laquo;To'lovga o'tish&raquo; tugmasini bosish orqali siz
+      <a class="oferta" href="https://docs.google.com/document/d/1VZZqIF2vX_1D008AEvgHViZXZObIh7nNaPv0cSTTU0g/edit?tab=t.0" target="_blank" rel="noopener noreferrer">ommaviy oferta</a>
+      shartlariga rozilik bildirasiz.</span>
   </p>
 </div>
 
 <!-- Yopishqoq mobil CTA -->
-<div class="stickybar" id="stickybar">
+<div class="stickybar hide-when-paid" id="stickybar">
   <div class="px">
     <div class="t only-offer">Mentor bilan</div>
     <div class="t only-standard">Narx</div>
@@ -1086,9 +1214,22 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
     }
   }, { passive: true });
 
-  /* ───────── To'lovdan qaytish: ?paid=1 bo'lsa muvaffaqiyat qayd etiladi ───────── */
+  /* ───────── To'lovdan qaytish: ?paid=1 ───────── */
   if (params.get('paid') === '1') {
+    // Sotuv matni endi keraksiz — odam allaqachon to'lagan. O'rniga yagona muhim narsa
+    // ko'rsatiladi: ilovani yuklab, AYNAN SHU raqam bilan ro'yxatdan o'tish.
+    root.setAttribute('data-view', 'paid');
+    window.scrollTo(0, 0);
     track('payment_success', { plan: params.get('plan') || null }, true);
+
+    var stores = document.querySelectorAll('[data-store]');
+    for (var si = 0; si < stores.length; si++) {
+      (function (el) {
+        el.addEventListener('click', function () {
+          track('app_download_click', { store: el.getAttribute('data-store') });
+        });
+      })(stores[si]);
+    }
   }
 
   /* FAQ ochilishi ham konversiya signali */
