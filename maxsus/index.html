@@ -271,6 +271,86 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 .stickybar .btn{margin:0;width:auto;flex:0 0 auto;padding:13px 22px;font-size:15px}
 @media (min-width:840px){.stickybar{display:none}}
 
+
+/* ── To'lov formasi (modal) ──────────────────────────────────────────── */
+.sheet-backdrop{
+  position:fixed;inset:0;z-index:90;background:rgba(15,23,42,.55);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  opacity:0;transition:opacity .22s ease;
+}
+.sheet-backdrop[hidden]{display:none}
+.sheet-backdrop.in{opacity:1}
+
+.sheet{
+  position:fixed;z-index:91;left:0;right:0;bottom:0;
+  background:var(--white);border-radius:24px 24px 0 0;
+  padding:20px 18px calc(20px + env(safe-area-inset-bottom));
+  box-shadow:0 -20px 60px -20px rgba(15,23,42,.4);
+  transform:translateY(102%);transition:transform .28s cubic-bezier(.2,.7,.2,1);
+  max-height:92svh;overflow-y:auto;
+}
+@supports not (max-height:1svh){.sheet{max-height:92vh}}
+.sheet[hidden]{display:none}
+.sheet.in{transform:none}
+@media (min-width:640px){
+  .sheet{
+    left:50%;bottom:auto;top:50%;right:auto;width:min(430px,92vw);
+    border-radius:24px;transform:translate(-50%,-46%) scale(.97);opacity:0;
+    transition:transform .24s cubic-bezier(.2,.7,.2,1),opacity .24s ease;
+    padding:24px;
+  }
+  .sheet.in{transform:translate(-50%,-50%) scale(1);opacity:1}
+}
+
+.sheet-grab{width:38px;height:4px;border-radius:99px;background:#CBD5E1;margin:-6px auto 14px}
+@media (min-width:640px){.sheet-grab{display:none}}
+
+.sheet-close{
+  position:absolute;top:14px;right:14px;width:34px;height:34px;border:0;border-radius:50%;
+  background:#F1F5F9;color:var(--ink-2);cursor:pointer;font-size:19px;line-height:1;
+  display:grid;place-items:center;
+}
+.sheet h3{font-family:Sora,sans-serif;font-size:19px;font-weight:800;letter-spacing:-.02em}
+.sheet .chosen{
+  margin-top:12px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:13px 15px;border-radius:14px;background:var(--paper);border:1px solid var(--line);
+}
+.sheet .chosen .lbl{font-size:13px;font-weight:600;color:var(--ink-2)}
+.sheet .chosen .amt{font:800 20px/1 Sora,Inter,sans-serif;white-space:nowrap}
+
+.field{margin-top:16px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:7px}
+.phone-wrap{display:flex;align-items:stretch;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;transition:border-color .15s ease}
+.phone-wrap:focus-within{border-color:var(--sky)}
+.phone-wrap.bad{border-color:#EF4444}
+.phone-wrap .pfx{display:grid;place-items:center;padding:0 12px;background:var(--paper);border-right:1px solid var(--line);font-weight:700;font-size:15px;color:var(--ink-2)}
+.phone-wrap input{
+  flex:1;min-width:0;border:0;outline:0;padding:14px 12px;
+  font:600 17px/1 Inter,sans-serif;letter-spacing:.02em;color:var(--ink);background:transparent;
+}
+.hint{margin-top:7px;font-size:12.5px;color:var(--ink-3)}
+.err{margin-top:9px;font-size:13.5px;color:#B91C1C;font-weight:600}
+.err[hidden]{display:none}
+
+.pm-list{margin-top:15px;display:grid;gap:9px}
+.pm{
+  display:flex;align-items:center;gap:11px;padding:13px 15px;cursor:pointer;
+  border:1.5px solid var(--line);border-radius:14px;background:#fff;text-align:left;
+  font:600 15px/1 Inter,sans-serif;color:var(--ink);transition:border-color .15s ease,background .15s ease;
+}
+.pm:hover{background:var(--paper)}
+.pm[aria-checked="true"]{border-color:var(--sky);background:rgba(14,165,233,.05)}
+.pm .radio{width:19px;height:19px;border-radius:50%;border:2px solid #CBD5E1;flex:0 0 19px;display:grid;place-items:center}
+.pm[aria-checked="true"] .radio{border-color:var(--sky)}
+.pm[aria-checked="true"] .radio::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--sky)}
+
+.sheet .btn{margin-top:18px}
+.btn[disabled]{opacity:.6;pointer-events:none}
+.spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sheet .safe{margin-top:13px;display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--ink-3)}
+.sheet .safe svg{flex:0 0 15px;width:15px;height:15px;margin-top:1px;stroke:var(--teal);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 </style>
 </head>
@@ -500,6 +580,47 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
   </div>
 </section>
 
+
+<!-- ═════════ TO'LOV FORMASI ═════════ -->
+<div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
+  <div class="sheet-grab" aria-hidden="true"></div>
+  <button class="sheet-close" id="sheetClose" type="button" aria-label="Yopish">&times;</button>
+
+  <h3 id="sheetTitle">Telefon raqamingizni kiriting</h3>
+
+  <div class="chosen">
+    <span class="lbl" id="sheetPlan">Mentor bilan</span>
+    <span class="amt" id="sheetAmount">399 000 so'm</span>
+  </div>
+
+  <form id="checkoutForm" novalidate>
+    <div class="field">
+      <label for="phoneInput">Telefon raqamingiz</label>
+      <div class="phone-wrap" id="phoneWrap">
+        <span class="pfx">+998</span>
+        <input id="phoneInput" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national"
+               placeholder="90 123 45 67" maxlength="12" aria-describedby="phoneHint" />
+      </div>
+      <p class="hint" id="phoneHint">Ilovaga aynan shu raqam bilan kirasiz — obuna shunga bog'lanadi.</p>
+    </div>
+
+    <div class="pm-list" id="pmList" hidden role="radiogroup" aria-label="To'lov usuli"></div>
+
+    <p class="err" id="sheetErr" role="alert" hidden></p>
+
+    <button class="btn btn-primary" id="sheetSubmit" type="submit">
+      <span id="sheetSubmitText">To'lovga o'tish</span>
+      <svg viewBox="0 0 24 24" id="sheetSubmitIcon"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </form>
+
+  <p class="safe">
+    <svg viewBox="0 0 24 24"><path d="M12 3l8 3.5v5.2c0 4.6-3.2 8.6-8 9.8-4.8-1.2-8-5.2-8-9.8V6.5z"/><path d="M9 12.2l2.2 2.2L15.5 10"/></svg>
+    To'lov Payme yoki Click sahifasida amalga oshiriladi. Karta ma'lumotlari bu sahifaga kiritilmaydi.
+  </p>
+</div>
+
 <!-- Yopishqoq mobil CTA -->
 <div class="stickybar" id="stickybar">
   <div class="px">
@@ -528,9 +649,8 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
     // Analitika endpointi (TZ 6-bo'lim). Bo'sh bo'lsa faqat dataLayer'ga yoziladi.
     trackEndpoint: 'https://ai.myteacher.uz/api/campaigns/maxsus/track',
 
-    // ⚠️ PLACEHOLDER — haqiqiy veb-checkout tayyor bo'lgach almashtiriladi.
-    // CTA bosilganda: checkoutUrl + ?plan=<mentor|mentorsiz>&ref=<token>
-    checkoutUrl: 'https://myteacher.uz/checkout',
+    // Checkout endpointi: telefon raqami olinib, payUrl qaytariladi.
+    checkoutEndpoint: 'https://ai.myteacher.uz/api/campaigns/maxsus/checkout',
 
     // true bo'lsa: token'siz kirganda chegirma ko'rsatilmaydi (standart holat).
     requireToken: false
@@ -605,6 +725,7 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
   var state = (CONFIG.requireToken && !REF) ? 'standard' : 'offer';
   var deadline = Date.parse(CONFIG.fallbackDeadlineIso);
   var skew = 0;               // server ↔ brauzer vaqti farqi (ms)
+  var sessionOffers = [];     // serverdagi narxlar (sahifadagi bilan farq qilsa server ustun)
 
   function setState(next) {
     if (state === next) return;
@@ -664,6 +785,9 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
         if (data.state === 'standard' || data.state === 'offer') setState(data.state);
         // Token serverda tekshiriladi: shunchaki ?ref= yozib qo'yish chegirmani ochmaydi
         if (CONFIG.requireToken && data.tokenValid === false) setState('standard');
+        // Narx va to'lov usullari — server manba. Forma shulardan foydalanadi.
+        if (data.offers && data.offers.length) sessionOffers = data.offers;
+        if (data.paymentTypes && data.paymentTypes.length) paymentTypes = data.paymentTypes;
         startCountdown();
       })
       ['catch'](function () { /* backend yotgan bo'lsa fallback bilan davom etadi */ });
@@ -739,22 +863,200 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
     });
   }
 
-  /* ─────────────────── CTA → checkout (TZ 5, 6) ──────────────── */
-  function checkoutHref(plan) {
-    var base = CONFIG.checkoutUrl;
-    var q = 'plan=' + encodeURIComponent(plan) + (REF ? '&ref=' + encodeURIComponent(REF) : '');
-    return base + (base.indexOf('?') === -1 ? '?' : '&') + q;
+  /* ═══════════════ CTA → telefon formasi → checkout (TZ 5, 6) ═══════════════ */
+
+  var sheet        = document.getElementById('sheet');
+  var backdrop     = document.getElementById('sheetBackdrop');
+  var sheetForm    = document.getElementById('checkoutForm');
+  var phoneInput   = document.getElementById('phoneInput');
+  var phoneWrap    = document.getElementById('phoneWrap');
+  var sheetErr     = document.getElementById('sheetErr');
+  var sheetSubmit  = document.getElementById('sheetSubmit');
+  var submitText   = document.getElementById('sheetSubmitText');
+  var submitIcon   = document.getElementById('sheetSubmitIcon');
+  var pmList       = document.getElementById('pmList');
+  var sheetPlanEl  = document.getElementById('sheetPlan');
+  var sheetAmtEl   = document.getElementById('sheetAmount');
+
+  var currentPlan = null;
+  var lastFocused = null;
+  var submitting = false;
+  var paymentTypes = [];        // sessiyadan keladi
+  var selectedPaymentTypeId = null;
+
+  var PLAN_LABEL = { mentor: 'Mentor bilan', mentorsiz: 'Mentorsiz' };
+
+  function money(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   }
+
+  /** Narx: avval serverdan, bo'lmasa sahifadagi kartadan. */
+  function priceFromPage(plan) {
+    var offer = null;
+    for (var i = 0; i < sessionOffers.length; i++) {
+      if (sessionOffers[i].key === plan) offer = sessionOffers[i];
+    }
+    if (offer) {
+      var period = offer.months === 1 ? " / oy" : ' / ' + offer.months + ' oy';
+      return money(offer.price) + " so'm" + period;
+    }
+    var card = document.querySelector('[data-cta="' + plan + '"]');
+    var priceEl = card && card.closest('.plan') ? card.closest('.plan').querySelector('.plan-price') : null;
+    if (!priceEl) return '';
+    // innerText, textContent EMAS: kartada taklif va standart narx ikkalasi ham turadi,
+    // biri CSS bilan yashirilgan. textContent yashiringanini ham qo'shib "399 000800 000" berardi.
+    var text = priceEl.innerText || priceEl.textContent;
+    return text.replace(/\s+/g, ' ').trim();
+  }
+
+  function renderPaymentTypes() {
+    if (!paymentTypes.length) { pmList.hidden = true; return; }
+    pmList.hidden = false;
+    pmList.innerHTML = '';
+    for (var i = 0; i < paymentTypes.length; i++) {
+      (function (pt, isFirst) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'pm';
+        btn.setAttribute('role', 'radio');
+        btn.setAttribute('aria-checked', isFirst ? 'true' : 'false');
+        btn.innerHTML = '<span class="radio" aria-hidden="true"></span>' + pt.title;
+        btn.addEventListener('click', function () {
+          selectedPaymentTypeId = pt.id;
+          var all = pmList.querySelectorAll('.pm');
+          for (var j = 0; j < all.length; j++) all[j].setAttribute('aria-checked', 'false');
+          btn.setAttribute('aria-checked', 'true');
+        });
+        if (isFirst) selectedPaymentTypeId = pt.id;
+        pmList.appendChild(btn);
+      })(paymentTypes[i], i === 0);
+    }
+  }
+
+  function showError(message) {
+    sheetErr.textContent = message;
+    sheetErr.hidden = false;
+    phoneWrap.classList.add('bad');
+  }
+  function clearError() {
+    sheetErr.hidden = true;
+    phoneWrap.classList.remove('bad');
+  }
+
+  function openSheet(plan, position) {
+    currentPlan = plan;
+    lastFocused = document.activeElement;
+    sheetPlanEl.textContent = PLAN_LABEL[plan] || plan;
+    sheetAmtEl.textContent = priceFromPage(plan);
+    clearError();
+    renderPaymentTypes();
+
+    backdrop.hidden = false;
+    sheet.hidden = false;
+    // reflow — tranzitsiya ishlashi uchun
+    void sheet.offsetWidth;
+    backdrop.classList.add('in');
+    sheet.classList.add('in');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { phoneInput.focus(); }, 260);
+
+    track('checkout_form_open', { plan: plan, position: position || 'plans', state: state });
+  }
+
+  function closeSheet() {
+    backdrop.classList.remove('in');
+    sheet.classList.remove('in');
+    document.body.style.overflow = '';
+    setTimeout(function () {
+      backdrop.hidden = true;
+      sheet.hidden = true;
+    }, 260);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  document.getElementById('sheetClose').addEventListener('click', closeSheet);
+  backdrop.addEventListener('click', closeSheet);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !sheet.hidden) closeSheet();
+  });
+
+  /** Kiritilayotgan raqamni "90 123 45 67" ko'rinishida ajratamiz. */
+  phoneInput.addEventListener('input', function () {
+    var digits = phoneInput.value.replace(/\D/g, '').slice(0, 9);
+    var out = digits;
+    if (digits.length > 2) out = digits.slice(0, 2) + ' ' + digits.slice(2);
+    if (digits.length > 5) out = digits.slice(0, 2) + ' ' + digits.slice(2, 5) + ' ' + digits.slice(5);
+    if (digits.length > 7) out = digits.slice(0, 2) + ' ' + digits.slice(2, 5) + ' ' + digits.slice(5, 7) + ' ' + digits.slice(7);
+    phoneInput.value = out;
+    if (digits.length === 9) clearError();
+  });
+
+  function setSubmitting(on) {
+    submitting = on;
+    sheetSubmit.disabled = on;
+    submitText.textContent = on ? 'Kutib turing...' : "To'lovga o'tish";
+    submitIcon.style.display = on ? 'none' : '';
+  }
+
+  sheetForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (submitting) return;
+
+    var digits = phoneInput.value.replace(/\D/g, '');
+    if (digits.length !== 9) {
+      showError("Raqamni to'liq kiriting — operator kodidan keyin 9 ta raqam.");
+      phoneInput.focus();
+      return;
+    }
+
+    clearError();
+    setSubmitting(true);
+
+    var body = {
+      offerKey: currentPlan,
+      phoneNumber: '+998' + digits
+    };
+    if (REF) body.ref = REF;
+    if (selectedPaymentTypeId) body.paymentTypeId = selectedPaymentTypeId;
+
+    // MENTOR va MENTORSIZ alohida-alohida hisoblanadi (TZ 6)
+    track('checkout_start', { plan: currentPlan, state: state });
+
+    fetch(CONFIG.checkoutEndpoint, {
+      method: 'POST',
+      credentials: 'omit',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+      .then(function (r) {
+        return r.json().then(function (data) { return { ok: r.ok, data: data }; });
+      })
+      .then(function (res) {
+        if (!res.ok || !res.data || !res.data.payUrl) {
+          var msg = res.data && res.data.message;
+          if (Object.prototype.toString.call(msg) === '[object Array]') msg = msg[0];
+          throw new Error(msg || "To'lovni boshlab bo'lmadi");
+        }
+        track('checkout_redirect', { plan: currentPlan, checkoutId: res.data.checkoutId });
+        window.location.href = res.data.payUrl;
+      })
+      ['catch'](function (err) {
+        setSubmitting(false);
+        showError((err && err.message) || "Aloqa uzildi. Yana bir marta urinib ko'ring.");
+        track('checkout_error', { plan: currentPlan, message: String((err && err.message) || 'network') });
+      });
+  });
 
   var ctas = document.querySelectorAll('[data-cta]');
   for (var i = 0; i < ctas.length; i++) {
     (function (el) {
       var plan = el.getAttribute('data-cta');
-      el.setAttribute('href', checkoutHref(plan));
-      el.addEventListener('click', function () {
-        // MENTOR va MENTORSIZ alohida-alohida hisoblanadi (TZ 6)
-        track('cta_click', { plan: plan, position: el.getAttribute('data-pos') || 'plans', state: state });
-        track('checkout_start', { plan: plan, state: state });
+      var position = el.getAttribute('data-pos') || 'plans';
+      el.setAttribute('href', '#');
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        track('cta_click', { plan: plan, position: position, state: state });
+        openSheet(plan, position);
       });
     })(ctas[i]);
   }

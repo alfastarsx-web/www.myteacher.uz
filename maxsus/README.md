@@ -57,6 +57,22 @@ yutiladi, sahifa buzilmaydi.
 - `tokenValid` — token serverda tekshiriladi. `CONFIG.requireToken = true` bo'lganda shunchaki
   `?ref=xxx` yozib qo'yish chegirmani ochmaydi.
 
+**`POST /api/campaigns/maxsus/checkout`**
+
+```json
+{ "offerKey": "mentor", "phoneNumber": "+998901234567", "ref": "k3Jd9xQm2ZpA",
+  "paymentTypeId": "c834b625-..." }
+```
+
+Javob: `{ checkoutId, amount, months, offerKey, payUrl }` — sahifa `payUrl` ga o'tadi.
+
+- **Summani server hisoblaydi.** Mijoz `amount` yubormaydi — aks holda 399 000 lik tarifga
+  1000 so'm to'lay olardi.
+- `paymentTypeId` berilmasa birinchi to'lov turi olinadi — sessiya so'rovi yiqilgan bo'lsa ham
+  odam to'lay olishi uchun.
+- To'lovdan keyin obuna **darhol ochilmaydi**: odam hali ro'yxatdan o'tmagan. Obuna telefon
+  raqamiga bog'lab qo'yiladi va u ilovada **shu raqam bilan** ro'yxatdan o'tganda beriladi.
+
 **`POST /api/campaigns/maxsus/track`**
 
 ```json
@@ -87,11 +103,28 @@ Token noto'g'ri bo'lsa ham event yoziladi (lidsiz) — aks holda token'siz trafi
 
 Import takror raqamlarni o'tkazib yuboradi — qayta yuborsangiz odam ikkinchi SMS olmaydi.
 
+### To'lov formasi
+
+CTA bosilganda sahifa checkout'ga o'tmaydi — avval modal ochiladi va telefon raqami so'raladi.
+Raqam TZ 5-bo'limi uchun zarur: to'lovdan keyin obuna shu raqamga bog'lanadi.
+
+- Raqam kiritilayotganda `90 123 45 67` ko'rinishida ajratiladi, serverga `+998901112233` ketadi
+- To'lov usullari (Payme / Click) sessiya javobidan keladi — `GET /payment-types` ochiq emas
+- Esc, fon bosilishi va ✕ yopadi; ochilganda fokus raqam maydoniga o'tadi
+- Xato bo'lsa modal yopilmaydi, xabar ko'rsatiladi va qayta urinish mumkin
+
+### ⚠️ Ishga tushirishdan oldin: `CLICK_SECRET_KEY`
+
+Bu env qiymati **qo'yilmasa to'lovlar tasdiqlanmaydi.** Backend ataylab shunday: imzo
+tekshirilmasa har kim checkout ochib, to'lamasdan callback yuborib bepul obuna olardi.
+
 ### Ishga tushirish tartibi
 
 1. `aiteacher-api` deploy qilinadi (`synchronize: true` — jadvallar o'zi yaratiladi)
-2. Admin token bilan kampaniya yaratiladi, `slug: "maxsus"`, `deadlineAt` haqiqiy sana
-3. Lidlar import qilinadi, CSV olinadi, SMS yuboriladi
+2. `CLICK_SECRET_KEY` env qiymati qo'yiladi
+3. Admin token bilan kampaniya yaratiladi: `slug: "maxsus"`, haqiqiy `deadlineAt`, va
+   `offers` — har bir tugma uchun `planId` + `price`
+4. Lidlar import qilinadi, CSV olinadi, SMS yuboriladi
 
 ## 3. nginx — MUHIM
 
