@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Video montaj eksportlari (master fayllar) — git'ga TUSHMASIN.
+# GitHub 100 MB dan katta faylni qabul qilmaydi.
+*.MOV
+*.mov
+maxsus/IMG_*.MOV
+
+# Siqilgan video (23 MB) ham git'da saqlanmaydi: har qayta kodlashda repo tarixiga
+# yangi 23 MB blob qo'shilib, repo qaytarib bo'lmas darajada shishadi.
+# Serverga/CDN'ga ALOHIDA yuklanadi — maxsus/README.md, 5-bo'limga qarang.
+maxsus/promo.mp4
+maxsus/promo.webm
