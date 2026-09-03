@@ -1,0 +1,4 @@
+# w1.myteacher.uz — SMS kampaniyasi uchun izolyatsiyalangan sahifa.
+# Butun subdomain qidiruvdan yopiladi (TZ 3-bo'lim).
+User-agent: *
+Disallow: /

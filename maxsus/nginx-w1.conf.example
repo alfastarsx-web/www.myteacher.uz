@@ -1,0 +1,52 @@
+# w1.myteacher.uz — SMS reaktivatsiya landing sahifasi
+#
+# Joylashuvi: /etc/nginx/sites-available/w1.myteacher.uz
+# Yoqish:     ln -s /etc/nginx/sites-available/w1.myteacher.uz /etc/nginx/sites-enabled/
+#
+# MUHIM: bu ALOHIDA server bloki. Mavjud myteacher.uz / ai.myteacher.uz / cp.myteacher.uz
+# bloklariga tegilmaydi — ular boshqa fayllarda va o'z holicha qoladi.
+#
+# SSL qatorlarini certbot o'zi qo'shadi:
+#   certbot --nginx -d w1.myteacher.uz
+# Shuning uchun avval faqat quyidagi 80-portli blok qo'yiladi, certbot ishlatiladi,
+# so'ng certbot 443 blokini va yo'naltirishni o'zi yozadi.
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name w1.myteacher.uz;
+
+    root /var/www/w1;
+    index index.html;
+
+    # Asosiy saytdan farqli: bu yerda mavjud bo'lmagan fayl HALIGI 404 beradi.
+    # myteacher.uz da catch-all HTML qaytaradi va yetishmayotgan video jimgina buziladi.
+    try_files $uri $uri/ =404;
+
+    # Butun subdomain qidiruvdan yopiq (sahifadagi meta tegga qo'shimcha himoya)
+    add_header X-Robots-Tag "noindex, nofollow" always;
+
+    # HTML keshlanmaydi — countdown holati va narx eskirib qolmasligi kerak
+    location = /index.html {
+        add_header Cache-Control "no-cache, must-revalidate";
+        add_header X-Robots-Tag "noindex, nofollow" always;
+    }
+
+    # Video va rasm uzoq keshlanadi
+    location ~* \.(mp4|webm|jpg|jpeg|webp|png|svg)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+        add_header X-Robots-Tag "noindex, nofollow" always;
+    }
+
+    # Video uchun: qisman yuklab olish (seek) ishlashi kerak
+    location ~* \.(mp4|webm)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+        add_header Accept-Ranges bytes;
+        add_header X-Robots-Tag "noindex, nofollow" always;
+    }
+
+    access_log /var/log/nginx/w1.access.log;
+    error_log  /var/log/nginx/w1.error.log;
+}
