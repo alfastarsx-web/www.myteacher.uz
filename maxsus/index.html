@@ -760,7 +760,9 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
   <form id="checkoutForm" novalidate>
     <div class="field">
       <label for="phoneInput">Telefon raqamingiz</label>
-      <div class="phone-wrap" id="phoneWrap">
+      <!-- Webvisor sessiyani yozib oladi. Telefon raqami mijozning shaxsiy ma'lumoti —
+           uni uchinchi tomon serveriga yuborilmasligi uchun yozuvdan chiqaramiz. -->
+      <div class="phone-wrap" id="phoneWrap" data-ym-disable-record>
         <span class="pfx">+998</span>
         <input id="phoneInput" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national"
                placeholder="90 123 45 67" maxlength="12" aria-describedby="phoneHint" />
@@ -798,6 +800,20 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
   <a class="btn btn-primary" data-cta="mentor" data-pos="sticky" href="#">Boshlash</a>
 </div>
 
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112286391', 'ym');
+
+    ym(112286391, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/112286391" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
 <script>
 (function () {
   'use strict';
@@ -805,6 +821,8 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
   /* ════════════════════════════════════════════════════════════════════
      SOZLAMALAR — backend tayyor bo'lgach shu yerni o'zgartirasiz.
      ════════════════════════════════════════════════════════════════════ */
+  var METRIKA_ID = 112286391;
+
   var CONFIG = {
     // Sessiya endpointi -> { deadlineIso, serverTimeIso, state, tokenValid }
     // Bo'sh qoldirilsa umuman so'rov yuborilmaydi va fallbackDeadline ishlatiladi.
@@ -852,6 +870,12 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
       extras[k] = data[k];
     }
     (window.dataLayer = window.dataLayer || []).push(flat);
+
+    // Yandex Metrika maqsadi. Metrika'da bunday nomli maqsad yaratilmagan bo'lsa
+    // chaqiruv shunchaki e'tiborsiz qoladi — xato bermaydi.
+    if (typeof window.ym === 'function') {
+      try { window.ym(METRIKA_ID, 'reachGoal', event, extras || undefined); } catch (e) {}
+    }
 
     if (!CONFIG.trackEndpoint) return;
     try {
