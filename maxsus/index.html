@@ -402,8 +402,11 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
   margin-top:22px;padding:16px 17px;border-radius:15px;text-align:left;
   background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.42);
 }
-.paid-warn b{display:block;font-family:Sora,sans-serif;font-size:15px;color:#FCD34D;margin-bottom:6px}
-.paid-warn p{font-size:14.5px;color:#E2E8F0}
+/* Sarlavha blok, matn ichidagi <b> satr ichida — aks holda har bir qalin ibora
+   o'z qatoriga tushib jumlani ikkiga bo'lib yuboradi. */
+.paid-warn .hd{display:block;font-family:Sora,sans-serif;font-weight:800;font-size:15px;color:#FCD34D;margin-bottom:7px}
+.paid-warn p{font-size:14.5px;color:#E2E8F0;line-height:1.6}
+.paid-warn p b{font-weight:700;color:#FDE68A}
 
 .paid-steps{margin-top:22px;text-align:left;display:grid;gap:13px}
 .paid-step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
@@ -415,7 +418,6 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 .paid-step b{color:#fff}
 
 .stores{margin-top:24px;display:grid;gap:10px}
-@media (min-width:460px){.stores{grid-template-columns:1fr 1fr}}
 .store{
   display:flex;align-items:center;justify-content:center;gap:9px;
   padding:14px 18px;border-radius:999px;text-decoration:none;
@@ -424,7 +426,16 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 .store:hover{background:#E2E8F0}
 .store svg{width:18px;height:18px;fill:currentColor}
 
-.paid-help{margin-top:24px;font-size:13.5px;color:var(--ink-3)}
+.paid-promise{margin-top:18px;font:600 16px/1.5 Sora,Inter,sans-serif;color:#7DD3FC}
+.paid-redirect{margin-top:14px;font-size:13px;color:var(--ink-3)}
+.paid-redirect[hidden]{display:none}
+.paid-redirect span{font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.paid-note{
+  margin-top:18px;padding:12px 15px;border-radius:12px;text-align:left;
+  background:rgba(255,255,255,.05);border:1px solid var(--line-dark);
+  font-size:13.5px;color:#CBD5E1;
+}
+.paid-help{margin-top:20px;font-size:13.5px;color:var(--ink-3)}
 .paid-help a{color:#7DD3FC}
 
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
@@ -709,31 +720,32 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
       <svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg>
     </div>
 
-    <h2>To'lov qabul qilindi</h2>
-    <p class="sub">Rahmat! Obunangiz tayyor va sizni kutmoqda.</p>
+    <h2>To'lovingiz muvaffaqiyatli qabul qilindi</h2>
+    <p class="sub">Tabriklaymiz! Siz bilan tez orada bog'lanamiz.</p>
 
     <div class="paid-warn">
-      <b>Eng muhimi</b>
-      <p>Ilovada <b>aynan to'lov qilgan telefon raqamingiz bilan</b> ro'yxatdan o'ting.
-        Obuna o'sha raqamga bog'langan — boshqa raqam bilan kirsangiz ochilmaydi.</p>
+      <b class="hd">Qo'ng'irog'imizni kuting</b>
+      <p>Biz sizga <b>15 daqiqadan 3 soatgacha</b> bo'lgan oraliqda aloqaga chiqamiz.
+        Ungacha rasmiy saytimiz orqali <b>MyTeacher ilovasini yuklab oling.</b></p>
     </div>
 
-    <div class="paid-steps">
-      <div class="paid-step"><span class="n">1</span><p>Quyidagi tugma orqali <b>MyTeacher</b> ilovasini yuklab oling</p></div>
-      <div class="paid-step"><span class="n">2</span><p><b>To'lov qilgan raqamingiz</b> bilan ro'yxatdan o'ting</p></div>
-      <div class="paid-step"><span class="n">3</span><p>Obuna avtomatik ochiladi &mdash; qo'shimcha hech narsa qilish shart emas</p></div>
-    </div>
+    <p class="paid-promise">Siz bilan yuqori natijalar ko'rsatamiz.</p>
 
     <div class="stores">
-      <a class="store" data-store="ios" href="https://testflight.apple.com/join/NBNHurR2" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.6-.7 2.9-.7s1.7.7 2.9.7c1.2 0 2-1.1 2.7-2.2.9-1.2 1.2-2.5 1.2-2.5s-2-.8-2-3.6zM14.2 5.9c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>
-        App Store
-      </a>
-      <a class="store" data-store="android" href="https://play.google.com/store/apps/details?id=com.myteacher.student" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24"><path d="M3.6 2.2c-.3.3-.5.8-.5 1.4v16.8c0 .6.2 1.1.5 1.4l.1.1 9.4-9.4v-.2L3.6 2.2zM17 15.3l-3.1-3.1v-.2l3.1-3.1.1.1 3.7 2.1c1.1.6 1.1 1.6 0 2.2L17 15.3zM13.9 12.2l3.2 3.2-9.6 5.5c-.4.2-.7.2-1 0l7.4-8.7zM13.9 11.8L6.5 3.1c.3-.2.7-.2 1 0l9.6 5.5-3.2 3.2z"/></svg>
-        Google Play
+      <a class="store" data-store="site" id="downloadBtn"
+         href="https://myteacher.uz/#yuklab-olish" rel="noopener">
+        Ilovani yuklab olish
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
+
+    <p class="paid-redirect" id="redirectNote">
+      <span id="redirectCount">8</span> soniyadan keyin avtomatik o'tasiz
+    </p>
+
+    <p class="paid-note">
+      Ilovaga <b>to'lov qilgan telefon raqamingiz bilan</b> kiring — obuna o'sha raqamga bog'langan.
+    </p>
 
     <p class="paid-help">
       Savol bo'lsa bog'laning:
@@ -1341,10 +1353,40 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
     for (var si = 0; si < stores.length; si++) {
       (function (el) {
         el.addEventListener('click', function () {
-          track('app_download_click', { store: el.getAttribute('data-store') });
+          track('app_download_click', { store: el.getAttribute('data-store'), manual: true });
         });
       })(stores[si]);
     }
+
+    // Ilovani yuklab olish sahifasiga avtomatik o'tkazamiz — lekin darhol emas.
+    // Xabar o'qilmasdan sakrab ketilsa, odam qo'ng'iroq kutishini bilmay qoladi.
+    var DOWNLOAD_URL = 'https://myteacher.uz/#yuklab-olish';
+    var REDIRECT_SECONDS = 8;
+    var countEl = document.getElementById('redirectCount');
+    var noteEl = document.getElementById('redirectNote');
+    var left = REDIRECT_SECONDS;
+    var stopped = false;
+
+    // Odam o'zi tugmani bossa yoki sahifada biror narsa qilsa — sanoqni to'xtatamiz,
+    // uni o'qiyotgan joyidan sudrab ketmaslik uchun.
+    function stopRedirect() {
+      if (stopped) return;
+      stopped = true;
+      if (noteEl) noteEl.hidden = true;
+    }
+    var dl = document.getElementById('downloadBtn');
+    if (dl) dl.addEventListener('click', stopRedirect);
+
+    var redirectTimer = setInterval(function () {
+      if (stopped) { clearInterval(redirectTimer); return; }
+      left -= 1;
+      if (countEl) countEl.textContent = String(left > 0 ? left : 0);
+      if (left <= 0) {
+        clearInterval(redirectTimer);
+        track('app_download_click', { store: 'site', manual: false });
+        window.location.href = DOWNLOAD_URL;
+      }
+    }, 1000);
   }
 
   /* FAQ ochilishi ham konversiya signali */
