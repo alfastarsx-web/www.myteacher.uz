@@ -454,11 +454,11 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 
     <div class="anchor">
       <div class="only-offer">
-        <p class="old-price">Oldingi narx: <s>600 000 – 800 000 so'm</s></p>
+        <p class="old-price">Odatdagi narx: <s data-price="range:standard">259 000 – 643 500 so'm</s></p>
         <p class="new-price display">199 000 <span class="cur">so'mdan / oy</span></p>
       </div>
       <div class="only-standard">
-        <p class="new-price display">800 000 <span class="cur">so'm / oy</span></p>
+        <p class="new-price display"><span data-price="mentorsiz:standard">259 000</span> <span class="cur">so'mdan / oy</span></p>
       </div>
 
       <div class="countdown only-offer" id="countdown">
@@ -487,8 +487,8 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
       <article class="plan featured">
         <span class="plan-badge">Eng ko'p tanlanadi</span>
         <div class="plan-name">Mentor bilan</div>
-        <p class="was only-offer"><s>800 000 so'm</s></p>
-        <p class="plan-price"><span class="only-offer">399 000</span><span class="only-standard">800 000</span> <span class="per">so'm / oy</span></p>
+        <p class="was only-offer">Odatdagi narx: <s data-price="mentor:standard">643 500</s> so'm</p>
+        <p class="plan-price"><span class="only-offer" data-price="mentor:offer">399 000</span><span class="only-standard" data-price="mentor:standard">643 500</span> <span class="per">so'm / oy</span></p>
         <p class="plan-tagline">Sizni yo'ldan qaytmasligingiz uchun jonli nazorat.</p>
         <ul class="feats">
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Shaxsiy mentor — haftada 3 marta jonli video-qo'ng'iroq</li>
@@ -504,8 +504,8 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
 
       <article class="plan">
         <div class="plan-name">Mentorsiz</div>
-        <p class="was only-offer"><s>600 000 so'm</s></p>
-        <p class="plan-price"><span class="only-offer">199 000</span><span class="only-standard">600 000</span> <span class="per">so'm / oy</span></p>
+        <p class="was only-offer">Odatdagi narx: <s data-price="mentorsiz:standard">259 000</s> so'm</p>
+        <p class="plan-price"><span class="only-offer" data-price="mentorsiz:offer">199 000</span><span class="only-standard" data-price="mentorsiz:standard">259 000</span> <span class="per">so'm / oy</span></p>
         <p class="plan-tagline">O'zingiz mustaqil o'rganasiz, ilova yo'l ko'rsatadi.</p>
         <ul class="feats">
           <li><span class="tick"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></span>AI Speaking Partner — cheksiz suhbat mashqi</li>
@@ -638,7 +638,7 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
     <div class="plans">
       <article class="plan featured">
         <div class="plan-name">Mentor bilan</div>
-        <p class="plan-price"><span class="only-offer">399 000</span><span class="only-standard">800 000</span> <span class="per">so'm / oy</span></p>
+        <p class="plan-price"><span class="only-offer" data-price="mentor:offer">399 000</span><span class="only-standard" data-price="mentor:standard">643 500</span> <span class="per">so'm / oy</span></p>
         <p class="plan-tagline">Jonli mentor nazorati bilan.</p>
         <a class="btn btn-primary" data-cta="mentor" data-pos="bottom" href="#">
           Mentor bilan boshlash
@@ -647,7 +647,7 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
       </article>
       <article class="plan">
         <div class="plan-name">Mentorsiz</div>
-        <p class="plan-price"><span class="only-offer">199 000</span><span class="only-standard">600 000</span> <span class="per">so'm / oy</span></p>
+        <p class="plan-price"><span class="only-offer" data-price="mentorsiz:offer">199 000</span><span class="only-standard" data-price="mentorsiz:standard">259 000</span> <span class="per">so'm / oy</span></p>
         <p class="plan-tagline">Mustaqil o'rganish uchun.</p>
         <a class="btn btn-ghost" data-cta="mentorsiz" data-pos="bottom" href="#">
           Mentorsiz boshlash
@@ -754,7 +754,7 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
   <div class="px">
     <div class="t only-offer">Mentor bilan</div>
     <div class="t only-standard">Narx</div>
-    <div class="v"><span class="only-offer">399 000</span><span class="only-standard">800 000</span> so'm/oy</div>
+    <div class="v"><span class="only-offer" data-price="mentor:offer">399 000</span><span class="only-standard" data-price="mentor:standard">643 500</span> so'm/oy</div>
   </div>
   <a class="btn btn-primary" data-cta="mentor" data-pos="sticky" href="#">Boshlash</a>
 </div>
@@ -914,11 +914,53 @@ details .ans{padding:0 18px 17px;font-size:14.5px;color:var(--ink-2)}
         // Token serverda tekshiriladi: shunchaki ?ref= yozib qo'yish chegirmani ochmaydi
         if (CONFIG.requireToken && data.tokenValid === false) setState('standard');
         // Narx va to'lov usullari — server manba. Forma shulardan foydalanadi.
-        if (data.offers && data.offers.length) sessionOffers = data.offers;
+        if (data.offers && data.offers.length) {
+          sessionOffers = data.offers;
+          applyServerPrices(data.offers);
+        }
         if (data.paymentTypes && data.paymentTypes.length) paymentTypes = data.paymentTypes;
         startCountdown();
       })
       ['catch'](function () { /* backend yotgan bo'lsa fallback bilan davom etadi */ });
+  }
+
+  /* ────────────── Narxlar: HTML emas, server manba ──────────────
+     HTML'dagi raqamlar faqat zaxira (server javob bermasa nimadir ko'rinsin).
+     Server javob bersa hammasi shundan yangilanadi, chunki checkout summani
+     ayni shu manbadan hisoblaydi — ikkisi ayri ketsa odam bir narx ko'rib
+     boshqasini to'laydi, va buni faqat shikoyat kelganda bilardik. */
+
+  function formatSum(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+
+  function applyServerPrices(offers) {
+    var map = {};
+    var standards = [];
+
+    for (var i = 0; i < offers.length; i++) {
+      var o = offers[i];
+      map[o.key + ':offer'] = o.price;
+      if (typeof o.standardPrice === 'number') {
+        map[o.key + ':standard'] = o.standardPrice;
+        standards.push(o.standardPrice);
+      }
+    }
+
+    var nodes = document.querySelectorAll('[data-price]');
+    for (var j = 0; j < nodes.length; j++) {
+      var key = nodes[j].getAttribute('data-price');
+
+      if (key === 'range:standard') {
+        if (standards.length >= 2) {
+          standards.sort(function (a, b) { return a - b; });
+          nodes[j].textContent = formatSum(standards[0]) + ' – ' + formatSum(standards[standards.length - 1]) + " so'm";
+        }
+        continue;
+      }
+
+      if (typeof map[key] === 'number') nodes[j].textContent = formatSum(map[key]);
+    }
   }
 
   /* ─────────────────────────── Video ─────────────────────────── */
