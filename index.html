@@ -590,6 +590,17 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
 .cefr-nav-link:hover{color:#fcd34d}
 .cefr-nav-underline{background:#fbbf24}
 </style>
+<!-- Meta Pixel (dataset "Adrian-landing") -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1372933013255529');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1372933013255529&ev=PageView&noscript=1"/></noscript>
 </head>
 
 <body class="text-slate-800 antialiased pb-20 md:pb-0 overflow-x-hidden">
@@ -2253,7 +2264,9 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
   // ---------------- Lead capture (shared by trial + career forms) ----------------
   // Public product-side leads API. Payload shape is fixed: { name, phoneNumber, formId }.
   const LEADS_API_URL = 'https://ai.myteacher.uz/api/leads';
-  const LEADS_FORM_ID = 'form-1';
+  // Visitors arriving from Meta ads carry fbclid/utm_source — tag their leads separately.
+  const FROM_META_AD = /[?&](fbclid=|utm_source=(fb|facebook|ig|instagram))/i.test(location.search);
+  const LEADS_FORM_ID = FROM_META_AD ? 'form-1-fb' : 'form-1';
 
   function showToast(message) {
     let toast = document.getElementById('mt-toast');
@@ -2283,6 +2296,7 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
       });
       clearTimeout(timeoutId);
       if (!res.ok) throw new Error('Lead webhook responded with HTTP ' + res.status);
+      if (typeof fbq === 'function') fbq('track', 'Lead');
       return true;
     } catch (err) {
       clearTimeout(timeoutId);
