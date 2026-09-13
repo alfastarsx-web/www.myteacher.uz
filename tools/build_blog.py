@@ -33,6 +33,7 @@ OUT_DIR = os.path.join(ROOT, "blog")
 STATIC_PAGES = [
     ("/", "2026-08-19"),
     ("/sharhlar.html", "2026-08-07"),
+    ("/karyera/", "2026-09-13"),
 ]
 
 OYLAR = [
