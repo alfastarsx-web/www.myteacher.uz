@@ -2282,7 +2282,7 @@ fbq('track', 'PageView');
     showToast._t = setTimeout(() => { toast.style.opacity = '0'; }, 4000);
   }
 
-  async function postLead(payload) {
+  async function postLead(payload, { trackLead = true } = {}) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 8000);
     try {
@@ -2296,7 +2296,7 @@ fbq('track', 'PageView');
       });
       clearTimeout(timeoutId);
       if (!res.ok) throw new Error('Lead webhook responded with HTTP ' + res.status);
-      if (typeof fbq === 'function') fbq('track', 'Lead');
+      if (trackLead && typeof fbq === 'function') fbq('track', 'Lead');
       return true;
     } catch (err) {
       clearTimeout(timeoutId);
@@ -2596,11 +2596,12 @@ fbq('track', 'PageView');
           btn.style.pointerEvents = 'none';
           btn.innerHTML = tr('career_sending');
 
+          // Vacancy applicants are not students: own formId, no Meta "Lead" event.
           const ok = await postLead({
             name: name,
             phoneNumber: phone,
-            formId: LEADS_FORM_ID
-          });
+            formId: 'mentor-vacancy'
+          }, { trackLead: false });
 
           if (!ok) {
             btn.disabled = false;
