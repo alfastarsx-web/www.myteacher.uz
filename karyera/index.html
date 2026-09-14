@@ -355,6 +355,9 @@
   .store{display:flex; align-items:center; justify-content:center; gap:.6rem; width:100%; border-radius:.9rem; padding:.85rem 1rem; font-weight:700; font-size:.92rem;}
   .store.ios{background:#000; color:#fff;}
   .store.ios:hover{background:var(--slate-700);}
+  .store.android{background:#000; color:#fff; margin-top:.6rem;}
+  .store.android:hover{background:var(--slate-700);}
+  .store[hidden]{display:none !important;}
   .store.soon{display:block; background:var(--slate-100); color:var(--slate-600); margin-top:.6rem; font-weight:500; font-size:.85rem; line-height:1.45; text-align:center; padding:.8rem 1rem;}
   .store.soon b{display:block; color:var(--navy); margin-bottom:.15rem;}
   .store.soon a, .faq-a a{color:var(--sky-dark); font-weight:700; text-decoration:underline; text-underline-offset:2px;}
@@ -638,7 +641,7 @@
       </div>
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false">Mentor ilovasi Android'da bormi? <span class="plus" aria-hidden="true">+</span></button>
-        <div class="faq-a">Ha. iPhone uchun ilova App Store'da. Android versiyasi esa ro'yxatdan o'tganingizdan keyin admin tomonidan beriladi: anketa qoldiring, 8–12 soat ichida siz bilan aloqaga chiqamiz. Ungacha <a href="https://t.me/MT_myteacher" target="_blank" rel="noopener">Telegram</a> orqali bizga yozishingiz ham mumkin.</div>
+        <div class="faq-a">Ha. iPhone uchun App Store'da, Android uchun Google Play'da — ikkalasi ham tayyor. Savol bo'lsa <a href="https://t.me/MT_myteacher" target="_blank" rel="noopener">Telegram</a> orqali yozishingiz mumkin.</div>
       </div>
     </div>
   </div>
@@ -676,11 +679,14 @@
             <div class="ok"><svg><use href="#i-check"/></svg></div>
             <h3 tabindex="-1" id="doneTitle">Anketangiz qabul qilindi!</h3>
             <p>Endi MyTeacher Mentor ilovasini yuklab oling, ro'yxatdan o'ting va ma'lumotlaringizni to'ldiring — arizangiz jamoamizga shu orqali to'liq yetib boradi.</p>
-            <a class="store ios" href="https://apps.apple.com/sg/app/myteacher-mentor/id6771919240" target="_blank" rel="noopener">
+            <a class="store ios" data-store="ios" href="https://apps.apple.com/sg/app/myteacher-mentor/id6771919240" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.37 1.43c0 1.14-.49 2.27-1.18 3.08-.74.9-1.99 1.57-2.99 1.57-.12 0-.23-.02-.3-.03-.01-.06-.03-.19-.03-.32 0-1.14.57-2.27 1.21-2.98.8-.94 2.18-1.64 3.14-1.68.01.13.02.24.02.36zm4.1 16.63c-.56 1.27-.83 1.83-1.56 2.95-1.02 1.56-2.46 3.5-4.24 3.52-1.59.01-2-1.03-4.15-1.02-2.16.01-2.6 1.04-4.19 1.03-1.78-.02-3.14-1.77-4.16-3.33C-.63 16.83-.93 11.63.85 8.97 2.1 7.08 4.08 5.98 5.95 5.98c1.9 0 3.09 1.04 4.66 1.04 1.52 0 2.45-1.04 4.64-1.04 1.66 0 3.42.9 4.68 2.46-4.11 2.25-3.44 8.12.54 9.62z"/></svg>
               App Store'dan yuklab olish
             </a>
-            <div class="store soon"><b>Android'dan foydalanasizmi?</b> Android versiyasi ro'yxatdan o'tganingizdan keyin admin tomonidan beriladi. 8–12 soat ichida siz bilan aloqaga chiqamiz, ungacha <a href="https://t.me/MT_myteacher" target="_blank" rel="noopener">Telegram</a> orqali bizga yozishingiz ham mumkin.</div>
+                        <a class="store android" data-store="android" href="https://play.google.com/store/apps/details?id=uz.myteacher.mentor&amp;hl=uz" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M4 2.5v19c0 .4.4.6.7.4l16-9.5c.3-.2.3-.6 0-.8l-16-9.5c-.3-.2-.7 0-.7.4z"/></svg>
+              Google Play'dan yuklab olish
+            </a>
           </div>
         </div>
       </div>
@@ -822,5 +828,18 @@
 })();
 </script>
 
+<script>
+(function(){
+  var ua = navigator.userAgent || navigator.vendor || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /android/i.test(ua);
+  var ios = document.querySelector('.store.ios');
+  var android = document.querySelector('.store.android');
+  if (ios && android) {
+    if (isAndroid) { ios.hidden = true; }
+    else if (isIOS) { android.hidden = true; }
+  }
+})();
+</script>
 </body>
 </html>
