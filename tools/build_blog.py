@@ -396,8 +396,8 @@ def render_post(post):
   <div class="mt-14 rounded-2xl bg-white border border-slate-200 p-6 sm:p-8 shadow-sm text-center">
     <h2 class="font-display font-extrabold text-xl text-slate-900">Ingliz tilini mentor nazorati ostida o'rganing</h2>
     <p class="mt-3 text-slate-600">15,000+ o'quvchi MyTeacher bilan natijaga erishdi. Sinov darsiga yoziling.</p>
-    <a href="/#tariflar" class="mt-5 inline-flex items-center gap-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 text-sm font-semibold transition-colors">
-      Sinab ko'rish %(fwd)s
+    <a href="/bepul-dars/" class="mt-5 inline-flex items-center gap-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 text-sm font-semibold transition-colors">
+      Bepul sinov darsiga yozilish %(fwd)s
     </a>
   </div>
 </main>""" % {

@@ -275,32 +275,6 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
   .vakansiya-card:hover { transform: translateY(-4px); border-color: rgb(125 211 252); box-shadow: 0 20px 40px -20px rgba(14,165,233,0.35); }
 
   /* Pricing duration toggle (1 / 3 / 6 oy) */
-  .pricing-duration-btn {
-    position: relative;
-    padding: 0.5rem 1.25rem;
-    border-radius: 999px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #475569;
-    transition: background-color .2s ease, color .2s ease;
-    white-space: nowrap;
-  }
-  .pricing-duration-btn:hover { color: #0f172a; }
-  .pricing-duration-btn.active {
-    background: #0f172a;
-    color: #fff;
-  }
-  .pricing-save-badge {
-    display: inline-block;
-    margin-left: 0.35rem;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #0ea5e9, #22d3ee);
-    color: #fff;
-    font-size: 0.625rem;
-    font-weight: 700;
-    padding: 0.1rem 0.45rem;
-    vertical-align: middle;
-  }
 
   #spotlight {
     position: absolute; inset: 0; pointer-events: none;
@@ -555,7 +529,7 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
           "name": "MyTeacher an'anaviy til markazlari yoki xususiy repetitorlardan nimasi bilan farq qiladi?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Toshkentdagi an'anaviy til markazlari va xususiy repetitorlar odatda oyiga 500,000–800,000 so'm turadi va vaqt talab qiluvchi yo'l-yurishni talab qiladi. MyTeacher esa telefoningizda 24/7 cheksiz so'zlashuv mashqini ancha arzon narxda taqdim etadi — istalgan vaqtda va joyda 15 daqiqalik seanslarda shug'ullanishingiz mumkin."
+            "text": "Toshkentdagi an'anaviy til markazlari va xususiy repetitorlar odatda oyiga 500,000–800,000 so'm turadi va vaqt talab qiluvchi yo'l-yurishni talab qiladi. MyTeacher esa telefoningizda istalgan vaqtda so'zlashuv mashqini ancha arzon narxda taqdim etadi — istalgan vaqtda va joyda 15 daqiqalik seanslarda shug'ullanishingiz mumkin."
           }
         },
         {
@@ -563,7 +537,7 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
           "name": "MyTeacher ilovasi qaysi qurilmalarda ishlaydi?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "MyTeacher ilovasi ham iOS (iPhone / TestFlight), ham Android (Google Play Store) qurilmalari bilan to'liq mos keladi. Ilovani ushbu sahifadagi 'Sinab ko'rish' tugmasi orqali bepul yuklab olishingiz mumkin."
+            "text": "MyTeacher ilovasi ham iOS (iPhone / TestFlight), ham Android (Google Play Store) qurilmalari bilan to'liq mos keladi. Bepul sinov darsiga yozilgach, ilovani yuklab olish tugmalari chiqadi. Faqat ilova kerak bo'lsa, sinov darsi sahifasining pastidagi 'Ilovani yuklab olish' havolasidan foydalaning."
           }
         },
         {
@@ -601,6 +575,44 @@ fbq('init', '1491793359635771');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1491793359635771&ev=PageView&noscript=1"/></noscript>
+<style>
+.sinov-cta{margin-top:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  border-radius:28px;padding:28px 30px;color:#fff;
+  background:radial-gradient(120% 140% at 100% 0%,#0891b2 0%,rgba(8,145,178,0) 55%),linear-gradient(135deg,#0c4a6e,#0f172a);
+  box-shadow:0 24px 50px -20px rgba(14,116,144,.55)}
+.sinov-cta-matn{flex:1 1 320px;min-width:0}
+.sinov-cta-s{margin:0;font-family:Sora,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(20px,3.2vw,28px);line-height:1.2}
+.sinov-cta-i{margin:8px 0 0;color:#bae6fd;font-size:15px;line-height:1.5}
+.sinov-cta-t{flex:0 0 auto;border:0;cursor:pointer;border-radius:999px;padding:16px 28px;font:800 17px Inter,system-ui,sans-serif;
+  color:#0f172a;background:#fbbf24;box-shadow:0 8px 0 -2px #b45309,0 14px 30px rgba(251,191,36,.35);transition:transform .15s}
+.sinov-cta-t:hover{transform:translateY(-2px)}
+.sinov-cta-t:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media (max-width:640px){.sinov-cta{padding:22px 20px}.sinov-cta-t{width:100%}}
+
+/* narxlar (1-1 darslar) */
+.narx-b{background:#fff;padding:80px 0}
+@media (min-width:640px){.narx-b{padding:112px 0}}
+.narx-teg{display:inline-block;border-radius:999px;background:#f0f9ff;color:#0369a1;padding:6px 16px;font-size:13px;font-weight:600}
+.narx-h{margin:20px 0 0;font-family:Sora,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(24px,3.6vw,36px);line-height:1.2;color:#0f172a;letter-spacing:-.01em;text-wrap:balance}
+.narx-s{margin:14px 0 0;color:#475569;font-size:17px}
+.narx-grid{margin:44px auto 0;max-width:960px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.narx-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+.narx-k{position:relative;border:1.5px solid #e2e8f0;border-radius:22px;padding:22px 16px 18px;text-align:center;background:#fff;transition:border-color .2s,transform .2s}
+.narx-k:hover{border-color:#7dd3fc;transform:translateY(-2px)}
+.narx-k.top{border-color:#0ea5e9;background:linear-gradient(180deg,#f0f9ff,#fff);box-shadow:0 18px 40px -18px rgba(14,165,233,.45)}
+.narx-top{position:absolute;top:-11px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#0ea5e9;color:#fff;border-radius:999px;padding:4px 12px;font-size:11.5px;font-weight:700}
+.narx-n{margin:0;font-family:Sora,Inter,system-ui,sans-serif;font-weight:800;font-size:30px;color:#0f172a;line-height:1}
+.narx-n span{display:block;margin-top:4px;font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#64748b}
+.narx-p{margin:16px 0 0;font-family:Sora,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(20px,2.6vw,26px);color:#0f172a;font-variant-numeric:tabular-nums;white-space:nowrap}
+.narx-o{margin:2px 0 0;color:#64748b;font-size:13px;font-weight:600}
+.narx-d{margin:12px 0 0;padding-top:10px;border-top:1px dashed #e2e8f0;color:#334155;font-size:13.5px;font-weight:600}
+.narx-pas{margin-top:36px;text-align:center}
+.narx-cta{border:0;cursor:pointer;border-radius:999px;padding:16px 30px;font:800 17px Inter,system-ui,sans-serif;color:#0f172a;background:#fbbf24;box-shadow:0 8px 0 -2px #b45309,0 14px 30px rgba(251,191,36,.35);transition:transform .15s}
+.narx-cta:hover{transform:translateY(-2px)}
+.narx-cta:focus-visible{outline:3px solid #0ea5e9;outline-offset:3px}
+.narx-izoh{margin:14px 0 0;color:#64748b;font-size:14px}
+@media (max-width:420px){.narx-cta{width:100%}.narx-k{padding:20px 10px 16px}}
+</style>
 </head>
 
 <body class="text-slate-800 antialiased pb-20 md:pb-0 overflow-x-hidden">
@@ -619,7 +631,6 @@ fbq('track', 'PageView');
         <a href="#video-darslar" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_video_darslar">Video Darslar</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
         <a href="#ilova" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_ilova">Ilova imkoniyatlari</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
         <a href="#natijalar" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_natijalar">Natijalar</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
-        <a href="#tariflar" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_tariflar">Tariflar</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
         <a href="cefr.html" class="relative text-sm font-medium cefr-nav-link transition-colors group"><span data-i18n="nav_cefr">CEFR tayyorgarlik</span><span class="absolute -bottom-1.5 left-0 w-0 h-px cefr-nav-underline group-hover:w-full transition-all duration-300"></span></a>
         <a href="#vakansiya" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_vakansiya">Vakansiya</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
         <a href="/blog/" class="relative text-sm font-medium text-slate-300 hover:text-white transition-colors group"><span data-i18n="nav_blog">Blog</span><span class="absolute -bottom-1.5 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span></a>
@@ -632,7 +643,7 @@ fbq('track', 'PageView');
           <button type="button" data-lang-btn="en" class="lang-btn px-2 sm:px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold transition-colors">ENG</button>
         </div>
         <button type="button" class="js-open-trial hidden sm:inline-flex items-center gap-2 rounded-full btn-gradient text-white text-sm font-semibold px-4 py-2.5 sm:px-5 shadow-lg shadow-sky-900/40 transition-all hover:shadow-cyan-500/30 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
-          <span data-i18n="cta_download_full">🚀 Sinab ko'rish</span>
+          <span data-i18n="cta_download_full">🎓 Bepul sinov darsi</span>
         </button>
         <button id="menu-btn" type="button" class="lg:hidden relative inline-flex items-center justify-center w-10 h-10 rounded-xl glass text-white hover:bg-white/15 active:scale-90 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400" aria-label="Menyuni ochish" aria-expanded="false" aria-controls="mobile-menu">
           <span class="hamburger-box"><span class="hamburger-inner"></span></span>
@@ -647,12 +658,11 @@ fbq('track', 'PageView');
         <a href="#video-darslar" data-i18n="nav_video_darslar" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Video Darslar</a>
         <a href="#ilova" data-i18n="nav_ilova" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Ilova Fitchalari</a>
         <a href="#natijalar" data-i18n="nav_natijalar" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Natijalar</a>
-        <a href="#tariflar" data-i18n="nav_tariflar" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Tariflar</a>
         <a href="cefr.html" data-i18n="nav_cefr" class="px-2 py-2.5 rounded-lg text-amber-400 hover:bg-white/10 text-sm font-semibold">CEFR tayyorgarlik</a>
         <a href="#vakansiya" data-i18n="nav_vakansiya" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Vakansiya</a>
         <a href="/blog/" data-i18n="nav_blog" class="px-2 py-2.5 rounded-lg text-slate-200 hover:bg-white/10 text-sm font-medium">Blog</a>
         <button type="button" class="js-open-trial mt-2 inline-flex items-center justify-center gap-2 rounded-full btn-gradient text-white text-sm font-semibold px-5 py-3">
-          <span data-i18n="cta_download_full">🚀 Sinab ko'rish</span>
+          <span data-i18n="cta_download_full">🎓 Bepul sinov darsi</span>
         </button>
       </div>
     </nav>
@@ -734,7 +744,7 @@ fbq('track', 'PageView');
       <div class="hero-buttons-area text-center lg:text-left">
         <div class="flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-start">
           <button type="button" data-i18n="hero_cta_primary" class="js-open-trial w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full btn-gradient text-white font-semibold px-7 py-3.5 shadow-lg shadow-sky-900/40 transition-all hover:shadow-cyan-500/40 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
-            🚀 Sinab ko'rish
+            🎓 Bepul 1-1 sinov darsi
           </button>
         </div>
 
@@ -787,7 +797,7 @@ fbq('track', 'PageView');
     <a href="cefr.html" class="cefr-banner-inner group">
       <span class="inline-flex items-center gap-2 text-white font-bold text-sm sm:text-base">
         <i data-lucide="graduation-cap" class="w-5 h-5 shrink-0"></i>
-        <span data-i18n="cefr_banner_title">CEFR (B1/B2/C1) imtihoniga tayyorgarlik dasturi — endi alohida sahifada</span>
+        <span data-i18n="cefr_banner_title">CEFR (B1/B2/C1) imtihoniga ustoz bilan yakkama-yakka tayyorlaning</span>
       </span>
       <span class="cefr-banner-cta inline-flex items-center gap-1 text-sm font-semibold shrink-0" data-i18n="cefr_banner_cta">Batafsil ko'rish →</span>
     </a>
@@ -922,6 +932,15 @@ fbq('track', 'PageView');
         </div>
       </div>
     </div>
+
+    <!-- sinov darsi chaqiruvi -->
+    <div class="sinov-cta reveal">
+      <div class="sinov-cta-matn">
+        <p class="sinov-cta-s" data-i18n="mentor_cta_title">Ustoz bilan bepul sinov darsini o'tib ko'ring</p>
+        <p class="sinov-cta-i" data-i18n="mentor_cta_sub">60 daqiqa · yakkama-yakka · vaqtni o'zingiz tanlaysiz. Darajangizni aniqlaymiz va shaxsiy reja tuzamiz.</p>
+      </div>
+      <button type="button" class="js-open-trial sinov-cta-t" data-i18n="mentor_cta_btn">Vaqtni tanlash →</button>
+    </div>
   </div>
 </section>
 
@@ -979,8 +998,8 @@ fbq('track', 'PageView');
           </div>
         </div>
 
-        <button type="button" class="js-open-trial mt-8 inline-flex items-center gap-2 btn-gradient text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/30 transition-all">
-          <span data-i18n="ai_speaking_cta">Sinab ko'rish</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        <button type="button" class="js-yuklab mt-8 inline-flex items-center gap-2 btn-gradient text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/30 transition-all">
+          <span data-i18n="ai_speaking_cta">Ilovada sinab ko'rish</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </button>
       </div>
 
@@ -1272,28 +1291,57 @@ fbq('track', 'PageView');
   </aside>
 </section>
 
-<!-- ============ PRICING ============ -->
-<section id="tariflar" class="relative bg-white py-20 sm:py-28">
+
+<!-- ============ NARXLAR (1-1 darslar) ============ -->
+<!-- Narxlar mentor hamyoni (HAFTALIK_NARXLAR) bilan bir xil bo'lishi shart -->
+<section id="narxlar" class="narx-b">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto reveal">
-      <span class="inline-flex items-center gap-2 rounded-full bg-sky-50 text-sky-700 px-4 py-1.5 text-xs sm:text-sm font-semibold">
-        <i data-lucide="wallet" class="w-4 h-4"></i> <span data-i18n="tariflar_badge">Tariflar</span>
-      </span>
-      <h2 class="mt-5 font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-slate-900 tracking-tight" data-i18n="tariflar_h2">Sizga mos tarifni tanlang</h2>
-      <p class="mt-4 text-slate-600" data-i18n="tariflar_subtitle">Har qanday tarifda ham — MyTeacher ilovasini yuklab olish orqali boshlaysiz.</p>
+      <span class="narx-teg" data-i18n="narx_badge">Narxlar</span>
+      <h2 class="narx-h" data-i18n="narx_h2">Birinchi dars — bepul. Keyin haftasiga necha marta o'qishni o'zingiz tanlaysiz</h2>
+      <p class="narx-s" data-i18n="narx_sub">Har bir dars — 60 daqiqa, ustoz bilan yakkama-yakka, jonli video.</p>
     </div>
-
-    <!-- Duration toggle: 1 / 3 / 6 oy -->
-    <div class="mt-10 flex justify-center reveal">
-      <div id="pricing-duration-toggle" class="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1.5"></div>
+    <div class="narx-grid reveal">
+      <div class="narx-k">
+        <p class="narx-n">1×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">350 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 4</p>
+      </div>
+      <div class="narx-k">
+        <p class="narx-n">2×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">450 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 8</p>
+      </div>
+      <div class="narx-k top"><span class="narx-top" data-i18n="narx_top">Eng ko'p tanlanadi</span>
+        <p class="narx-n">3×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">550 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 12</p>
+      </div>
+      <div class="narx-k">
+        <p class="narx-n">4×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">650 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 16</p>
+      </div>
+      <div class="narx-k">
+        <p class="narx-n">5×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">750 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 20</p>
+      </div>
+      <div class="narx-k">
+        <p class="narx-n">6×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">850 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 24</p>
+      </div>
     </div>
-
-    <div id="pricing-cards" class="mt-10 grid sm:grid-cols-2 gap-6 lg:gap-8 items-start max-w-3xl mx-auto"></div>
-
-    <div class="mt-6 text-center reveal">
-      <p class="inline-flex items-center gap-2 rounded-full bg-emerald-50 text-emerald-700 text-xs sm:text-sm font-medium px-4 py-2.5 max-w-xl" data-i18n-html="pricing_installment_note">
-        💳 Naqd pul yo'q ekan — muammo emas. <strong>Uzum Nasiya</strong> yoki <strong>Alif Nasiya</strong> orqali bo'lib to'lang: birinchi to'lovni hoziroq emas, maosh kartangizga tushgan kuni amalga oshirasiz.
-      </p>
+    <div class="narx-pas reveal">
+      <button type="button" class="js-open-trial narx-cta" data-i18n="narx_cta">Bepul sinov darsidan boshlash →</button>
+      <p class="narx-izoh" data-i18n="narx_izoh">To'lov sinov darsidan keyin — ustoz bilan davom etishni tanlasangiz.</p>
     </div>
   </div>
 </section>
@@ -1330,7 +1378,7 @@ fbq('track', 'PageView');
           <span data-i18n="faq_q3">MyTeacher an'anaviy til markazlari yoki xususiy repetitorlardan nimasi bilan farq qiladi?</span>
           <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 text-slate-400 faq-chevron" aria-hidden="true"></i>
         </summary>
-        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_a3">Toshkentdagi an'anaviy til markazlari va xususiy repetitorlar odatda oyiga 500,000–800,000 so'm turadi va vaqt talab qiluvchi yo'l-yurishni talab qiladi. MyTeacher esa telefoningizda 24/7 cheksiz so'zlashuv mashqini ancha arzon narxda taqdim etadi — istalgan vaqtda va joyda 15 daqiqalik seanslarda shug'ullanishingiz mumkin.</p>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_a3">Toshkentdagi an'anaviy til markazlari va xususiy repetitorlar odatda oyiga 500,000–800,000 so'm turadi va vaqt talab qiluvchi yo'l-yurishni talab qiladi. MyTeacher esa telefoningizda istalgan vaqtda so'zlashuv mashqini ancha arzon narxda taqdim etadi — istalgan vaqtda va joyda 15 daqiqalik seanslarda shug'ullanishingiz mumkin.</p>
       </details>
 
       <details class="faq-item group rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-colors">
@@ -1338,7 +1386,7 @@ fbq('track', 'PageView');
           <span data-i18n="faq_q4">MyTeacher ilovasi qaysi qurilmalarda ishlaydi?</span>
           <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 text-slate-400 faq-chevron" aria-hidden="true"></i>
         </summary>
-        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_a4">MyTeacher ilovasi ham iOS (iPhone / TestFlight), ham Android (Google Play Store) qurilmalari bilan to'liq mos keladi. Ilovani ushbu sahifadagi "Sinab ko'rish" tugmasi orqali bepul yuklab olishingiz mumkin.</p>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_a4">MyTeacher ilovasi ham iOS (iPhone / TestFlight), ham Android (Google Play Store) qurilmalari bilan to'liq mos keladi. Bepul sinov darsiga yozilgach, ilovani yuklab olish tugmalari chiqadi. Faqat ilova kerak bo'lsa, sinov darsi sahifasining pastidagi "Ilovani yuklab olish" havolasidan foydalaning.</p>
       </details>
 
       <details class="faq-item group rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-colors">
@@ -1445,7 +1493,6 @@ fbq('track', 'PageView');
           <li><a href="#video-darslar" data-i18n="nav_video_darslar" class="hover:text-white transition-colors">Video Darslar</a></li>
           <li><a href="#ilova" data-i18n="nav_ilova" class="hover:text-white transition-colors">Ilova Fitchalari</a></li>
           <li><a href="#natijalar" data-i18n="nav_natijalar" class="hover:text-white transition-colors">Natijalar</a></li>
-          <li><a href="#tariflar" data-i18n="nav_tariflar" class="hover:text-white transition-colors">Tariflar</a></li>
           <li><a href="cefr.html" data-i18n="nav_cefr" class="hover:text-white transition-colors">CEFR tayyorgarlik</a></li>
           <li><a href="#vakansiya" data-i18n="nav_vakansiya" class="hover:text-white transition-colors">Vakansiya</a></li>
         </ul>
@@ -1489,7 +1536,7 @@ fbq('track', 'PageView');
     <p class="text-xs font-semibold text-white" data-i18n="sticky_cta_line">Bugun bepul boshlang</p>
   </div>
   <button type="button" data-i18n="sticky_btn" class="js-open-trial inline-flex items-center gap-2 rounded-full btn-gradient text-white text-sm font-semibold px-5 py-2.5 shrink-0">
-    🚀 Sinab ko'rish
+    🎓 Bepul sinov darsi
   </button>
 </div>
 
@@ -1683,197 +1730,6 @@ fbq('track', 'PageView');
   }
   renderTestimonials();
 
-  // Pricing: real plans/prices pulled from the admin panel (Tariflar).
-  // Two tiers (Platform / Mentor+Platform) x 3 durations (1/3/6 oy), with a
-  // duration toggle. Uses tr()/translations, so its first render happens
-  // from applyLanguage() below (translations isn't defined yet up here).
-  const PRICING_DURATIONS = [1, 3, 6];
-  let pricingSelectedDuration = 3;
-
-  const pricingPlans = [
-    {
-      key: 'platform',
-      highlighted: false,
-      name: { uz: `Platforma`, ru: `Платформа`, en: `Platform` },
-      desc: { uz: `Mustaqil o'rganish uchun — AI, video darslar va ilova`, ru: `Для самостоятельного обучения — ИИ, видеоуроки и приложение`, en: `For self-paced learning — AI, video lessons and the app` },
-      features: [
-        { uz: `360 ta video dars (General/IELTS/CEFR/Business/Kids)`, ru: `360 видеоуроков (General/IELTS/CEFR/Business/Kids)`, en: `360 video lessons (General/IELTS/CEFR/Business/Kids)` },
-        { uz: `AI Speaking Partner bilan cheklanmagan suhbat`, ru: `Неограниченные разговоры с AI Speaking Partner`, en: `Unlimited conversations with the AI Speaking Partner` },
-        { uz: `Gamifikatsiya: streak, XP, reyting jadvali`, ru: `Геймификация: streak, XP, рейтинг`, en: `Gamification: streak, XP, leaderboard` },
-      ],
-      negFeature: { uz: `Shaxsiy mentor nazorati yo'q`, ru: `Без личного куратора-ментора`, en: `No personal mentor supervision` },
-      durations: {
-        1: { price: 399000, original: null, dailyEval: 0 },
-        3: { price: 700000, original: 1200000, dailyEval: 10 },
-        6: { price: 1200000, original: 2400000, dailyEval: 10 },
-      },
-    },
-    {
-      key: 'mentor',
-      highlighted: true,
-      badge: { uz: `🔥 ENG MASHHUR`, ru: `🔥 САМЫЙ ПОПУЛЯРНЫЙ`, en: `🔥 MOST POPULAR` },
-      name: { uz: `Ustoz + Platforma`, ru: `Наставник + Платформа`, en: `Mentor + Platform` },
-      desc: { uz: `Shaxsiy mentor nazorati bilan tezkor natija uchun`, ru: `Быстрый результат под личным контролем ментора`, en: `Fast results under personal mentor supervision` },
-      features: [
-        { uz: `Platforma'dagi barcha imkoniyatlar`, ru: `Всё, что есть в тарифе «Платформа»`, en: `Everything in the Platform plan` },
-        { uz: `Shaxsiy mentor — kunlik audio/matn vazifalar tekshiruvi`, ru: `Личный ментор — ежедневная проверка аудио/текстовых заданий`, en: `Personal mentor — daily audio/text assignment review` },
-        { uz: `Haftalik jonli amaliyot mashg'ulotlari`, ru: `Еженедельные живые практические занятия`, en: `Weekly live practice sessions` },
-        { uz: `Streak/intizom nazorati va shaxsiy eslatmalar`, ru: `Контроль дисциплины и личные напоминания`, en: `Discipline tracking and personal reminders` },
-      ],
-      durations: {
-        1: { price: 890000, original: 990000, dailyEval: 10 },
-        3: { price: 2400000, original: 2970000, dailyEval: 10 },
-        6: { price: 4800000, original: 5940000, dailyEval: 10 },
-      },
-    },
-  ];
-
-  function formatSom(n) {
-    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  }
-  function pricingDiscountPct(price, original) {
-    if (!original) return null;
-    return Math.round((1 - price / original) * 100);
-  }
-  function pricingDailyEvalText(minutes, lang) {
-    if (!minutes) {
-      const u = { uz: `cheksiz`, ru: `безлимит`, en: `unlimited` };
-      return u[lang] || u.uz;
-    }
-    const suffix = { uz: `daqiqa`, ru: `минут`, en: `minutes` };
-    return minutes + ' ' + (suffix[lang] || suffix.uz);
-  }
-
-  function renderPricingToggle() {
-    const wrap = document.getElementById('pricing-duration-toggle');
-    if (!wrap) return;
-    wrap.innerHTML = PRICING_DURATIONS.map((d) => {
-      const active = d === pricingSelectedDuration;
-      return `<button type="button" class="pricing-duration-btn${active ? ' active' : ''}" data-duration="${d}">
-        ${d} ${tr('duration_month_short')}${d === 6 ? `<span class="pricing-save-badge">${tr('duration_badge_save')}</span>` : ''}
-      </button>`;
-    }).join('');
-    wrap.querySelectorAll('.pricing-duration-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        pricingSelectedDuration = parseInt(btn.getAttribute('data-duration'), 10);
-        renderPricing();
-      });
-    });
-  }
-
-  function pricingCard(plan) {
-    const lang = window.currentLang || 'uz';
-    const d = plan.durations[pricingSelectedDuration];
-    const pct = pricingDiscountPct(d.price, d.original);
-    const featuresHtml = plan.features.map((f) => `
-      <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 ${plan.highlighted ? 'text-emerald-400' : 'text-emerald-500'} mt-0.5 shrink-0"></i><span>${f[lang] || f.uz}</span></li>`).join('');
-    const negFeatureHtml = plan.negFeature ? `
-      <li class="flex items-start gap-2 text-slate-400"><i data-lucide="x" class="w-4 h-4 mt-0.5 shrink-0"></i><span>${plan.negFeature[lang] || plan.negFeature.uz}</span></li>` : '';
-    const dailyEvalHtml = `
-      <li class="flex items-start gap-2"><i data-lucide="gauge" class="w-4 h-4 ${plan.highlighted ? 'text-emerald-400' : 'text-emerald-500'} mt-0.5 shrink-0"></i><span>${tr('daily_eval_label')}: ${pricingDailyEvalText(d.dailyEval, lang)}</span></li>`;
-
-    const cardClasses = plan.highlighted
-      ? 'reveal relative rounded-3xl bg-slate-900 p-7 shadow-2xl shadow-sky-200 border border-sky-500/40'
-      : 'reveal rounded-3xl border border-slate-200 p-7 card-hover';
-    const titleClass = plan.highlighted ? 'text-white' : 'text-slate-900';
-    const descClass = plan.highlighted ? 'text-slate-400' : 'text-slate-500';
-    const priceClass = plan.highlighted ? 'text-white' : 'text-slate-900';
-    const ulClass = plan.highlighted ? 'text-slate-200' : 'text-slate-600';
-    const btnClass = plan.highlighted
-      ? 'js-open-trial mt-7 w-full block text-center rounded-full btn-gradient text-white font-semibold px-6 py-3 shadow-lg shadow-sky-900/40 hover:-translate-y-0.5 transition-all'
-      : 'js-open-trial mt-7 w-full block text-center rounded-full border border-slate-300 text-slate-700 font-semibold px-6 py-3 hover:bg-slate-50 transition-colors';
-
-    return `
-      <div class="${cardClasses}">
-        ${plan.badge ? `<span class="absolute -top-3.5 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-full btn-gradient text-white text-[11px] font-bold px-3.5 py-1.5 shadow-lg whitespace-nowrap">${plan.badge[lang] || plan.badge.uz}</span>` : ''}
-        <h3 class="font-display font-bold text-lg ${titleClass}">${plan.name[lang] || plan.name.uz}</h3>
-        <p class="mt-1 text-sm ${descClass}">${plan.desc[lang] || plan.desc.uz}</p>
-        <div class="mt-5">
-          ${d.original ? `<p class="text-sm text-slate-400 line-through">${formatSom(d.original)} ${tr('currency_som')}</p>` : ''}
-          <p class="font-display font-extrabold text-3xl sm:text-4xl ${priceClass}">${formatSom(d.price)} <span class="text-lg font-semibold">${tr('currency_som')}</span></p>
-          ${pct ? `<span class="inline-block mt-1 rounded-full bg-emerald-50 text-emerald-600 text-xs font-bold px-2.5 py-1">-${pct}% ${tr('discount_label')}</span>` : ''}
-        </div>
-        <ul class="mt-6 space-y-3 text-sm ${ulClass}">
-          ${featuresHtml}
-          ${dailyEvalHtml}
-          ${negFeatureHtml}
-        </ul>
-        <button type="button" class="${btnClass}">${tr('cta_download_short')}</button>
-      </div>`;
-  }
-
-  function renderPricing() {
-    renderPricingToggle();
-    const wrap = document.getElementById('pricing-cards');
-    if (!wrap) return;
-    wrap.innerHTML = pricingPlans.map(pricingCard).join('');
-    wrap.querySelectorAll('.js-open-trial').forEach((btn) => btn.addEventListener('click', openTrialModal));
-    // Cards are (re)created here, after the page's one-time scroll-reveal scan already ran —
-    // without this they'd carry the .reveal class (opacity:0) but never get observed, so
-    // they'd stay invisible forever even when scrolled into view. Register them now.
-    if (typeof revealObserver !== 'undefined' && revealObserver) {
-      wrap.querySelectorAll('.reveal, .reveal-scale').forEach((el) => revealObserver.observe(el));
-    }
-    lucide.createIcons();
-  }
-
-  // ---------------- Live pricing sync ----------------
-  // The numbers above are the last-known-good prices, shown immediately so the
-  // pricing section never flashes empty/loading. In the background we try to
-  // refresh them from the real plans API; if that fails (offline, CORS, etc.)
-  // the static numbers above simply stay as-is.
-  const PLANS_API_URL = 'https://ai.myteacher.uz/api/plans';
-
-  async function fetchLivePricing() {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000);
-    try {
-      const res = await fetch(PLANS_API_URL, { signal: controller.signal });
-      clearTimeout(timeoutId);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      if (!Array.isArray(data)) throw new Error('Unexpected /api/plans response shape');
-      return data;
-    } catch (err) {
-      clearTimeout(timeoutId);
-      console.error('Live pricing fetch failed, keeping fallback prices:', err);
-      return null;
-    }
-  }
-
-  function applyLivePricing(apiPlans) {
-    const live = { platform: {}, mentor: {} };
-    apiPlans.forEach((p) => {
-      if (!p || !p.isActive || !Array.isArray(p.prices) || !p.prices.length) return;
-      const tierKey = p.hasMentor ? 'mentor' : 'platform';
-      const priceInfo = p.prices[0];
-      const month = priceInfo.month;
-      if (![1, 3, 6].includes(month)) return;
-      live[tierKey][month] = {
-        price: priceInfo.price,
-        original: (priceInfo.actualPrice && priceInfo.actualPrice > priceInfo.price) ? priceInfo.actualPrice : null,
-        dailyEval: p.assessmentDailyLimitMinutes || 0,
-      };
-    });
-
-    let changed = false;
-    pricingPlans.forEach((plan) => {
-      const liveDurations = live[plan.key];
-      if (!liveDurations) return;
-      [1, 3, 6].forEach((month) => {
-        if (liveDurations[month]) {
-          plan.durations[month] = liveDurations[month];
-          changed = true;
-        }
-      });
-    });
-    return changed;
-  }
-
-  fetchLivePricing().then((data) => {
-    if (!data) return;
-    if (applyLivePricing(data)) renderPricing();
-  });
 
   // Reveal the remaining reviews only when the user asks for them, so the
   // homepage doesn't dump all testimonials on the visitor at once.
@@ -1907,11 +1763,10 @@ fbq('track', 'PageView');
     nav_video_darslar: { uz: `Video Darslar`, ru: `Видеоуроки`, en: `Video Lessons` },
     nav_ilova: { uz: `Ilova imkoniyatlari`, ru: `Функции приложения`, en: `App Features` },
     nav_natijalar: { uz: `Natijalar`, ru: `Результаты`, en: `Results` },
-    nav_tariflar: { uz: `Tariflar`, ru: `Тарифы`, en: `Pricing` },
     nav_cefr: { uz: `CEFR tayyorgarlik`, ru: `Подготовка к CEFR`, en: `CEFR Prep` },
-    cefr_banner_title: { uz: `CEFR (B1/B2/C1) imtihoniga tayyorgarlik dasturi — endi alohida sahifada`, ru: `Программа подготовки к CEFR (B1/B2/C1) — теперь на отдельной странице`, en: `CEFR (B1/B2/C1) exam prep program — now on its own page` },
+    cefr_banner_title: { uz: `CEFR (B1/B2/C1) imtihoniga ustoz bilan yakkama-yakka tayyorlaning`, ru: `Подготовка к экзамену CEFR (B1/B2/C1) один на один с преподавателем`, en: `Prepare for the CEFR (B1/B2/C1) exam one-on-one with a teacher` },
     cefr_banner_cta: { uz: `Batafsil ko'rish →`, ru: `Подробнее →`, en: `Learn more →` },
-    cta_download_full: { uz: `🚀 Sinab ko'rish`, ru: `🚀 Попробовать`, en: `🚀 Try It Free` },
+    cta_download_full: { uz: `🎓 Bepul sinov darsi`, ru: `🎓 Бесплатный урок`, en: `🎓 Free trial lesson` },
 
     hero_badge: { uz: `O'zbekistondagi #1 EdTech + Mentor Platformasi`, ru: `Платформа №1 EdTech + Ментор в Узбекистане`, en: `Uzbekistan's #1 EdTech + Mentor Platform` },
     hero_title: {
@@ -1926,7 +1781,7 @@ fbq('track', 'PageView');
           <span class="text-gradient">3x faster</span>`
     },
     hero_subtitle: { uz: `Kunlik intizomiy nazorat, o'yinlashtirilgan darslar va 15,000+ o'quvchining isbotlangan natijasi.`, ru: `Ежедневный контроль дисциплины, геймифицированные уроки и доказанные результаты 15 000+ учеников.`, en: `Daily discipline tracking, gamified lessons, and proven results from 15,000+ students.` },
-    hero_cta_primary: { uz: `🚀 Sinab ko'rish`, ru: `🚀 Попробовать бесплатно`, en: `🚀 Try It Free` },
+    hero_cta_primary: { uz: `🎓 Bepul 1-1 sinov darsi`, ru: `🎓 Бесплатный пробный урок 1-на-1`, en: `🎓 Free 1-on-1 trial lesson` },
     store_label: { uz: `Yuklab oling`, ru: `Скачать`, en: `Get it on` },
     marquee_students: { uz: `15,000+ faol o'quvchi`, ru: `15 000+ активных учеников`, en: `15,000+ active students` },
     marquee_rating: { uz: `4.9/5 reyting`, ru: `Рейтинг 4.9/5`, en: `4.9/5 rating` },
@@ -1969,6 +1824,9 @@ fbq('track', 'PageView');
     pillar3_title: { uz: `Individual vazifa nazorati`, ru: `Индивидуальный контроль заданий`, en: `Individual Task Review` },
     pillar3_desc: { uz: `Har kuni topshirgan audio va matn vazifalaringizni shaxsiy mentoringiz individual tekshiradi — hammaga bir xil emas, aynan sizning xato va ehtiyojlaringizga mos ovozli feedback yuboradi.`, ru: `Ваш личный ментор ежедневно проверяет отправленные аудио- и текстовые задания индивидуально — не шаблонно, а с учётом именно ваших ошибок и потребностей, и присылает голосовую обратную связь.`, en: `Your personal mentor reviews your daily audio and text assignments individually — not with generic templates, but feedback tailored to your specific mistakes and needs.` },
     pillar4_title: { uz: `O'quvchi Ustozni Baholaydi`, ru: `Ученик оценивает преподавателя`, en: `Students Rate Their Teacher` },
+    mentor_cta_title: { uz: `Ustoz bilan bepul sinov darsini o'tib ko'ring`, ru: `Пройдите бесплатный пробный урок с преподавателем`, en: `Try a free lesson with a teacher` },
+    mentor_cta_sub: { uz: `60 daqiqa · yakkama-yakka · vaqtni o'zingiz tanlaysiz. Darajangizni aniqlaymiz va shaxsiy reja tuzamiz.`, ru: `60 минут · один на один · время выбираете вы. Определим уровень и составим личный план.`, en: `60 minutes · one-on-one · you pick the time. We find your level and build a personal plan.` },
+    mentor_cta_btn: { uz: `Vaqtni tanlash →`, ru: `Выбрать время →`, en: `Pick a time →` },
     pillar4_desc: { uz: `Yandex Taxi'dagi kabi — har bir darsdan so'ng siz ustozingizni yulduzcha bilan baholaysiz. Past baho olgan ustozlar tizimda faoliyat yurita olmaydi, shuning uchun bizda faqat eng saralangan ustozlar ishlaydi.`, ru: `Как в Yandex Taxi — после каждого урока вы оцениваете преподавателя звёздами. Преподаватели с низким рейтингом не остаются в системе, поэтому у нас работают только лучшие педагоги.`, en: `Just like in Yandex Taxi — after every lesson, you rate your teacher with stars. Low-rated teachers don't stay in the system, so only the top-performing teachers remain.` },
 
     ai_speaking_badge: { uz: `AI Speaking Partner`, ru: `AI Speaking Partner`, en: `AI Speaking Partner` },
@@ -1986,7 +1844,7 @@ fbq('track', 'PageView');
     ai_speaking_feat3_desc: { uz: `Talaffuz va grammatika xatolaringiz darhol aniqlanadi va tushuntiriladi.`, ru: `Ваши ошибки в произношении и грамматике сразу выявляются и объясняются.`, en: `Your pronunciation and grammar mistakes are instantly spotted and explained.` },
     ai_speaking_feat4_title: { uz: `Haqiqiy Hayotiy Vaziyatlar`, ru: `Реальные жизненные ситуации`, en: `Real-Life Scenarios` },
     ai_speaking_feat4_desc: { uz: `Restoranda buyurtma berish, aeroportda, ish suhbatida — turli real ssenariylarda mashq qiling.`, ru: `Заказ в ресторане, аэропорт, собеседование — практикуйтесь в разных реальных сценариях.`, en: `Ordering at a restaurant, the airport, a job interview — practice across real-life scenarios.` },
-    ai_speaking_cta: { uz: `Sinab ko'rish`, ru: `Попробовать`, en: `Try it now` },
+    ai_speaking_cta: { uz: `Ilovada sinab ko'rish`, ru: `Попробовать в приложении`, en: `Try it in the app` },
     curriculum_badge: { uz: `360 Video Dars`, ru: `360 видеоуроков`, en: `360 Video Lessons` },
     curriculum_h2: {
       uz: `Ona tili ingliz bo'lgan <span class="text-sky-600">haqiqiy Britaniyalik ustozlar</span> tomonidan tayyorlangan video darslar`,
@@ -2039,9 +1897,6 @@ fbq('track', 'PageView');
     reviews_view_all: { uz: `Onlayn ingliz tili bo'yicha o'quvchilar sharhini ko'rish`, ru: `Смотреть отзывы учеников по онлайн-английскому`, en: `See student reviews of online English learning` },
     reviews_more_btn: { uz: `Yana fikrlarni ko'rish`, ru: `Показать ещё отзывы`, en: `Show more reviews` },
 
-    tariflar_badge: { uz: `Tariflar`, ru: `Тарифы`, en: `Pricing` },
-    tariflar_h2: { uz: `Sizga mos tarifni tanlang`, ru: `Выберите подходящий тариф`, en: `Choose the Right Plan for You` },
-    tariflar_subtitle: { uz: `Har qanday tarifda ham — MyTeacher ilovasini yuklab olish orqali boshlaysiz.`, ru: `На любом тарифе вы начинаете со скачивания приложения MyTeacher.`, en: `Whichever plan you choose, you start by downloading the MyTeacher app.` },
     duration_month_short: { uz: `oy`, ru: `мес.`, en: `mo.` },
     duration_badge_save: { uz: `Eng katta chegirma`, ru: `Макс. скидка`, en: `Best discount` },
     daily_eval_label: { uz: `Kunlik AI baholash`, ru: `Ежедневная оценка ИИ`, en: `Daily AI assessment` },
@@ -2054,12 +1909,6 @@ fbq('track', 'PageView');
     plan1_feat2: { uz: `Daily streak va XP tizimi`, ru: `Система ежедневных серий и XP`, en: `Daily streak and XP system` },
     plan1_feat3: { uz: `Umumiy reyting jadvali`, ru: `Общая таблица лидеров`, en: `Global leaderboard` },
     plan1_feat4: { uz: `Shaxsiy mentor nazorati yo'q`, ru: `Без контроля личного ментора`, en: `No personal mentor oversight` },
-    cta_download_short: { uz: `Shu tarifni tanlash`, ru: `Выбрать этот тариф`, en: `Choose This Plan` },
-    pricing_installment_note: {
-      uz: `💳 Naqd pul yo'q ekan — muammo emas. <strong>Uzum Nasiya</strong> yoki <strong>Alif Nasiya</strong> orqali bo'lib to'lang: birinchi to'lovni hoziroq emas, maosh kartangizga tushgan kuni amalga oshirasiz.`,
-      ru: `💳 Нет наличных прямо сейчас — не проблема. Оплатите частями через <strong>Uzum Nasiya</strong> или <strong>Alif Nasiya</strong>: первый платёж можно внести не сразу, а когда зарплата придёт на карту.`,
-      en: `💳 No cash right now? No problem. Pay in installments via <strong>Uzum Nasiya</strong> or <strong>Alif Nasiya</strong> — your first payment isn't due until your salary lands.`
-    },
     plan2_badge: { uz: `🔥 ENG MASHHUR`, ru: `🔥 САМЫЙ ПОПУЛЯРНЫЙ`, en: `🔥 MOST POPULAR` },
     plan2_name: { uz: `Mentor Control`, ru: `Контроль ментора`, en: `Mentor Control` },
     plan2_desc: { uz: `Intizom va tezkor natija uchun`, ru: `Для дисциплины и быстрых результатов`, en: `For discipline and fast results` },
@@ -2089,7 +1938,7 @@ fbq('track', 'PageView');
 
     sticky_rating: { uz: `4.9/5 • 15,000+ o'quvchi`, ru: `4.9/5 • 15 000+ учеников`, en: `4.9/5 • 15,000+ students` },
     sticky_cta_line: { uz: `Bugun bepul boshlang`, ru: `Начните бесплатно сегодня`, en: `Start free today` },
-    sticky_btn: { uz: `🚀 Sinab ko'rish`, ru: `🚀 Попробовать`, en: `🚀 Try It` },
+    sticky_btn: { uz: `🎓 Bepul sinov darsi`, ru: `🎓 Бесплатный урок`, en: `🎓 Free trial lesson` },
 
     quiz_step_label: { uz: `Savol {n}/4`, ru: `Вопрос {n}/4`, en: `Question {n}/4` },
     quiz_back: { uz: `← Orqaga`, ru: `← Назад`, en: `← Back` },
@@ -2126,6 +1975,15 @@ fbq('track', 'PageView');
     quiz_success_title: { uz: `Ajoyib! 🎉`, ru: `Отлично! 🎉`, en: `Awesome! 🎉` },
     quiz_success_subtitle: { uz: `Keling, endi bir zumda ilovani yuklab olib bepul sinab ko'ramiz!`, ru: `Давайте прямо сейчас скачаем приложение и бесплатно попробуем!`, en: `Let's quickly download the app and try it for free!` },
 
+    narx_badge: { uz: `Narxlar`, ru: `Цены`, en: `Pricing` },
+    narx_h2: { uz: `Birinchi dars — bepul. Keyin haftasiga necha marta o'qishni o'zingiz tanlaysiz`, ru: `Первый урок — бесплатно. Дальше вы сами выбираете, сколько раз в неделю заниматься`, en: `The first lesson is free. After that, you choose how many times a week to study` },
+    narx_sub: { uz: `Har bir dars — 60 daqiqa, ustoz bilan yakkama-yakka, jonli video.`, ru: `Каждый урок — 60 минут, один на один с преподавателем, живое видео.`, en: `Every lesson is 60 minutes, one-on-one with a teacher, live on video.` },
+    narx_haftada: { uz: `haftada`, ru: `в неделю`, en: `a week` },
+    narx_oyiga: { uz: `so'm / oyiga`, ru: `сум / в месяц`, en: `UZS / month` },
+    narx_darslar: { uz: `Oyiga darslar:`, ru: `Уроков в месяц:`, en: `Lessons per month:` },
+    narx_top: { uz: `Eng ko'p tanlanadi`, ru: `Популярный`, en: `Most popular` },
+    narx_cta: { uz: `Bepul sinov darsidan boshlash →`, ru: `Начать с бесплатного урока →`, en: `Start with a free trial lesson →` },
+    narx_izoh: { uz: `To'lov sinov darsidan keyin — ustoz bilan davom etishni tanlasangiz.`, ru: `Оплата — после пробного урока, если решите продолжить с преподавателем.`, en: `You pay after the trial lesson, only if you decide to continue with the teacher.` },
     faq_badge: { uz: `Savol-javob`, ru: `Вопросы и ответы`, en: `FAQ` },
     faq_h2: { uz: `Ko'p beriladigan savollar`, ru: `Часто задаваемые вопросы`, en: `Frequently asked questions` },
 
@@ -2136,10 +1994,10 @@ fbq('track', 'PageView');
     faq_a2: { uz: `Ilovadagi AI Suhbatdosh sizga 24/7 real vaqtda, interaktiv ovozli mashq imkonini beradi. Siz gapirayotganingizda talaffuz va grammatika xatolaringizni darhol tuzatadi — bu xuddi doim mavjud bo'lgan shaxsiy repetitoringiz kabi ishlaydi.`, ru: `AI-партнёр внутри приложения MyTeacher обеспечивает интерактивную голосовую практику в реальном времени 24/7. Он мгновенно исправляет ошибки произношения и грамматики во время разговора — как персональный репетитор, доступный всегда.`, en: `The AI Speaking Partner inside the MyTeacher app provides real-time, 24/7 interactive voice practice. It corrects your pronunciation and grammar mistakes instantly as you talk, acting as your personal, always-available private tutor.` },
 
     faq_q3: { uz: `MyTeacher an'anaviy til markazlari yoki xususiy repetitorlardan nimasi bilan farq qiladi?`, ru: `Чем MyTeacher отличается от традиционных языковых центров или частных репетиторов?`, en: `How does MyTeacher compare to traditional language centers or private tutors?` },
-    faq_a3: { uz: `Toshkentdagi an'anaviy til markazlari va xususiy repetitorlar odatda oyiga 500,000–800,000 so'm turadi va vaqt talab qiluvchi yo'l-yurishni talab qiladi. MyTeacher esa telefoningizda 24/7 cheksiz so'zlashuv mashqini ancha arzon narxda taqdim etadi — istalgan vaqtda va joyda 15 daqiqalik seanslarda shug'ullanishingiz mumkin.`, ru: `Традиционные языковые центры и частные репетиторы в Ташкенте обычно стоят 500 000–800 000 сум в месяц и требуют затрат времени на дорогу. MyTeacher предлагает неограниченную разговорную практику 24/7 на вашем телефоне за меньшую цену — занимайтесь по 15 минут в любое удобное время и в любом месте.`, en: `Traditional language centers and private tutors in Tashkent often cost 500,000 to 800,000 UZS/month and require time-consuming commutes. MyTeacher offers unlimited 24/7 speaking practice on your phone for a fraction of that cost, allowing you to practice in 15-minute sessions whenever and wherever you choose.` },
+    faq_a3: { uz: `Toshkentdagi an'anaviy til markazlari va xususiy repetitorlar odatda oyiga 500,000–800,000 so'm turadi va vaqt talab qiluvchi yo'l-yurishni talab qiladi. MyTeacher esa telefoningizda istalgan vaqtda so'zlashuv mashqini ancha arzon narxda taqdim etadi — istalgan vaqtda va joyda 15 daqiqalik seanslarda shug'ullanishingiz mumkin.`, ru: `Традиционные языковые центры и частные репетиторы в Ташкенте обычно стоят 500 000–800 000 сум в месяц и требуют затрат времени на дорогу. MyTeacher предлагает разговорную практику на вашем телефоне в любое время за меньшую цену — занимайтесь по 15 минут в любое удобное время и в любом месте.`, en: `Traditional language centers and private tutors in Tashkent often cost 500,000 to 800,000 UZS/month and require time-consuming commutes. MyTeacher offers anytime speaking practice on your phone for a fraction of that cost, allowing you to practice in 15-minute sessions whenever and wherever you choose.` },
 
     faq_q4: { uz: `MyTeacher ilovasi qaysi qurilmalarda ishlaydi?`, ru: `Какие устройства поддерживают приложение MyTeacher?`, en: `Which devices support the MyTeacher app?` },
-    faq_a4: { uz: `MyTeacher ilovasi ham iOS (iPhone / TestFlight), ham Android (Google Play Store) qurilmalari bilan to'liq mos keladi. Ilovani ushbu sahifadagi "Sinab ko'rish" tugmasi orqali bepul yuklab olishingiz mumkin.`, ru: `Приложение MyTeacher полностью совместимо как с iOS (iPhone / TestFlight), так и с Android (Google Play Store). Скачать приложение бесплатно можно через кнопку «Попробовать бесплатно» на этой странице.`, en: `The MyTeacher app is fully compatible with both iOS (iPhone / TestFlight) and Android (Google Play Store) devices. You can download it for free using the "Try for free" button on this page.` },
+    faq_a4: { uz: `MyTeacher ilovasi ham iOS (iPhone / TestFlight), ham Android (Google Play Store) qurilmalari bilan to'liq mos keladi. Bepul sinov darsiga yozilgach, ilovani yuklab olish tugmalari chiqadi. Faqat ilova kerak bo'lsa, sinov darsi sahifasining pastidagi "Ilovani yuklab olish" havolasidan foydalaning.`, ru: `Приложение MyTeacher полностью совместимо как с iOS (iPhone / TestFlight), так и с Android (Google Play Store). После записи на бесплатный пробный урок появятся кнопки для скачивания приложения. Если нужно только приложение — используйте ссылку «Ilovani yuklab olish» внизу страницы пробного урока.`, en: `The MyTeacher app is fully compatible with both iOS (iPhone / TestFlight) and Android (Google Play Store) devices. After you book a free trial lesson, you will see the download buttons. If you only need the app, use the download link at the bottom of the trial lesson page.` },
 
     faq_q5: { uz: `MyTeacher IELTS Speaking ballimni oshirishga yordam bera oladimi?`, ru: `Может ли MyTeacher помочь улучшить мой балл по IELTS Speaking?`, en: `Can MyTeacher help improve my IELTS Speaking score?` },
     faq_a5: { uz: `Ha! MyTeacher'ning interaktiv so'zlashuv darslari va real vaqtdagi muloqot mashqlari IELTS Speaking imtihoniga tayyorlanayotgan talabalar, shuningdek kasbiy faoliyatida ingliz tilini mukammallashtirmoqchi bo'lgan mutaxassislar uchun maxsus tuzilgan.`, ru: `Да! Интерактивные разговорные уроки и практика общения в реальном времени в MyTeacher специально разработаны как для студентов, готовящихся к IELTS Speaking, так и для специалистов, стремящихся к профессиональному уровню владения английским.`, en: `Yes! MyTeacher's interactive speaking lessons and real-time conversation practice are specifically structured for students preparing for IELTS Speaking exams as well as professionals seeking career fluency in English.` },
@@ -2244,7 +2102,6 @@ fbq('track', 'PageView');
 
     if (typeof renderTestimonials === 'function') renderTestimonials();
     if (typeof updateSeoReviewGrid === 'function') updateSeoReviewGrid();
-    if (typeof renderPricing === 'function') renderPricing();
     if (typeof trialModal !== 'undefined' && trialModal && !trialModal.classList.contains('hidden') && typeof renderTrialStep === 'function') renderTrialStep();
     if (typeof careerModal !== 'undefined' && careerModal && !careerModal.classList.contains('hidden') && typeof renderCareerStep === 'function') renderCareerStep();
     lucide.createIcons();
@@ -2493,6 +2350,13 @@ fbq('track', 'PageView');
     }, 1100);
   }
 
+  // Sinov darsi landingiga o'tish: vaqtni tanlaydi, keyin ilovani yuklaydi.
+  // utm/fbclid saqlanadi — Meta reklamasi manbasi yo'qolmasin.
+  function bepulDarsgaOt(e) {
+    if (e) e.preventDefault();
+    window.location.href = '/bepul-dars/' + window.location.search;
+  }
+
   function openTrialModal() {
     trialLastFocused = document.activeElement;
     trialState = { step: 0, answers: {} };
@@ -2512,7 +2376,11 @@ fbq('track', 'PageView');
   }
 
   document.querySelectorAll('.js-open-trial').forEach((btn) => {
-    btn.addEventListener('click', openTrialModal);
+    btn.addEventListener('click', bepulDarsgaOt);
+  });
+  // AI mashq uchun kelganlar — to'g'ridan-to'g'ri ilovaga
+  document.querySelectorAll('.js-yuklab').forEach((btn) => {
+    btn.addEventListener('click', () => { window.location.href = isIOSDevice() ? APP_STORE_URL : GOOGLE_PLAY_URL; });
   });
   if (trialCloseBtn) trialCloseBtn.addEventListener('click', closeTrialModal);
   if (trialBackdrop) trialBackdrop.addEventListener('click', closeTrialModal);
