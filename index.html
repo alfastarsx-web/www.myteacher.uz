@@ -510,6 +510,14 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
       "mainEntity": [
         {
           "@type": "Question",
+          "name": "Bepul sinov darsi shunchaki 15 daqiqalik sotuv suhbati emasmi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yo'q. Sinov darsi 45–60 daqiqa davom etadigan to'liq dars: ustoz siz bilan ingliz tilida gaplashadi, darajangizni aniqlaydi, xatolaringizni ko'rsatadi va shaxsiy reja tuzadi. Qisqa tanishuv yoki reklama suhbati emas. Davom etish-etmaslikni darsdan keyin o'zingiz hal qilasiz."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "O'zbekistondagi eng yaxshi AI asosidagi ingliz tili so'zlashuv kursi qaysi?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -937,7 +945,7 @@ fbq('track', 'PageView');
     <div class="sinov-cta reveal">
       <div class="sinov-cta-matn">
         <p class="sinov-cta-s" data-i18n="mentor_cta_title">Ustoz bilan bepul sinov darsini o'tib ko'ring</p>
-        <p class="sinov-cta-i" data-i18n="mentor_cta_sub">60 daqiqa · yakkama-yakka · vaqtni o'zingiz tanlaysiz. Darajangizni aniqlaymiz va shaxsiy reja tuzamiz.</p>
+        <p class="sinov-cta-i" data-i18n="mentor_cta_sub">45–60 daqiqa · yakkama-yakka · vaqtni o'zingiz tanlaysiz. Darajangizni aniqlaymiz va shaxsiy reja tuzamiz.</p>
       </div>
       <button type="button" class="js-open-trial sinov-cta-t" data-i18n="mentor_cta_btn">Vaqtni tanlash →</button>
     </div>
@@ -1357,6 +1365,14 @@ fbq('track', 'PageView');
     </div>
 
     <div class="mt-10 space-y-3 reveal">
+      <details class="faq-item group rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-colors">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-slate-900">
+          <span data-i18n="faq_sinov_q">Bepul sinov darsi shunchaki 15 daqiqalik sotuv suhbati emasmi?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 text-slate-400 faq-chevron" aria-hidden="true"></i>
+        </summary>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed" data-i18n="faq_sinov_a">Yo'q. Sinov darsi 45–60 daqiqa davom etadigan to'liq dars: ustoz siz bilan ingliz tilida gaplashadi, darajangizni aniqlaydi, xatolaringizni ko'rsatadi va shaxsiy reja tuzadi. Qisqa tanishuv yoki reklama suhbati emas. Davom etish-etmaslikni darsdan keyin o'zingiz hal qilasiz.</p>
+      </details>
+
       <details class="faq-item group rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-colors">
         <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-slate-900">
           <span data-i18n="faq_q1">O'zbekistondagi eng yaxshi AI asosidagi ingliz tili so'zlashuv kursi qaysi?</span>
@@ -1825,7 +1841,7 @@ fbq('track', 'PageView');
     pillar3_desc: { uz: `Har kuni topshirgan audio va matn vazifalaringizni shaxsiy mentoringiz individual tekshiradi — hammaga bir xil emas, aynan sizning xato va ehtiyojlaringizga mos ovozli feedback yuboradi.`, ru: `Ваш личный ментор ежедневно проверяет отправленные аудио- и текстовые задания индивидуально — не шаблонно, а с учётом именно ваших ошибок и потребностей, и присылает голосовую обратную связь.`, en: `Your personal mentor reviews your daily audio and text assignments individually — not with generic templates, but feedback tailored to your specific mistakes and needs.` },
     pillar4_title: { uz: `O'quvchi Ustozni Baholaydi`, ru: `Ученик оценивает преподавателя`, en: `Students Rate Their Teacher` },
     mentor_cta_title: { uz: `Ustoz bilan bepul sinov darsini o'tib ko'ring`, ru: `Пройдите бесплатный пробный урок с преподавателем`, en: `Try a free lesson with a teacher` },
-    mentor_cta_sub: { uz: `60 daqiqa · yakkama-yakka · vaqtni o'zingiz tanlaysiz. Darajangizni aniqlaymiz va shaxsiy reja tuzamiz.`, ru: `60 минут · один на один · время выбираете вы. Определим уровень и составим личный план.`, en: `60 minutes · one-on-one · you pick the time. We find your level and build a personal plan.` },
+    mentor_cta_sub: { uz: `45–60 daqiqa · yakkama-yakka · vaqtni o'zingiz tanlaysiz. Darajangizni aniqlaymiz va shaxsiy reja tuzamiz.`, ru: `45–60 минут · один на один · время выбираете вы. Определим уровень и составим личный план.`, en: `45–60 minutes · one-on-one · you pick the time. We find your level and build a personal plan.` },
     mentor_cta_btn: { uz: `Vaqtni tanlash →`, ru: `Выбрать время →`, en: `Pick a time →` },
     pillar4_desc: { uz: `Yandex Taxi'dagi kabi — har bir darsdan so'ng siz ustozingizni yulduzcha bilan baholaysiz. Past baho olgan ustozlar tizimda faoliyat yurita olmaydi, shuning uchun bizda faqat eng saralangan ustozlar ishlaydi.`, ru: `Как в Yandex Taxi — после каждого урока вы оцениваете преподавателя звёздами. Преподаватели с низким рейтингом не остаются в системе, поэтому у нас работают только лучшие педагоги.`, en: `Just like in Yandex Taxi — after every lesson, you rate your teacher with stars. Low-rated teachers don't stay in the system, so only the top-performing teachers remain.` },
 
@@ -1987,6 +2003,8 @@ fbq('track', 'PageView');
     faq_badge: { uz: `Savol-javob`, ru: `Вопросы и ответы`, en: `FAQ` },
     faq_h2: { uz: `Ko'p beriladigan savollar`, ru: `Часто задаваемые вопросы`, en: `Frequently asked questions` },
 
+    faq_sinov_q: { uz: `Bepul sinov darsi shunchaki 15 daqiqalik sotuv suhbati emasmi?`, ru: `Бесплатный пробный урок — это не просто 15-минутная продающая беседа?`, en: `Is the free trial lesson just a 15-minute sales call?` },
+    faq_sinov_a: { uz: `Yo'q. Sinov darsi 45–60 daqiqa davom etadigan to'liq dars: ustoz siz bilan ingliz tilida gaplashadi, darajangizni aniqlaydi, xatolaringizni ko'rsatadi va shaxsiy reja tuzadi. Qisqa tanishuv yoki reklama suhbati emas. Davom etish-etmaslikni darsdan keyin o'zingiz hal qilasiz.`, ru: `Нет. Пробный урок — это полноценное занятие на 45–60 минут: преподаватель говорит с вами на английском, определяет уровень, показывает ошибки и составляет личный план. Это не короткое знакомство и не рекламная беседа. Продолжать или нет — решаете вы после урока.`, en: `No. The trial is a full 45–60 minute lesson: the teacher speaks English with you, finds your level, shows your mistakes and builds a personal plan. It is not a short intro or a sales pitch. You decide whether to continue after the lesson.` },
     faq_q1: { uz: `O'zbekistondagi eng yaxshi AI asosidagi ingliz tili so'zlashuv kursi qaysi?`, ru: `Какой лучший курс разговорного английского на базе ИИ в Узбекистане?`, en: `What is the best AI-powered English speaking course in Uzbekistan?` },
     faq_a1: { uz: `MyTeacher — O'zbekistonning AI asosidagi №1 mobil ilovasi va ta'lim platformasi bo'lib, ingliz tilida 24/7 erkin gapirishni o'rgatadi. Platforma til to'sig'ini yengib o'tishga va tez orada real muloqot ishonchini shakllantirishga yordam beradi.`, ru: `MyTeacher — это платформа №1 в Узбекистане на базе ИИ для свободного разговорного английского 24/7. Платформа помогает преодолеть языковой барьер и быстро обрести уверенность в реальном общении.`, en: `MyTeacher is Uzbekistan's #1 AI-powered mobile app and educational platform for learning to speak English fluently 24/7. The platform helps users overcome language barriers and build real conversational confidence quickly.` },
 
