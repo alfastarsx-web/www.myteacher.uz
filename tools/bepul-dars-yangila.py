@@ -34,7 +34,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,do
 fbq('init', '1491793359635771');
 fbq('track', 'PageView');
 </script>
-<link rel="canonical" href="https://www.myteacher.uz/bepul-dars/">
+<link rel="canonical" href="https://myteacher.uz/bepul-dars/">
 """
 
 
@@ -42,7 +42,7 @@ def main() -> None:
     html = (MANBA / 'public' / 'bepul-dars.html').read_text(encoding='utf-8')
     og = 'content="https://lesson.myteacher.uz/img/bepul/og.jpg"'
     assert og in html, 'OG rasm manzili topilmadi'
-    html = html.replace(og, 'content="https://www.myteacher.uz/bepul-dars/img/bepul/og.jpg"')
+    html = html.replace(og, 'content="https://myteacher.uz/bepul-dars/img/bepul/og.jpg"')
     assert '</head>' in html
     html = html.replace('</head>', KUZATUV + '</head>', 1)
 
