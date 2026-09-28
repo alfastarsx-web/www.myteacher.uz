@@ -588,6 +588,30 @@ fbq('track', 'PageView');
 .sinov-cta-t:hover{transform:translateY(-2px)}
 .sinov-cta-t:focus-visible{outline:3px solid #fff;outline-offset:3px}
 @media (max-width:640px){.sinov-cta{padding:22px 20px}.sinov-cta-t{width:100%}}
+
+/* narxlar (1-1 darslar) */
+.narx-b{background:#fff;padding:80px 0}
+@media (min-width:640px){.narx-b{padding:112px 0}}
+.narx-teg{display:inline-block;border-radius:999px;background:#f0f9ff;color:#0369a1;padding:6px 16px;font-size:13px;font-weight:600}
+.narx-h{margin:20px 0 0;font-family:Sora,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(24px,3.6vw,36px);line-height:1.2;color:#0f172a;letter-spacing:-.01em;text-wrap:balance}
+.narx-s{margin:14px 0 0;color:#475569;font-size:17px}
+.narx-grid{margin:44px auto 0;max-width:960px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.narx-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+.narx-k{position:relative;border:1.5px solid #e2e8f0;border-radius:22px;padding:22px 16px 18px;text-align:center;background:#fff;transition:border-color .2s,transform .2s}
+.narx-k:hover{border-color:#7dd3fc;transform:translateY(-2px)}
+.narx-k.top{border-color:#0ea5e9;background:linear-gradient(180deg,#f0f9ff,#fff);box-shadow:0 18px 40px -18px rgba(14,165,233,.45)}
+.narx-top{position:absolute;top:-11px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#0ea5e9;color:#fff;border-radius:999px;padding:4px 12px;font-size:11.5px;font-weight:700}
+.narx-n{margin:0;font-family:Sora,Inter,system-ui,sans-serif;font-weight:800;font-size:30px;color:#0f172a;line-height:1}
+.narx-n span{display:block;margin-top:4px;font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#64748b}
+.narx-p{margin:16px 0 0;font-family:Sora,Inter,system-ui,sans-serif;font-weight:800;font-size:clamp(20px,2.6vw,26px);color:#0f172a;font-variant-numeric:tabular-nums;white-space:nowrap}
+.narx-o{margin:2px 0 0;color:#64748b;font-size:13px;font-weight:600}
+.narx-d{margin:12px 0 0;padding-top:10px;border-top:1px dashed #e2e8f0;color:#334155;font-size:13.5px;font-weight:600}
+.narx-pas{margin-top:36px;text-align:center}
+.narx-cta{border:0;cursor:pointer;border-radius:999px;padding:16px 30px;font:800 17px Inter,system-ui,sans-serif;color:#0f172a;background:#fbbf24;box-shadow:0 8px 0 -2px #b45309,0 14px 30px rgba(251,191,36,.35);transition:transform .15s}
+.narx-cta:hover{transform:translateY(-2px)}
+.narx-cta:focus-visible{outline:3px solid #0ea5e9;outline-offset:3px}
+.narx-izoh{margin:14px 0 0;color:#64748b;font-size:14px}
+@media (max-width:420px){.narx-cta{width:100%}.narx-k{padding:20px 10px 16px}}
 </style>
 </head>
 
@@ -1268,6 +1292,60 @@ fbq('track', 'PageView');
 </section>
 
 
+<!-- ============ NARXLAR (1-1 darslar) ============ -->
+<!-- Narxlar mentor hamyoni (HAFTALIK_NARXLAR) bilan bir xil bo'lishi shart -->
+<section id="narxlar" class="narx-b">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <span class="narx-teg" data-i18n="narx_badge">Narxlar</span>
+      <h2 class="narx-h" data-i18n="narx_h2">Birinchi dars — bepul. Keyin haftasiga necha marta o'qishni o'zingiz tanlaysiz</h2>
+      <p class="narx-s" data-i18n="narx_sub">Har bir dars — 60 daqiqa, ustoz bilan yakkama-yakka, jonli video.</p>
+    </div>
+    <div class="narx-grid reveal">
+      <div class="narx-k">
+        <p class="narx-n">1×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">350 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 4</p>
+      </div>
+      <div class="narx-k">
+        <p class="narx-n">2×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">450 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 8</p>
+      </div>
+      <div class="narx-k top"><span class="narx-top" data-i18n="narx_top">Eng ko'p tanlanadi</span>
+        <p class="narx-n">3×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">550 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 12</p>
+      </div>
+      <div class="narx-k">
+        <p class="narx-n">4×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">650 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 16</p>
+      </div>
+      <div class="narx-k">
+        <p class="narx-n">5×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">750 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 20</p>
+      </div>
+      <div class="narx-k">
+        <p class="narx-n">6×<span data-i18n="narx_haftada">haftada</span></p>
+        <p class="narx-p">850 000</p>
+        <p class="narx-o" data-i18n="narx_oyiga">so'm / oyiga</p>
+        <p class="narx-d"><span data-i18n="narx_darslar">Oyiga darslar:</span> 24</p>
+      </div>
+    </div>
+    <div class="narx-pas reveal">
+      <button type="button" class="js-open-trial narx-cta" data-i18n="narx_cta">Bepul sinov darsidan boshlash →</button>
+      <p class="narx-izoh" data-i18n="narx_izoh">To'lov sinov darsidan keyin — ustoz bilan davom etishni tanlasangiz.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section id="faq" class="relative bg-slate-50 py-20 sm:py-28">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1897,6 +1975,15 @@ fbq('track', 'PageView');
     quiz_success_title: { uz: `Ajoyib! 🎉`, ru: `Отлично! 🎉`, en: `Awesome! 🎉` },
     quiz_success_subtitle: { uz: `Keling, endi bir zumda ilovani yuklab olib bepul sinab ko'ramiz!`, ru: `Давайте прямо сейчас скачаем приложение и бесплатно попробуем!`, en: `Let's quickly download the app and try it for free!` },
 
+    narx_badge: { uz: `Narxlar`, ru: `Цены`, en: `Pricing` },
+    narx_h2: { uz: `Birinchi dars — bepul. Keyin haftasiga necha marta o'qishni o'zingiz tanlaysiz`, ru: `Первый урок — бесплатно. Дальше вы сами выбираете, сколько раз в неделю заниматься`, en: `The first lesson is free. After that, you choose how many times a week to study` },
+    narx_sub: { uz: `Har bir dars — 60 daqiqa, ustoz bilan yakkama-yakka, jonli video.`, ru: `Каждый урок — 60 минут, один на один с преподавателем, живое видео.`, en: `Every lesson is 60 minutes, one-on-one with a teacher, live on video.` },
+    narx_haftada: { uz: `haftada`, ru: `в неделю`, en: `a week` },
+    narx_oyiga: { uz: `so'm / oyiga`, ru: `сум / в месяц`, en: `UZS / month` },
+    narx_darslar: { uz: `Oyiga darslar:`, ru: `Уроков в месяц:`, en: `Lessons per month:` },
+    narx_top: { uz: `Eng ko'p tanlanadi`, ru: `Популярный`, en: `Most popular` },
+    narx_cta: { uz: `Bepul sinov darsidan boshlash →`, ru: `Начать с бесплатного урока →`, en: `Start with a free trial lesson →` },
+    narx_izoh: { uz: `To'lov sinov darsidan keyin — ustoz bilan davom etishni tanlasangiz.`, ru: `Оплата — после пробного урока, если решите продолжить с преподавателем.`, en: `You pay after the trial lesson, only if you decide to continue with the teacher.` },
     faq_badge: { uz: `Savol-javob`, ru: `Вопросы и ответы`, en: `FAQ` },
     faq_h2: { uz: `Ko'p beriladigan savollar`, ru: `Часто задаваемые вопросы`, en: `Frequently asked questions` },
 
