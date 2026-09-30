@@ -619,7 +619,7 @@ fbq('track', 'PageView');
     return `<div class="ilova-blok">
       <b>Darsingiz MyTeacher ilovasida bo‘ladi — hozir yuklab oling</b>
       <div class="dokonlar">${tartib.join('')}</div>
-      <p>Ilovaga <b>${yashir(tel)}</b> raqami bilan kiring — SMS orqali kod keladi. Darsingiz o‘sha yerda kutib turadi.</p>
+      <p>Ilovaga <b>${yashir(tel)}</b> raqami bilan kiring — SMS orqali kod keladi. <b>Kurslar</b> bo‘limida sinov darsingiz va <b>sizga biriktirilgan ustoz</b> ko‘rinadi.</p>
     </div>`;
   }
   // Telegram bot: ilovani yuklab olish havolasi va darsga kirish eslatmalari shu yerga keladi
@@ -861,7 +861,9 @@ fbq('track', 'PageView');
     const dars = vaqtYoz(start);
     const esl = eslatmaVaqti(start);
     const qadamlar = [
-      ['✅', 'Hozir', 'So‘rovingiz qabul qilindi. Ustoz biriktirilishi bilan bildirishnoma keladi.'],
+      ['✅', 'Hozir', ilova() || kalitli()
+      ? 'So‘rovingiz qabul qilindi. Ustoz biriktirilishi bilan bildirishnoma keladi.'
+      : 'So‘rovingiz qabul qilindi. Ustoz biriktirilgach, u sizga qo‘ng‘iroq qiladi — ismi ilovadagi <b>Kurslar</b> bo‘limida ham chiqadi.'],
     ];
     // Dars yaqin bo'lsa asosiy eslatma ketmaydi (backend ham yubormaydi)
     if (esl - Date.now() > 30 * 6e4) {
