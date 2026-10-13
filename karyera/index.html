@@ -357,6 +357,9 @@
   .store.ios:hover{background:var(--slate-700);}
   .store.android{background:#000; color:#fff; margin-top:.6rem;}
   .store.android:hover{background:var(--slate-700);}
+  .store.tg{background:#229ED9; color:#fff; font-size:1rem; padding:1rem;}
+  .store.tg:hover{background:#1c86b8;}
+  .done .ilova{font-size:.82rem; color:var(--slate-400); margin:1.2rem 0 .6rem;}
   .store[hidden]{display:none !important;}
   .store.soon{display:block; background:var(--slate-100); color:var(--slate-600); margin-top:.6rem; font-weight:500; font-size:.85rem; line-height:1.45; text-align:center; padding:.8rem 1rem;}
   .store.soon b{display:block; color:var(--navy); margin-bottom:.15rem;}
@@ -654,7 +657,7 @@
         <div>
           <span class="pill" style="background:rgba(255,255,255,.14); color:#fff;">Anketa 1 daqiqa oladi</span>
           <h2 style="margin-top:1rem;">Keyingi darsingizni <em>MyTeacher'da</em> bering</h2>
-          <p style="color:#cbd5e1; margin-top:.8rem;">Ism va telefon raqamingizni qoldiring, so'ng MyTeacher Mentor ilovasida ro'yxatdan o'tib ma'lumotlaringizni to'ldiring. HR jamoamiz siz bilan bog'lanadi.</p>
+          <p style="color:#cbd5e1; margin-top:.8rem;">Ism va telefon raqamingizni qoldiring, so'ng Telegram botimizda qisqa anketani to'ldiring: darajangiz, sertifikat va ingliz tilida qisqa ovozli xabar. HR jamoamiz siz bilan bog'lanadi.</p>
           <ul class="lead-benefits">
             <li>Har bir o'quvchi to'lovining 80%igacha sizga</li>
             <li>Bepul onboarding va metodik trening</li>
@@ -678,7 +681,13 @@
           <div class="done" id="leadDone" hidden>
             <div class="ok"><svg><use href="#i-check"/></svg></div>
             <h3 tabindex="-1" id="doneTitle">Anketangiz qabul qilindi!</h3>
-            <p>Endi MyTeacher Mentor ilovasini yuklab oling, ro'yxatdan o'ting va ma'lumotlaringizni to'ldiring — arizangiz jamoamizga shu orqali to'liq yetib boradi.</p>
+            <p id="doneText">Endi MyTeacher Mentor ilovasini yuklab oling, ro'yxatdan o'ting va ma'lumotlaringizni to'ldiring — arizangiz jamoamizga shu orqali to'liq yetib boradi.</p>
+            <!-- Nomzodlar boti: havola API dan keladi; kelmasa eski yo'l (ilova) qoladi -->
+            <a class="store tg" id="tgBot" href="#" target="_blank" rel="noopener" hidden>
+              <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true" width="20" height="20"><path d="M21.9 4.3 18.8 19c-.2 1-.8 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.8 13l-4.7-1.5c-1-.3-1-1 .2-1.5L20.6 3c.8-.3 1.6.2 1.3 1.3z"/></svg>
+              Telegram botda anketani to'ldirish
+            </a>
+            <div class="ilova" id="ilovaIzoh" hidden>MyTeacher Mentor ilovasi — qabul qilingach shu ilova orqali dars berasiz:</div>
             <a class="store ios" data-store="ios" href="https://apps.apple.com/sg/app/myteacher-mentor/id6771919240" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.37 1.43c0 1.14-.49 2.27-1.18 3.08-.74.9-1.99 1.57-2.99 1.57-.12 0-.23-.02-.3-.03-.01-.06-.03-.19-.03-.32 0-1.14.57-2.27 1.21-2.98.8-.94 2.18-1.64 3.14-1.68.01.13.02.24.02.36zm4.1 16.63c-.56 1.27-.83 1.83-1.56 2.95-1.02 1.56-2.46 3.5-4.24 3.52-1.59.01-2-1.03-4.15-1.02-2.16.01-2.6 1.04-4.19 1.03-1.78-.02-3.14-1.77-4.16-3.33C-.63 16.83-.93 11.63.85 8.97 2.1 7.08 4.08 5.98 5.95 5.98c1.9 0 3.09 1.04 4.66 1.04 1.52 0 2.45-1.04 4.64-1.04 1.66 0 3.42.9 4.68 2.46-4.11 2.25-3.44 8.12.54 9.62z"/></svg>
               App Store'dan yuklab olish
@@ -731,6 +740,11 @@
   // boshqa maydon qo'shilsa so'rov 400 bilan rad etiladi.
   var LEADS_API_URL = 'https://ai.myteacher.uz/api/leads';
   var LEADS_FORM_ID = 'mentor-vacancy';
+  // Nomzodlar boti havolasi (t.me/<bot>?start=mentor) — sahifa ochilganda olinadi
+  var BOT_LINK = null;
+  fetch('https://ai.myteacher.uz/api/mentor-vacancy/link').then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){ if(d && typeof d.link === 'string' && /^https:\/\/t\.me\//.test(d.link)) BOT_LINK = d.link; })
+    .catch(function(){});
 
   var toastTimer;
   function showToast(message){
@@ -822,6 +836,13 @@
 
     if(!isBot && typeof ym === 'function'){ try{ ym(100441294, 'reachGoal', 'mentor_vacancy_submit'); }catch(err){} }
     form.hidden = true;
+    if(BOT_LINK){
+      var tg = document.getElementById('tgBot');
+      tg.href = BOT_LINK;
+      tg.hidden = false;
+      document.getElementById('ilovaIzoh').hidden = false;
+      document.getElementById('doneText').textContent = "Oxirgi qadam: Telegram botimizda 3 daqiqalik anketani to'ldiring — darajangiz, sertifikat va ingliz tilida qisqa ovozli xabar. Javobni ham shu bot orqali beramiz.";
+    }
     document.getElementById('leadDone').hidden = false;
     document.getElementById('doneTitle').focus();
   });
