@@ -562,7 +562,7 @@ fbq('track', 'PageView');
       <h2>Anketadan birinchi darsgacha — <em>4 qadam</em></h2>
     </div>
     <ol class="steps">
-      <li><span class="n">1-qadam</span><h3>Anketa</h3><p>Ism va telefon raqamingizni qoldirasiz, so'ng MyTeacher Mentor ilovasida ro'yxatdan o'tib ma'lumotlaringizni to'ldirasiz.</p></li>
+      <li><span class="n">1-qadam</span><h3>Ilova va anketa</h3><p>MyTeacher Mentor ilovasini yuklab olib ro'yxatdan o'tasiz va ma'lumotlaringizni to'ldirasiz.</p></li>
       <li><span class="n">2-qadam</span><h3>Suhbat va demo dars</h3><p>HR bilan qisqa suhbat, keyin metodist oldida qisqa demo dars. Mavzu oldindan beriladi.</p></li>
       <li><span class="n">3-qadam</span><h3>Onboarding va trening</h3><p>Metodika, platforma qoidalari va Mentor ilovasi bo'yicha trening. Savollar uchun kurator biriktiriladi.</p></li>
       <li><span class="n">4-qadam</span><h3>Birinchi darslar</h3><p>Jadvalingizni to'ldirasiz, sizga o'quvchilar biriktiriladi va darslarni boshlaysiz.</p></li>
@@ -666,9 +666,9 @@ fbq('track', 'PageView');
     <div class="lead-section">
       <div class="lead-grid">
         <div>
-          <span class="pill" style="background:rgba(255,255,255,.14); color:#fff;">Anketa 1 daqiqa oladi</span>
+          <span class="pill" style="background:rgba(255,255,255,.14); color:#fff;">Ro'yxatdan o'tish 2 daqiqa</span>
           <h2 style="margin-top:1rem;">Keyingi darsingizni <em>MyTeacher'da</em> bering</h2>
-          <p style="color:#cbd5e1; margin-top:.8rem;">Ism va telefon raqamingizni qoldiring, so'ng Telegram botimizda qisqa anketani to'ldiring: darajangiz, sertifikat va ingliz tilida qisqa ovozli xabar. HR jamoamiz siz bilan bog'lanadi.</p>
+          <p style="color:#cbd5e1; margin-top:.8rem;">MyTeacher Mentor ilovasini yuklab oling va ro'yxatdan o'tib ma'lumotlaringizni to'ldiring: darajangiz, sertifikatingiz va tajribangiz. HR jamoamiz arizangizni ko'rib chiqib siz bilan bog'lanadi.</p>
           <ul class="lead-benefits">
             <li>Har bir o'quvchi to'lovining 80%igacha sizga</li>
             <li>Bepul onboarding va metodik trening</li>
@@ -677,36 +677,18 @@ fbq('track', 'PageView');
           </ul>
         </div>
         <div class="lead-form" id="leadBox">
-          <form id="mentorLeadForm" novalidate>
-            <h3>Mentor lavozimiga anketa</h3>
-            <label for="mName">Ism va familiya</label>
-            <input type="text" id="mName" name="name" autocomplete="name" placeholder="Masalan: Madina Karimova" required />
-            <label for="mPhone">Telefon raqamingiz</label>
-            <input type="tel" id="mPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" required />
-            <div class="hp" aria-hidden="true"><label for="mWebsite">Website</label><input type="text" id="mWebsite" name="website" tabindex="-1" autocomplete="off" /></div>
-            <label class="confirm"><input type="checkbox" id="mLevel" required /> <span>Ingliz tili darajam IELTS 6.0+ yoki CEFR B2 va undan yuqori</span></label>
-            <p class="form-error" id="formError" role="alert"></p>
-            <button type="submit" class="btn btn-primary btn-block" id="mSubmit">Anketani yuborish →</button>
-            <p class="lead-note">Ma'lumotlaringiz faqat MyTeacher HR jamoasi siz bilan bog'lanishi uchun ishlatiladi.</p>
-          </form>
-          <div class="done" id="leadDone" hidden>
-            <div class="ok"><svg><use href="#i-check"/></svg></div>
-            <h3 tabindex="-1" id="doneTitle">Anketangiz qabul qilindi!</h3>
-            <p id="doneText">Endi MyTeacher Mentor ilovasini yuklab oling, ro'yxatdan o'ting va ma'lumotlaringizni to'ldiring — arizangiz jamoamizga shu orqali to'liq yetib boradi.</p>
-            <!-- Nomzodlar boti: havola API dan keladi; kelmasa eski yo'l (ilova) qoladi -->
-            <a class="store tg" id="tgBot" href="#" target="_blank" rel="noopener" hidden>
-              <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true" width="20" height="20"><path d="M21.9 4.3 18.8 19c-.2 1-.8 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.8 13l-4.7-1.5c-1-.3-1-1 .2-1.5L20.6 3c.8-.3 1.6.2 1.3 1.3z"/></svg>
-              Telegram botda anketani to'ldirish
-            </a>
-            <div class="ilova" id="ilovaIzoh" hidden>MyTeacher Mentor ilovasi — qabul qilingach shu ilova orqali dars berasiz:</div>
+          <div class="done">
+            <h3>Ilovani yuklab oling</h3>
+            <p>Ro'yxatdan o'tib anketani to'ldirasiz — arizangiz to'g'ridan-to'g'ri HR jamoamizga tushadi. Tasdiqlangach, darslarni shu ilovada boshlaysiz.</p>
             <a class="store ios" data-store="ios" href="https://apps.apple.com/sg/app/myteacher-mentor/id6771919240" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.37 1.43c0 1.14-.49 2.27-1.18 3.08-.74.9-1.99 1.57-2.99 1.57-.12 0-.23-.02-.3-.03-.01-.06-.03-.19-.03-.32 0-1.14.57-2.27 1.21-2.98.8-.94 2.18-1.64 3.14-1.68.01.13.02.24.02.36zm4.1 16.63c-.56 1.27-.83 1.83-1.56 2.95-1.02 1.56-2.46 3.5-4.24 3.52-1.59.01-2-1.03-4.15-1.02-2.16.01-2.6 1.04-4.19 1.03-1.78-.02-3.14-1.77-4.16-3.33C-.63 16.83-.93 11.63.85 8.97 2.1 7.08 4.08 5.98 5.95 5.98c1.9 0 3.09 1.04 4.66 1.04 1.52 0 2.45-1.04 4.64-1.04 1.66 0 3.42.9 4.68 2.46-4.11 2.25-3.44 8.12.54 9.62z"/></svg>
               App Store'dan yuklab olish
             </a>
-                        <a class="store android" data-store="android" href="https://play.google.com/store/apps/details?id=uz.myteacher.mentor&amp;hl=uz" target="_blank" rel="noopener">
+            <a class="store android" data-store="android" href="https://play.google.com/store/apps/details?id=uz.myteacher.mentor&amp;hl=uz" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M4 2.5v19c0 .4.4.6.7.4l16-9.5c.3-.2.3-.6 0-.8l-16-9.5c-.3-.2-.7 0-.7.4z"/></svg>
               Google Play'dan yuklab olish
             </a>
+            <p class="lead-note">Talab: IELTS 6.0+ yoki CEFR B2 va undan yuqori daraja.</p>
           </div>
         </div>
       </div>
@@ -746,117 +728,12 @@ fbq('track', 'PageView');
     });
   });
 
-  // Anketa -> MyTeacher public leads API (ai.myteacher.uz admin "Lidlar" bo'limi).
-  // API shakli qat'iy: { name, phoneNumber, formId } — forbidNonWhitelisted yoqilgan,
-  // boshqa maydon qo'shilsa so'rov 400 bilan rad etiladi.
-  var LEADS_API_URL = 'https://ai.myteacher.uz/api/leads';
-  var LEADS_FORM_ID = 'mentor-vacancy';
-  // Nomzodlar boti havolasi (t.me/<bot>?start=mentor) — sahifa ochilganda olinadi
-  var BOT_LINK = null;
-  fetch('https://ai.myteacher.uz/api/mentor-vacancy/link').then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(d){ if(d && typeof d.link === 'string' && /^https:\/\/t\.me\//.test(d.link)) BOT_LINK = d.link; })
-    .catch(function(){});
-
-  var toastTimer;
-  function showToast(message){
-    var toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 4500);
-  }
-
-  // "90 123 45 67", "998901234567", "+998 (90) 123-45-67" -> "+998901234567"
-  function normalizePhone(raw){
-    var d = String(raw || '').replace(/\D/g, '');
-    if(d.length === 9) d = '998' + d;
-    return /^998\d{9}$/.test(d) ? '+' + d : null;
-  }
-
-  var phoneEl = document.getElementById('mPhone');
-  phoneEl.addEventListener('focus', function(){ if(!phoneEl.value) phoneEl.value = '+998 '; });
-  phoneEl.addEventListener('input', function(){
-    var d = phoneEl.value.replace(/\D/g, '');
-    if(d.indexOf('998') !== 0) d = '998' + d;
-    d = d.slice(0, 12);
-    var p = d.slice(3), out = '+998';
-    if(p.length) out += ' ' + p.slice(0, 2);
-    if(p.length > 2) out += ' ' + p.slice(2, 5);
-    if(p.length > 5) out += ' ' + p.slice(5, 7);
-    if(p.length > 7) out += ' ' + p.slice(7, 9);
-    phoneEl.value = out;
-  });
-
-  async function postLead(payload){
-    var controller = new AbortController();
-    var timeoutId = setTimeout(function(){ controller.abort(); }, 8000);
-    try{
-      var res = await fetch(LEADS_API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: controller.signal
-      });
-      if(!res.ok) throw new Error('Leads API responded with HTTP ' + res.status);
-      return true;
-    } catch(err){
-      console.error('Mentor lead submission failed:', err);
-      return false;
-    } finally {
-      clearTimeout(timeoutId);
-    }
-  }
-
-  var form = document.getElementById('mentorLeadForm');
-  var errEl = document.getElementById('formError');
-  function fail(msg, field){
-    errEl.textContent = msg;
-    errEl.classList.add('show');
-    if(field){ field.setAttribute('aria-invalid','true'); field.focus(); }
-  }
-
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    var nameEl = document.getElementById('mName');
-    var levelEl = document.getElementById('mLevel');
-    [nameEl, phoneEl].forEach(function(el){ el.removeAttribute('aria-invalid'); });
-    errEl.classList.remove('show');
-
-    var name = nameEl.value.trim();
-    var phone = normalizePhone(phoneEl.value);
-    if(name.length < 2) return fail('Ism va familiyangizni kiriting.', nameEl);
-    if(!phone) return fail('Telefon raqamini to\'liq kiriting: +998 90 123 45 67.', phoneEl);
-    if(!levelEl.checked) return fail('Vakansiya IELTS 6.0+ yoki CEFR B2 va undan yuqori darajadagi mutaxassislar uchun. Darajangiz mos bo\'lsa, belgini qo\'ying.', levelEl);
-
-    // Honeypot: bot to'ldirgan bo'lsa, jimgina "muvaffaqiyat" ko'rsatamiz
-    var isBot = !!document.getElementById('mWebsite').value;
-
-    var btn = document.getElementById('mSubmit');
-    var originalText = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = 'Yuborilmoqda...';
-
-    var ok = isBot ? true : await postLead({ name: name, phoneNumber: phone, formId: LEADS_FORM_ID });
-
-    if(!ok){
-      btn.disabled = false;
-      btn.innerHTML = originalText;
-      showToast('Anketa yuborilmadi. Internetni tekshirib, qayta urinib ko\'ring yoki Telegram orqali yozing.');
-      return;
-    }
-
-    if(!isBot && typeof ym === 'function'){ try{ ym(100441294, 'reachGoal', 'mentor_vacancy_submit'); }catch(err){} }
-    if(!isBot && typeof fbq === 'function'){ try{ fbq('track', 'SubmitApplication'); }catch(err){} }
-    form.hidden = true;
-    if(BOT_LINK){
-      var tg = document.getElementById('tgBot');
-      tg.href = BOT_LINK;
-      tg.hidden = false;
-      document.getElementById('ilovaIzoh').hidden = false;
-      document.getElementById('doneText').textContent = "Oxirgi qadam: Telegram botimizda 3 daqiqalik anketani to'ldiring — darajangiz, sertifikat va ingliz tilida qisqa ovozli xabar. Javobni ham shu bot orqali beramiz.";
-    }
-    document.getElementById('leadDone').hidden = false;
-    document.getElementById('doneTitle').focus();
+  // Do'kon tugmasi bosilishi = ariza boshlandi. Meta kampaniyasi shu hodisaga optimallashadi.
+  document.querySelectorAll('.store[data-store]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (typeof fbq === 'function') { try { fbq('track', 'SubmitApplication'); } catch(e){} }
+      if (typeof ym === 'function') { try { ym(100441294, 'reachGoal', 'mentor_app_click'); } catch(e){} }
+    });
   });
 })();
 </script>
