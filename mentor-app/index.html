@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyTeacher Mentor ilovasi — yuklab olish</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="MyTeacher Mentor ilovasini yuklab oling: Android uchun Google Play, iPhone uchun App Store.">
+<!-- Meta Pixel (dataset "MyTeacher - www") -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1491793359635771');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1491793359635771&ev=PageView&noscript=1"/></noscript>
+<style>
+  :root{--navy:#0b2a5b;--sky:#1d6fe0;--slate:#64748b}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+       font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       background:#f4f7fb;color:var(--navy);padding:1.5rem;text-align:center}
+  .card{max-width:420px;width:100%}
+  h1{font-size:1.45rem;margin:0 0 .5rem}
+  p{color:var(--slate);margin:0 0 1.5rem}
+  a.store{display:flex;align-items:center;justify-content:center;gap:.6rem;
+          background:var(--navy);color:#fff;text-decoration:none;font-weight:600;
+          padding:.95rem 1rem;border-radius:.9rem;margin-bottom:.75rem}
+  a.store:hover{background:var(--sky)}
+  svg{width:20px;height:20px;fill:#fff}
+  small{display:block;margin-top:1rem;color:var(--slate);font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>MyTeacher Mentor</h1>
+  <p>Ilovani yuklab oling, ro'yxatdan o'ting va anketani to'ldiring.</p>
+  <a class="store" id="ios" href="https://apps.apple.com/sg/app/myteacher-mentor/id6771919240" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 1.43c0 1.14-.49 2.27-1.18 3.08-.74.9-1.99 1.57-2.99 1.57-.12 0-.23-.02-.3-.03-.01-.06-.03-.19-.03-.32 0-1.14.57-2.27 1.21-2.98.8-.94 2.18-1.64 3.14-1.68.01.13.02.24.02.36zm4.1 16.63c-.56 1.27-.83 1.83-1.56 2.95-1.02 1.56-2.46 3.5-4.24 3.52-1.59.01-2-1.03-4.15-1.02-2.16.01-2.6 1.04-4.19 1.03-1.78-.02-3.14-1.77-4.16-3.33C-.63 16.83-.93 11.63.85 8.97 2.1 7.08 4.08 5.98 5.95 5.98c1.9 0 3.09 1.04 4.66 1.04 1.52 0 2.45-1.04 4.64-1.04 1.66 0 3.42.9 4.68 2.46-4.11 2.25-3.44 8.12.54 9.62z"/></svg>
+    App Store'dan yuklab olish
+  </a>
+  <a class="store" id="android" href="https://play.google.com/store/apps/details?id=uz.myteacher.mentor&amp;hl=uz" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5v19c0 .4.4.6.7.4l16-9.5c.3-.2.3-.6 0-.8l-16-9.5c-.3-.2-.7 0-.7.4z"/></svg>
+    Google Play'dan yuklab olish
+  </a>
+  <small>Ingliz tili mentori vakansiyasi · <a href="/karyera/" style="color:var(--sky)">shartlar bilan tanishish</a></small>
+</div>
+<script>
+(function(){
+  // Qurilmaga qarab o'z do'koniga yuboramiz; kompyuterda ikkala tugma qoladi.
+  var ua = navigator.userAgent || navigator.vendor || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /android/i.test(ua);
+  var ios = document.getElementById('ios');
+  var android = document.getElementById('android');
+  if (isAndroid) { ios.hidden = true; location.replace(android.href); }
+  else if (isIOS) { android.hidden = true; location.replace(ios.href); }
+})();
+</script>
+</body>
+</html>
