@@ -728,10 +728,24 @@ fbq('track', 'PageView');
     });
   });
 
+  // Reklama UTM'i Google Play'ga (install referrer) uzatiladi — Play Console'da qaysi reklamadan o'rnatilgani ko'rinadi
+  var utm = [];
+  try {
+    new URLSearchParams(location.search).forEach(function(v, k){ if (/^utm_/.test(k) && v) utm.push(k + '=' + v); });
+  } catch(e){}
+  var play = document.querySelector('.store.android');
+  if (play && utm.length) {
+    try {
+      var u = new URL(play.href);
+      u.searchParams.set('referrer', utm.join('&'));
+      play.href = u.toString();
+    } catch(e){}
+  }
+
   // Do'kon tugmasi bosilishi = ariza boshlandi. Meta kampaniyasi shu hodisaga optimallashadi.
   document.querySelectorAll('.store[data-store]').forEach(function(a){
     a.addEventListener('click', function(){
-      if (typeof fbq === 'function') { try { fbq('track', 'SubmitApplication'); } catch(e){} }
+      if (typeof fbq === 'function') { try { fbq('track', 'SubmitApplication', {content_category: a.getAttribute('data-store')}); } catch(e){} }
       if (typeof ym === 'function') { try { ym(100441294, 'reachGoal', 'mentor_app_click'); } catch(e){} }
     });
   });
